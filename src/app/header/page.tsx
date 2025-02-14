@@ -22,7 +22,7 @@ export default function Header() {
                             { label: "About", href: "../about" },
                             { label: "Location and Contact", href: "../location-contact" },
                             { label: "Ministries and Groups", href: "#ministries" },
-                            { label: "Events and Calendar", href: "#events" },
+                            { label: "Events and Calendar", href: "../events-calendar" },
                             { label: "Prayer Requests", href: "#prayer" },
                         ].map((item, index) => (
                             <li key={index}>
