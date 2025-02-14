@@ -20,7 +20,7 @@ export default function Header() {
                     <ul className="flex justify-center gap-8 py-4">
                         {[
                             { label: "About", href: "../about" },
-                            { label: "Location and Contact", href: "#location" },
+                            { label: "Location and Contact", href: "../location-contact" },
                             { label: "Ministries and Groups", href: "#ministries" },
                             { label: "Events and Calendar", href: "#events" },
                             { label: "Prayer Requests", href: "#prayer" },
