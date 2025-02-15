@@ -43,7 +43,7 @@ export default function LocationContact() {
         <section>
           <h2 className="text-2xl font-semibold text-gray-700 mb-4">Contact Us</h2>
           <p className="text-gray-600 leading-relaxed mb-4">
-            We'd love to hear from you! Reach out to us via phone, email, or the contact form below.
+            We would love to hear from you! Reach out to us via phone, email, or the contact form below.
           </p>
           <ul className="text-gray-600 space-y-2">
             <li><strong>Phone:</strong> (123) 456-7890</li>

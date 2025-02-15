@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Header() {
     return (
@@ -7,7 +8,7 @@ export default function Header() {
                 {/* Logo Section */}
                 <div className="flex justify-center py-4">
                     <Link href="/">
-                        <img 
+                        <Image 
                             src="/casa-de-dios-logo.png" 
                             alt="Casa de Dios Logo" 
                             className="h-20 transition-transform hover:scale-105 ease-in-out duration-300" 
