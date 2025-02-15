@@ -110,8 +110,8 @@ export default function PrayerRequest() {
         {/* Prayer Encouragement */}
         <section className="mt-12 text-center">
           <p className="text-gray-600 italic">
-            "Do not be anxious about anything, but in every situation, by prayer and petition,
-            with thanksgiving, present your requests to God." - Philippians 4:6
+            Do not be anxious about anything, but in every situation, by prayer and petition,
+            with thanksgiving, present your requests to God. - Philippians 4:6
           </p>
         </section>
       </div>
