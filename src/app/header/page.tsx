@@ -26,7 +26,7 @@ export default function Header() {
                             { label: "Location and Contact", href: "../location-contact" },
                             { label: "Ministries and Groups", href: "#ministries" },
                             { label: "Events and Calendar", href: "../events-calendar" },
-                            { label: "Prayer Requests", href: "#prayer" },
+                            { label: "Prayer Requests", href: "../prayer-request" },
                         ].map((item, index) => (
                             <li key={index}>
                                 <Link href={item.href}>
