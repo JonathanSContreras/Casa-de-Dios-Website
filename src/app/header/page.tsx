@@ -12,6 +12,8 @@ export default function Header() {
                             src="/casa-de-dios-logo.png" 
                             alt="Casa de Dios Logo" 
                             className="h-20 transition-transform hover:scale-105 ease-in-out duration-300" 
+                            width={80}
+                            height={80}
                         />
                     </Link>
                 </div>
