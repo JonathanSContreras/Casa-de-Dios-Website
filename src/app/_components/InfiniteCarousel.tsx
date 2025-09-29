@@ -1,8 +1,19 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
-const InfiniteCarousel = ({
+interface InfiniteCarouselProps {
+  images: string[];
+  speed?: number;
+  gap?: number;
+  imageWidth?: number;
+  imageHeight?: number;
+  pauseOnHover?: boolean;
+  direction?: "left" | "right";
+}
+
+const InfiniteCarousel: React.FC<InfiniteCarouselProps> = ({
   images = [],
   speed = 1,
   gap = 16,
@@ -11,9 +22,9 @@ const InfiniteCarousel = ({
   pauseOnHover = true,
   direction = "left",
 }) => {
-  const scrollRef = useRef(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const scrollPosition = useRef(0);
-  const animationId = useRef(null);
+  const animationId = useRef<number | null>(null);
   const [isPaused, setIsPaused] = useState(false);
 
   // Duplicate images for seamless loop
@@ -87,16 +98,18 @@ const InfiniteCarousel = ({
       >
         {duplicatedImages.map((src, index) => (
           <div
-            key={index}
+            key={`${src}-${index}`}
             className="group relative flex-shrink-0 cursor-pointer"
             style={{
               width: `${imageWidth}px`,
               height: `${imageHeight}px`,
             }}
           >
-            <img
+            <Image
               src={src}
               alt={`Carousel image ${index + 1}`}
+              width={imageWidth}
+              height={imageHeight}
               className="h-full w-full rounded-lg object-cover shadow-lg transition-transform duration-300 group-hover:scale-105"
             />
             <div className="absolute inset-0 rounded-lg transition-all duration-300" />
