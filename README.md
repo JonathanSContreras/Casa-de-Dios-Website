@@ -1,29 +1,46 @@
-# Create T3 App
+# Iglesia Pentecostal Casa de Dios Website
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+This is the official website for the Iglesia Pentecostal Casa de Dios, a welcoming community of faith, love, and hope.
 
-## What's next? How do I make an app with this?
+## About the Project
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+This project is a web application built with [Next.js](https://nextjs.org/) and [React](https://react.dev/) to serve the members and visitors of the church. It provides information about the church, its ministries, events, and service times.
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+## Features
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+- **Home Page:** A welcoming introduction to the church with a hero section, service times, and upcoming events.
+- **About Us:** Information about the church's history, beliefs, and leadership.
+- **Events:** A calendar of upcoming events and special services.
+- **Give:** A secure portal for online giving and tithes.
+- **Contact Us:** Contact information, a map to the church, and a form to send prayer requests.
 
-## Learn More
+## Tech Stack
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+- **Framework:** [Next.js](https://nextjs.org/)
+- **UI Library:** [React](https://react.dev/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Linting:** [ESLint](https://eslint.org/)
+- **Formatting:** [Prettier](https://prettier.io/)
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+## Contributing
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-## How do I deploy this?
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+## Contact
+
+Jonathan Contreras - jonathansaulcontreras@gmail.com
+
+Project Link: [https://github.com/JonathanSContreras/Casa-de-Dios-Website](https://github.com/JonathanSContreras/Casa-de-Dios-Website)
