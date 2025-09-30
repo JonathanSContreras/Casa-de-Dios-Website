@@ -183,7 +183,7 @@ export default function EventsPage() {
             {regularSchedule.map((day) => (
               <div key={day.day}>
                 <div className="p-6">
-                  <h3 className="text-xl font-medium text-center mb-6 text-blue-600">
+                  <h3 className="text-xl font-medium text-left mb-6 text-blue-600">
                     {day.day}
                   </h3>
                   <div className="space-y-4">
@@ -191,7 +191,7 @@ export default function EventsPage() {
                       <div key={index} className="border-l-2 border-blue-200 pl-4">
                         <p className="text-sm text-blue-600 font-medium">{event.time}</p>
                         <p className="font-medium">{event.title}</p>
-                        <p className="text-sm text-slate-500">{event.location}</p>
+                        {/* <p className="text-sm text-slate-500">{event.location}</p> */}
                       </div>
                     ))}
                   </div>

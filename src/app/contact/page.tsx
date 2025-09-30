@@ -40,19 +40,19 @@ export default function Contact() {
     {
       icon: <Phone className="w-6 h-6 text-blue-600" />,
       label: "Phone",
-      value: "(555) 123-4567",
+      value: "(281) 713-0681",
       description: "Call us during office hours"
     },
     {
       icon: <Mail className="w-6 h-6 text-blue-600" />,
       label: "Email",
-      value: "info@gracecommunitychurch.org",
+      value: "church@gmail.com",
       description: "We typically respond within 24 hours"
     },
     {
       icon: <MapPin className="w-6 h-6 text-blue-600" />,
       label: "Address",
-      value: "123 Faith Street, City, ST 12345",
+      value: "13315 Veterans Memorial Dr #409 Houston, TX 77014",
       description: "Visit us anytime during service hours"
     },
     {
@@ -203,7 +203,7 @@ export default function Contact() {
                       />
                     </div>
 
-                    <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 rounded-2xl py-2">
+                    <button type="submit" className="text-white w-full bg-blue-600 hover:bg-blue-700 rounded-2xl py-2">
                       Send Message
                     </button>
                   </form>

@@ -7,17 +7,17 @@ export default function GivePage() {
       id: 1,
       method: "CashApp",
       icon: <Smartphone className="w-8 h-8 text-blue-600" />,
-      details: "$GraceCommunityChurch",
+      details: "$IglesiaCasaDeDios",
       description: "Quick and easy mobile giving through CashApp.",
-      instructions: "Send your gift to $GraceCommunityChurch with a note indicating your preferred designation."
+      instructions: "Send your gift to $IglesiaCasaDeDios with a note indicating your preferred designation."
     },
     {
       id: 2,
       method: "Zelle",
       icon: <CreditCard className="w-8 h-8 text-blue-600" />,
-      details: "giving@gracecommunitychurch.org",
+      details: "(281) 713-0681",
       description: "Secure bank-to-bank transfer through Zelle.",
-      instructions: "Use our church email address as the recipient for your Zelle transfer."
+      instructions: "Use our church number as the recipient for your Zelle transfer."
     },
     {
       id: 3,
@@ -76,7 +76,7 @@ export default function GivePage() {
       <section className="relative py-24 bg-slate-800">
         <div className="absolute inset-0">
           <Image
-            src="/placeholder-2.jpg"
+            src="/images/placeholder-2.jpg"
             width={1920}
             height={1080}
             alt="Cross with sunlight"
@@ -130,7 +130,7 @@ export default function GivePage() {
             </div>
             <div>
               <Image
-                src="/placeholder-1.jpg"
+                src="/images/placeholder-1.jpg"
                 alt="Community fellowship and giving"
                 className="rounded-lg shadow-lg w-full h-auto"
                 width={1920}
@@ -154,7 +154,7 @@ export default function GivePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {givingMethods.map((method) => {
               return (
-                <div key={method.id} className="hover:shadow-lg transition-shadow">
+                <div key={method.id} className="hover:shadow-lg transition-shadow border-2 border-gray-200 rounded-lg">
                   <div className="p-8">
                     <div className="flex items-start gap-4">
                       <div className="bg-blue-100 p-3 rounded-lg flex-shrink-0">
@@ -241,14 +241,14 @@ export default function GivePage() {
             Thank you for your heart to give and support God&apos;s work through Grace Community Church. 
             Your generosity makes a real difference in our community and beyond.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          {/* <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <div className="p-4 bg-blue-500 rounded-lg">
               Contact Office for Assistance
             </div>
             <div className="border border-white text-white hover:bg-white hover:text-blue-600">
               Learn More About Stewardship
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
     </div>

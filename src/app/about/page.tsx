@@ -60,7 +60,7 @@ export default function About() {
             </div>
             <div>
               <Image
-                src="/placeholder-1.jpg"
+                src="/images/group.jpeg"
                 alt="Church worship service"
                 className="rounded-lg shadow-lg w-full h-auto"
                 width={1920}
