@@ -291,8 +291,8 @@ export default function Contact() {
                       <MapPin className="w-6 h-6 text-blue-600 mt-1" />
                       <div>
                         <h3 className="font-medium text-lg mb-2">Address</h3>
-                        <p className="text-slate-600">123 Faith Street</p>
-                        <p className="text-slate-600">City, ST 12345</p>
+                        <p className="text-slate-600">13315 Veterans Memorial Dr # 102</p>
+                        <p className="text-slate-600">Houston, TX 77014</p>
                       </div>
                     </div>
                     
@@ -323,22 +323,19 @@ export default function Contact() {
             </div>
             
             <div>
-              {/* Embedded Map Placeholder */}
-              <div>
-                <div className="p-0">
-                  <div className="bg-slate-200 h-96 flex items-center justify-center rounded-lg">
-                    <div className="text-center text-slate-500">
-                      <MapPin className="w-16 h-16 mx-auto mb-4" />
-                      <p className="text-lg font-medium">Interactive Map</p>
-                      <p className="text-sm">
-                        Google Maps integration would be embedded here
-                      </p>
-                      <button className="mt-4">
-                        Open in Google Maps
-                      </button>
-                    </div>
-                  </div>
-                </div>
+              {/* Embedded Map */}
+              <div className="h-96">
+                <iframe
+                  title="Church Location"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1035.1003291640877!2d-95.49374052860607!3d29.979956638105396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640cc6c0ba6d4a5%3A0x72e437810319762d!2s13315%20Veterans%20Memorial%20Dr%20%23%20102%2C%20Houston%2C%20TX%2077014!5e0!3m2!1sen!2sus!4v1759355823329!5m2!1sen!2sus"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen={true}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+
+                />
               </div>
             </div>
           </div>
