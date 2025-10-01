@@ -19,16 +19,16 @@ export default function GivePage() {
       description: "Secure bank-to-bank transfer through Zelle.",
       instructions: "Use our church number as the recipient for your Zelle transfer."
     },
+    // {
+    //   id: 3,
+    //   method: "Check",
+    //   icon: <Building className="w-8 h-8 text-blue-600" />,
+    //   details: "Mail to Church Office",
+    //   description: "Traditional giving by check through mail or in-person.",
+    //   instructions: "Make checks payable to 'Grace Community Church' and mail to 123 Faith Street, City, ST 12345"
+    // },
     {
       id: 3,
-      method: "Check",
-      icon: <Building className="w-8 h-8 text-blue-600" />,
-      details: "Mail to Church Office",
-      description: "Traditional giving by check through mail or in-person.",
-      instructions: "Make checks payable to 'Grace Community Church' and mail to 123 Faith Street, City, ST 12345"
-    },
-    {
-      id: 4,
       method: "In-Person",
       icon: <HandHeart className="w-8 h-8 text-blue-600" />,
       details: "During Services",
@@ -40,7 +40,7 @@ export default function GivePage() {
   const givingAreas = [
     {
       title: "General Fund",
-      description: "Supports the overall ministry and operations of the church including pastoral care, utilities, and facility maintenance.",
+      description: "Supports the overall ministry and operations of the church including utilities and facility maintenance.",
       icon: <Building className="w-8 h-8 text-blue-600" />
     },
     {
@@ -53,21 +53,21 @@ export default function GivePage() {
       description: "Helps with facility improvements, maintenance, and future expansion projects.",
       icon: <Building className="w-8 h-8 text-blue-600" />
     },
-    {
-      title: "Benevolence",
-      description: "Assists church members and community members facing financial hardships.",
-      icon: <Heart className="w-8 h-8 text-blue-600" />
-    },
-    {
-      title: "Youth Ministry",
-      description: "Supports programs, activities, and mission trips for our youth and young adults.",
-      icon: <Users className="w-8 h-8 text-blue-600" />
-    },
-    {
-      title: "Children's Ministry",
-      description: "Funds Sunday school materials, VBS, and special programs for our children.",
-      icon: <BookOpen className="w-8 h-8 text-blue-600" />
-    }
+    // {
+    //   title: "Benevolence",
+    //   description: "Assists church members and community members facing financial hardships.",
+    //   icon: <Heart className="w-8 h-8 text-blue-600" />
+    // },
+    // {
+    //   title: "Youth Ministry",
+    //   description: "Supports programs, activities, and mission trips for our youth and young adults.",
+    //   icon: <Users className="w-8 h-8 text-blue-600" />
+    // },
+    // {
+    //   title: "Children's Ministry",
+    //   description: "Funds Sunday school materials, VBS, and special programs for our children.",
+    //   icon: <BookOpen className="w-8 h-8 text-blue-600" />
+    // }
   ];
 
   return (
@@ -151,15 +151,12 @@ export default function GivePage() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {givingMethods.map((method) => {
               return (
-                <div key={method.id} className="hover:shadow-lg transition-shadow border-2 border-gray-200 rounded-lg">
+                <div key={method.id} className="hover:shadow-lg transition-shadow border-2 border-gray-100 rounded-lg bg-white">
                   <div className="p-8">
                     <div className="flex items-start gap-4">
-                      <div className="bg-blue-100 p-3 rounded-lg flex-shrink-0">
-                        {method.icon}
-                      </div>
                       <div className="flex-1">
                         <h3 className="text-xl font-medium mb-2">{method.method}</h3>
                         <p className="text-blue-600 font-medium mb-3">{method.details}</p>
@@ -167,6 +164,9 @@ export default function GivePage() {
                         <p className="text-sm text-slate-500 bg-slate-50 p-3 rounded-lg">
                           <strong>Instructions:</strong> {method.instructions}
                         </p>
+                      </div>
+                      <div className="bg-blue-100 p-3 rounded-lg flex-shrink-0">
+                        {method.icon}
                       </div>
                     </div>
                   </div>
@@ -206,7 +206,7 @@ export default function GivePage() {
       </section>
 
       {/* Important Notes */}
-      <section className="py-16 bg-slate-50">
+      {/* <section className="py-16 bg-slate-50">
         <div className="max-w-4xl mx-auto px-4">
           <div className="border-l-4 border-blue-600">
             <div className="p-8">
@@ -231,26 +231,26 @@ export default function GivePage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Call to Action */}
-      <section className="py-16 bg-blue-600 text-white">
+      {/* <section className="py-16 bg-blue-600 text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-serif mb-4">Ready to Give?</h2>
           <p className="text-xl text-blue-100 mb-8">
             Thank you for your heart to give and support God&apos;s work through Grace Community Church. 
             Your generosity makes a real difference in our community and beyond.
           </p>
-          {/* <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <div className="p-4 bg-blue-500 rounded-lg">
               Contact Office for Assistance
             </div>
             <div className="border border-white text-white hover:bg-white hover:text-blue-600">
               Learn More About Stewardship
             </div>
-          </div> */}
+          </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

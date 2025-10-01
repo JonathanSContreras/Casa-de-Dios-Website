@@ -55,12 +55,12 @@ export default function Contact() {
       value: "13315 Veterans Memorial Dr #409 Houston, TX 77014",
       description: "Visit us anytime during service hours"
     },
-    {
-      icon: <Clock className="w-6 h-6 text-blue-600" />,
-      label: "Office Hours",
-      value: "Monday - Friday: 9 AM - 5 PM",
-      description: "Closed on weekends and holidays"
-    }
+    // {
+    //   icon: <Clock className="w-6 h-6 text-blue-600" />,
+    //   label: "Office Hours",
+    //   value: "Monday - Friday: 9 AM - 5 PM",
+    //   description: "Closed on weekends and holidays"
+    // }
   ];
 
   const serviceTimes = [
