@@ -41,7 +41,7 @@ export default function Contact() {
       icon: <Phone className="w-6 h-6 text-blue-600" />,
       label: "Phone",
       value: "(281) 713-0681",
-      description: "Call us during office hours"
+      description: "Feel free to call us with any questions or prayer requests"
     },
     {
       icon: <Mail className="w-6 h-6 text-blue-600" />,
@@ -67,22 +67,20 @@ export default function Contact() {
     {
       day: "Sunday",
       services: [
-        { time: "9:00 AM", service: "Traditional Worship" },
-        { time: "10:15 AM", service: "Sunday School" },
-        { time: "11:00 AM", service: "Contemporary Worship" },
-        { time: "6:00 PM", service: "Evening Service" }
+        { time: "10:30 AM", service: "Sunday School" },
+        { time: "12:00 PM", service: "Evangelistical Service" },
       ]
     },
     {
-      day: "Wednesday",
+      day: "Tuesday",
       services: [
-        { time: "7:00 PM", service: "Prayer Meeting & Bible Study" }
+        { time: "8:00 PM", service: "Prayer Service" }
       ]
     },
     {
       day: "Friday",
       services: [
-        { time: "6:30 PM", service: "Youth Group" }
+        { time: "8:00 PM", service: "Service per Associacion" }
       ]
     }
   ];
@@ -116,100 +114,125 @@ export default function Contact() {
             {/* Contact Form */}
             <div>
               <h2 className="text-3xl font-serif text-slate-800 mb-6">Send Us a Message</h2>
-              <div>
-                <div className="p-8">
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="name">Full Name *</label>
-                        <input
-                          id="name"
-                          name="name"
-                          type="text"
-                          required
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          className="mt-1"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="email">Email Address *</label>
-                        <input
-                          id="email"
-                          name="email"
-                          type="email"
-                          required
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          className="mt-1"
-                        />
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="phone">Phone Number</label>
-                        <input
-                          id="phone"
-                          name="phone"
-                          type="tel"
-                          value={formData.phone}
-                          onChange={handleInputChange}
-                          className="mt-1"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="requestType">Request Type</label>
-                        <select
-                          id="requestType"
-                          name="requestType"
-                          value={formData.requestType}
-                          onChange={handleInputChange}
-                          className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        >
-                          <option value="general">General Question</option>
-                          <option value="prayer">Prayer Request</option>
-                          <option value="visit">Plan a Visit</option>
-                          <option value="ministry">Ministry Information</option>
-                          <option value="pastoral">Pastoral Care</option>
-                          <option value="other">Other</option>
-                        </select>
-                      </div>
-                    </div>
-                    
+              <div className="p-8 bg-white rounded-xl">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  
+                  {/* Name & Email */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="subject">Subject</label>
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                        Full Name *
+                      </label>
                       <input
-                        id="subject"
-                        name="subject"
+                        id="name"
+                        name="name"
                         type="text"
-                        value={formData.subject}
-                        onChange={handleInputChange}
-                        className="mt-1"
-                      />
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="message">Message *</label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        rows={5}
                         required
-                        value={formData.message}
+                        value={formData.name}
                         onChange={handleInputChange}
-                        className="mt-1"
-                        placeholder="Please share your message, questions, or prayer requests..."
+                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 
+                                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       />
                     </div>
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                        Email Address *
+                      </label>
+                      <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 
+                                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      />
+                    </div>
+                  </div>
 
-                    <button type="submit" className="text-white w-full bg-blue-600 hover:bg-blue-700 rounded-2xl py-2">
-                      Send Message
-                    </button>
-                  </form>
-                </div>
+                  {/* Phone & Request Type */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+                        Phone Number
+                      </label>
+                      <input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 
+                                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="requestType" className="block text-sm font-medium text-gray-700">
+                        Request Type
+                      </label>
+                      <select
+                        id="requestType"
+                        name="requestType"
+                        value={formData.requestType}
+                        onChange={handleInputChange}
+                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 
+                                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      >
+                        <option value="general">General Question</option>
+                        <option value="prayer">Prayer Request</option>
+                        <option value="visit">Plan a Visit</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* Subject */}
+                  <div>
+                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700">
+                      Subject
+                    </label>
+                    <input
+                      id="subject"
+                      name="subject"
+                      type="text"
+                      value={formData.subject}
+                      onChange={handleInputChange}
+                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 
+                                focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    />
+                  </div>
+
+                  {/* Message */}
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+                      Message *
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={5}
+                      required
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      placeholder="Please share your message, questions, or prayer requests..."
+                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 
+                                focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    />
+                  </div>
+
+                  {/* Submit */}
+                  <button
+                    type="submit"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-2xl py-3 
+                              transition-colors duration-200"
+                  >
+                    Send Message
+                  </button>
+                </form>
               </div>
             </div>
+
 
             {/* Contact Information */}
             <div>
@@ -334,7 +357,7 @@ export default function Contact() {
                   allowFullScreen={true}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-
+                  className="rounded-lg"
                 />
               </div>
             </div>
@@ -350,14 +373,6 @@ export default function Contact() {
             We can&apos;t wait to meet you and welcome you into our church family. 
             Come as you are - you belong here!
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button>
-              Plan Your First Visit
-            </button>
-            <button className="border-white text-white hover:bg-white hover:text-blue-600">
-              Subscribe to Updates
-            </button>
-          </div>
         </div>
       </section>
     </div>
