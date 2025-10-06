@@ -187,7 +187,7 @@ export default function HomePage() {
             </div>
             <div className="relative">
               <Image
-                src="/images/group.jpeg"
+                src="/images/group-picture.JPG"
                 alt="Church community fellowship"
                 width={600}
                 height={400}

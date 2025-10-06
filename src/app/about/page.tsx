@@ -60,7 +60,7 @@ export default function About() {
             </div>
             <div>
               <Image
-                src="/images/group.jpeg"
+                src="/images/group-picture.JPG"
                 alt="Church worship service"
                 className="rounded-lg shadow-lg w-full h-auto"
                 width={1920}
