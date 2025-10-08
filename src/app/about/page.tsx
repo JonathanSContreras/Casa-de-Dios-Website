@@ -44,9 +44,7 @@ export default function About() {
             <div>
               <h2 className="text-4xl font-serif text-slate-800 mb-6">Who We Are</h2>
               <p className="text-lg text-slate-600 mb-6">
-                Grace Community Church is a vibrant Pentecostal congregation that has been 
-                serving our community for over 25 years. We are a diverse family of believers 
-                united by our love for Jesus Christ and our commitment to the Gospel.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut dolorum quibusdam quaerat! Et, a veritatis nisi quibusdam maiores rerum cupiditate rem perferendis doloremque excepturi. Rem magni eius explicabo illum facilis?
               </p>
               <p className="text-lg text-slate-600 mb-6">
                 Our church is characterized by passionate worship, authentic community, 
