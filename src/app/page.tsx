@@ -57,13 +57,13 @@ export default function HomePage() {
       <section className="relative h-screen flex items-center justify-center">
         <div className="absolute inset-0">
           <Image
-            src="/images/placeholder-1.jpg"
-            alt="Grace Community Church"
+            src="/images/group-picture.jpg"
+            alt="Casa de Dios Group Picture"
             width={1920}
             height={1080}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+          <div className="absolute inset-0 bg-black opacity-50"></div>
         </div>
         
         <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
