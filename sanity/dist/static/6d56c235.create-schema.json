@@ -1,0 +1,652 @@
+[
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Brief, attention-grabbing title for the announcement",
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Auto-generated URL-friendly identifier",
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "rows": 4,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 300
+              }
+            ],
+            "level": "warning",
+            "message": "Keep messages concise for better readability"
+          }
+        ],
+        "description": "The main announcement message (max 300 characters)",
+        "name": "message",
+        "type": "text"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "🔴 Urgent",
+              "value": "urgent"
+            },
+            {
+              "title": "🔵 Normal",
+              "value": "normal"
+            },
+            {
+              "title": "⚪ Low",
+              "value": "low"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "normal",
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "urgent",
+                  "normal",
+                  "low"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Urgent announcements appear first with red styling",
+        "name": "priority",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "When this announcement should become visible",
+        "name": "publishDate",
+        "type": "datetime"
+      },
+      {
+        "description": "Optional: Announcement will automatically hide after this date",
+        "name": "expirationDate",
+        "type": "datetime"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Optional: Add a \"Learn More\" link for additional information",
+        "name": "link",
+        "type": "url"
+      }
+    ],
+    "name": "announcement",
+    "type": "document",
+    "title": "Announcements"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Event Title"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "startDate",
+        "type": "datetime",
+        "title": "Start Date & Time"
+      },
+      {
+        "name": "endDate",
+        "type": "datetime",
+        "title": "End Date & Time"
+      },
+      {
+        "name": "location",
+        "type": "string"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Outreach",
+              "value": "Outreach"
+            },
+            {
+              "title": "Youth",
+              "value": "Youth"
+            },
+            {
+              "title": "Worship",
+              "value": "Worship"
+            },
+            {
+              "title": "Prayer",
+              "value": "Prayer"
+            },
+            {
+              "title": "Fellowship",
+              "value": "Fellowship"
+            },
+            {
+              "title": "Bible Study",
+              "value": "Bible Study"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "Outreach",
+                  "Youth",
+                  "Worship",
+                  "Prayer",
+                  "Fellowship",
+                  "Bible Study"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "category",
+        "type": "string"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "featuredImage",
+        "type": "image"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "registrationLink",
+        "type": "url"
+      }
+    ],
+    "name": "event",
+    "type": "document",
+    "title": "Events"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Full name of the leader",
+        "name": "name",
+        "type": "string",
+        "title": "Full Name"
+      },
+      {
+        "options": {
+          "source": "name",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Auto-generated URL-friendly identifier",
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "e.g., \"Senior Pastor\", \"Youth Director\", \"Worship Leader\"",
+        "name": "role",
+        "type": "string",
+        "title": "Role/Title"
+      },
+      {
+        "rows": 5,
+        "description": "Brief biography or description of the leader",
+        "name": "bio",
+        "type": "text",
+        "title": "Biography"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Profile photo of the leader",
+        "name": "photo",
+        "type": "image"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "regex",
+                "constraint": {
+                  "pattern": "/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/",
+                  "name": "Must be a valid email address",
+                  "invert": false
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Contact email (optional)",
+        "name": "email",
+        "type": "string"
+      },
+      {
+        "initialValue": 0,
+        "description": "Lower numbers appear first (0 = first, 1 = second, etc.)",
+        "name": "order",
+        "type": "number",
+        "title": "Display Order"
+      }
+    ],
+    "name": "leadership",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Name of the ministry (e.g., \"Youth Ministry\", \"Worship Team\")",
+        "name": "name",
+        "type": "string",
+        "title": "Ministry Name"
+      },
+      {
+        "options": {
+          "source": "name",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Auto-generated URL-friendly identifier",
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "rows": 5,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Description of what this ministry does and who it serves",
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "description": "When this ministry meets (e.g., \"Sundays at 9:00 AM\")",
+        "name": "meetingTime",
+        "type": "string"
+      },
+      {
+        "description": "Where this ministry meets (e.g., \"Fellowship Hall\", \"Youth Room\")",
+        "name": "location",
+        "type": "string"
+      },
+      {
+        "description": "The person leading this ministry (reference to a leadership member)",
+        "to": [
+          {
+            "type": "leadership"
+          }
+        ],
+        "name": "leader",
+        "type": "reference",
+        "title": "Ministry Leader"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "regex",
+                "constraint": {
+                  "pattern": "/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/",
+                  "name": "Must be a valid email address",
+                  "invert": false
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Contact email for this ministry (optional)",
+        "name": "contactEmail",
+        "type": "string"
+      },
+      {
+        "initialValue": true,
+        "description": "Inactive ministries are hidden from the website but remain in the database",
+        "name": "isActive",
+        "type": "boolean"
+      }
+    ],
+    "name": "ministry",
+    "type": "document",
+    "title": "Ministries"
+  },
+  {
+    "fields": [
+      {
+        "description": "Submitter name (optional - can be anonymous)",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "rows": 6,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 500
+              }
+            ],
+            "level": "error",
+            "message": "Prayer request must be under 500 characters"
+          }
+        ],
+        "description": "The actual prayer request content",
+        "name": "request",
+        "type": "text",
+        "title": "Prayer Request"
+      },
+      {
+        "description": "⚠️ PRIVATE - Never shown publicly. Only for staff follow-up.",
+        "name": "contactEmail",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Automatically set when request is submitted",
+        "readOnly": true,
+        "name": "submittedAt",
+        "type": "datetime"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "⏳ Pending Review",
+              "value": "pending"
+            },
+            {
+              "title": "✅ Approved",
+              "value": "approved"
+            },
+            {
+              "title": "📦 Archived",
+              "value": "archived"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "pending",
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "pending",
+                  "approved",
+                  "archived"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Moderation status - only approved requests can be made public",
+        "name": "status",
+        "type": "string"
+      },
+      {
+        "initialValue": false,
+        "description": "Toggle to show/hide this prayer request on the public prayer page",
+        "name": "isPublic",
+        "type": "boolean",
+        "title": "Show Publicly"
+      }
+    ],
+    "name": "prayerRequest",
+    "type": "document",
+    "title": "Prayer Requests"
+  }
+]
