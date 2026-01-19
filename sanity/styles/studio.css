@@ -1,0 +1,252 @@
+/**
+ * Custom Studio Styles
+ * Enhances the Sanity Studio appearance with better spacing, typography,
+ * and visual polish tailored for Casa de Dios church staff
+ */
+
+/* Root variables for consistent theming */
+:root {
+  --brand-primary: #2563eb;
+  --brand-accent: #eab308;
+  --bg-subtle: #fafaf9;
+  --text-primary: #0f172a;
+  --text-muted: #64748b;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --radius: 8px;
+}
+
+/* Improve overall typography */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Add subtle background to main content area */
+[data-ui='Pane'] {
+  background: var(--bg-subtle);
+}
+
+/* Improve card appearance in list views */
+[data-ui='Card'] {
+  transition: all 0.2s ease;
+}
+
+[data-ui='Card']:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+/* Better spacing for document list items */
+[data-ui='DocumentListItem'] {
+  padding: 12px 16px !important;
+  border-radius: var(--radius);
+  margin-bottom: 4px;
+}
+
+[data-ui='DocumentListItem']:hover {
+  background-color: rgba(37, 99, 235, 0.05);
+}
+
+/* Enhance header appearance */
+[data-ui='NavBar'] {
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Improve sidebar navigation */
+[data-ui='SidebarMenu'] {
+  background: white;
+  border-right: 1px solid #e2e8f0;
+}
+
+/* Style section dividers */
+[data-ui='MenuDivider'] {
+  margin: 12px 0 !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Enhance button appearance */
+button[data-ui='Button'] {
+  border-radius: var(--radius);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+button[data-ui='Button']:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Primary button styling */
+button[data-ui='Button'][data-tone='primary'] {
+  background: var(--brand-primary);
+}
+
+button[data-ui='Button'][data-tone='primary']:hover {
+  background: #1d4ed8;
+}
+
+/* Improve form field spacing */
+[data-ui='FormField'] {
+  margin-bottom: 24px !important;
+}
+
+/* Better input styling */
+input[data-ui='TextInput'],
+textarea[data-ui='TextArea'] {
+  border-radius: var(--radius);
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+input[data-ui='TextInput']:focus,
+textarea[data-ui='TextArea']:focus {
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Enhance preview panes */
+[data-ui='Preview'] {
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+/* Better badge styling */
+[data-ui='Badge'] {
+  border-radius: 4px;
+  font-weight: 500;
+  padding: 2px 8px;
+}
+
+/* Improve modal appearance */
+[data-ui='Dialog'] {
+  border-radius: var(--radius);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+}
+
+/* Status indicators for prayer requests */
+[data-status='pending'] {
+  color: #f59e0b;
+}
+
+[data-status='approved'] {
+  color: #10b981;
+}
+
+[data-status='archived'] {
+  color: #6b7280;
+}
+
+/* Enhance urgency indicators for announcements */
+[data-priority='urgent'] {
+  border-left: 3px solid #ef4444;
+  padding-left: 12px;
+}
+
+[data-priority='normal'] {
+  border-left: 3px solid #3b82f6;
+  padding-left: 12px;
+}
+
+[data-priority='low'] {
+  border-left: 3px solid #9ca3af;
+  padding-left: 12px;
+}
+
+/* Mobile responsiveness improvements */
+@media (max-width: 768px) {
+  [data-ui='Pane'] {
+    padding: 12px !important;
+  }
+
+  [data-ui='Card'] {
+    margin-bottom: 12px;
+  }
+
+  [data-ui='DocumentListItem'] {
+    padding: 10px 12px !important;
+  }
+}
+
+/* Improve focus visibility for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+}
+
+/* Loading state improvements */
+[data-ui='Spinner'] {
+  color: var(--brand-primary);
+}
+
+/* Better table styling in document views */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table th,
+table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+table th {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Improve code block appearance */
+code {
+  background: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: Monaco, 'Courier New', monospace;
+  font-size: 0.9em;
+}
+
+/* Polish for image uploads */
+[data-ui='FileInput'] {
+  border-radius: var(--radius);
+  border: 2px dashed #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+[data-ui='FileInput']:hover {
+  border-color: var(--brand-primary);
+  background: rgba(37, 99, 235, 0.02);
+}
+
+/* Improve success/error toast notifications */
+[data-ui='Toast'][data-tone='positive'] {
+  background: #10b981;
+  border-radius: var(--radius);
+}
+
+[data-ui='Toast'][data-tone='critical'] {
+  background: #ef4444;
+  border-radius: var(--radius);
+}
+
+/* Enhanced section headers in structure */
+[data-ui='MenuItem'][data-level='0'] {
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-top: 16px;
+}
+
+/* Smooth transitions */
+* {
+  transition-property: background-color, border-color, color, fill, stroke, opacity,
+    box-shadow, transform;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
