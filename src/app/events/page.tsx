@@ -1,6 +1,6 @@
 import { Calendar, Clock, MapPin, Users, Music, Heart, BookOpen, Gift } from "lucide-react";
 import Link from "next/link";
-import { getAllEvents } from "@/lib/sanity/queries";
+import { getUpcomingEvents } from "@/lib/sanity/queries";
 import { urlFor } from "@/lib/sanity/image";
 import type { Event } from "@/lib/sanity/types";
 
@@ -59,7 +59,7 @@ export default async function EventsPage() {
   // Fetch events from Sanity
   // TEMPORARY: Using getAllEvents() to show all events regardless of date
   // Change back to getUpcomingEvents() once you update event dates to 2026
-  const sanityEvents: Event[] = await getAllEvents();
+  const sanityEvents: Event[] = await getUpcomingEvents();
 
   const regularSchedule = [
     {
