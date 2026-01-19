@@ -1,69 +1,65 @@
 import { Calendar, Clock, MapPin, Users, Music, Heart, BookOpen, Gift } from "lucide-react";
 import Link from "next/link";
+import { getAllEvents } from "@/lib/sanity/queries";
+import { urlFor } from "@/lib/sanity/image";
+import type { Event } from "@/lib/sanity/types";
 
-export default function EventsPage() {
-  const upcomingEvents = [
-    {
-      id: 1,
-      title: "Community Outreach",
-      date: "December 15, 2024",
-      time: "10:00 AM - 2:00 PM",
-      location: "Downtown Community Center",
-      description: "Join us as we serve our local community with food, clothing, and fellowship. Everyone is welcome to participate in this ministry of love.",
-      icon: <Heart className="w-8 h-8 text-blue-600"/>,
-      category: "Outreach"
-    },
-    {
-      id: 2,
-      title: "Youth Christmas Play",
-      date: "December 22, 2024",
-      time: "6:00 PM",
-      location: "Main Sanctuary",
-      description: "Our youth group presents 'The Light of the World' - a beautiful retelling of the nativity story with music and drama.",
-      icon: <Music className="w-8 h-8 text-blue-600"/>,
-      category: "Youth"
-    },
-    {
-      id: 3,
-      title: "Christmas Eve Service",
-      date: "December 24, 2024",
-      time: "7:00 PM",
-      location: "Main Sanctuary",
-      description: "Celebrate the birth of our Savior with special music, candlelight, and communion. This is a wonderful service for the whole family.",
-      icon: <Gift className="w-8 h-8 text-blue-600"/>,
-      category: "Worship"
-    },
-    {
-      id: 4,
-      title: "New Year Prayer Service",
-      date: "December 31, 2024",
-      time: "10:00 PM - 12:30 AM",
-      location: "Main Sanctuary",
-      description: "Welcome the new year with prayer, worship, and seeking God's blessing for the year ahead. Light refreshments will be served.",
-      icon: <BookOpen className="w-8 h-8 text-blue-600"/>,
-      category: "Prayer"
-    },
-    {
-      id: 5,
-      title: "Men's Breakfast",
-      date: "January 6, 2025",
-      time: "8:00 AM - 10:00 AM",
-      location: "Fellowship Hall",
-      description: "Monthly men's breakfast with fellowship, devotion, and planning for upcoming ministry opportunities.",
-      icon: <Users className="w-8 h-8 text-blue-600"/>,
-      category: "Fellowship"
-    },
-    {
-      id: 6,
-      title: "Women's Bible Study",
-      date: "January 8, 2025",
-      time: "7:00 PM - 8:30 PM",
-      location: "Conference Room",
-      description: "Starting a new study on the book of Philippians. All women are invited to join us for study, prayer, and fellowship.",
-      icon: <BookOpen className="w-8 h-8 text-blue-600"/>,
-      category: "Bible Study"
-    }
-  ];
+// Helper function to get icon based on category
+function getCategoryIcon(category: string) {
+  const iconClass = "w-8 h-8 text-blue-600";
+  switch (category) {
+    case "Outreach":
+      return <Heart className={iconClass} />;
+    case "Youth":
+      return <Music className={iconClass} />;
+    case "Worship":
+      return <Gift className={iconClass} />;
+    case "Prayer":
+      return <BookOpen className={iconClass} />;
+    case "Fellowship":
+      return <Users className={iconClass} />;
+    case "Bible Study":
+      return <BookOpen className={iconClass} />;
+    default:
+      return <Calendar className={iconClass} />;
+  }
+}
+
+// Helper to format date and time
+function formatEventDateTime(event: Event) {
+  const startDate = new Date(event.startDate);
+  const endDate = event.endDate ? new Date(event.endDate) : null;
+
+  const dateStr = startDate.toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
+
+  const startTime = startDate.toLocaleTimeString('en-US', {
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+  });
+
+  const timeStr = endDate
+    ? `${startTime} - ${endDate.toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true,
+      })}`
+    : startTime;
+
+  return { date: dateStr, time: timeStr };
+}
+
+export const revalidate = 60; // Revalidate every 60 seconds
+
+export default async function EventsPage() {
+  // Fetch events from Sanity
+  // TEMPORARY: Using getAllEvents() to show all events regardless of date
+  // Change back to getUpcomingEvents() once you update event dates to 2026
+  const sanityEvents: Event[] = await getAllEvents();
 
   const regularSchedule = [
     {
@@ -123,48 +119,77 @@ export default function EventsPage() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {upcomingEvents.map((event) => {
-              return (
-                <div key={event.id} className="hover:shadow-lg transition-shadow border-2 border-gray-100 rounded-lg">
-                  <div className="p-8">
-                    <div className="flex items-start gap-4">
-                      <div className="bg-blue-100 p-3 rounded-lg flex-shrink-0">
-                        {event.icon}
+            {sanityEvents.length === 0 ? (
+              <div className="col-span-2 text-center py-12">
+                <p className="text-slate-600 text-lg">
+                  No upcoming events at this time. Check back soon!
+                </p>
+              </div>
+            ) : (
+              sanityEvents.map((event: Event) => {
+                const { date, time } = formatEventDateTime(event);
+                return (
+                  <div key={event._id} className="hover:shadow-lg transition-shadow border-2 border-gray-100 rounded-lg overflow-hidden">
+                    {/* Featured Image */}
+                    {event.featuredImage && (
+                      <div className="w-full h-48 overflow-hidden">
+                        <img
+                          src={urlFor(event.featuredImage).width(800).height(400).fit('crop').url()}
+                          alt={event.title}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="text-sm bg-blue-100 text-blue-700 px-2 py-1 rounded-full">
-                            {event.category}
-                          </span>
-                        </div>
-                        <h3 className="text-xl font-medium mb-3">{event.title}</h3>
-                        
-                        <div className="space-y-2 mb-4">
-                          <div className="flex items-center gap-2 text-slate-600">
-                            <Calendar className="w-4 h-4" />
-                            <span>{event.date}</span>
-                          </div>
-                          <div className="flex items-center gap-2 text-slate-600">
-                            <Clock className="w-4 h-4" />
-                            <span>{event.time}</span>
-                          </div>
-                          <div className="flex items-center gap-2 text-slate-600">
-                            <MapPin className="w-4 h-4" />
-                            <span>{event.location}</span>
-                          </div>
-                        </div>
-                        
-                        <p className="text-slate-600 mb-4">{event.description}</p>
+                    )}
 
-                        <Link href={`/events/${event.id}`} className="text-blue-600 hover:underline font-medium">
-                          Learn More
-                        </Link>
+                    <div className="p-8">
+                      <div className="flex items-start gap-4">
+                        <div className="bg-blue-100 p-3 rounded-lg flex-shrink-0">
+                          {getCategoryIcon(event.category)}
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-sm bg-blue-100 text-blue-700 px-2 py-1 rounded-full">
+                              {event.category}
+                            </span>
+                          </div>
+                          <h3 className="text-xl font-medium mb-3">{event.title}</h3>
+
+                          <div className="space-y-2 mb-4">
+                            <div className="flex items-center gap-2 text-slate-600">
+                              <Calendar className="w-4 h-4" />
+                              <span>{date}</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-slate-600">
+                              <Clock className="w-4 h-4" />
+                              <span>{time}</span>
+                            </div>
+                            {event.location && (
+                              <div className="flex items-center gap-2 text-slate-600">
+                                <MapPin className="w-4 h-4" />
+                                <span>{event.location}</span>
+                              </div>
+                            )}
+                          </div>
+
+                          <p className="text-slate-600 mb-4">{event.description}</p>
+
+                          {event.registrationLink && (
+                            <a
+                              href={event.registrationLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-blue-600 hover:underline font-medium"
+                            >
+                              Register Now →
+                            </a>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })
+            )}
           </div>
         </div>
       </section>
