@@ -1,21 +1,15 @@
 import { Heart, Users, BookOpen, Cross, Globe, Handshake } from "lucide-react";
 import Image from "next/image";
+import { getLeadership } from "@/lib/sanity/queries";
+import { urlFor } from "@/lib/sanity/image";
+import type { Leadership } from "@/lib/sanity/types";
 
-export default function About() {
-  const leadership = [
-    {
-      name: "Rev. Francisca Contreras",
-      title: "Senior Pastor",
-      bio: "Rev. Francisca has served Grace Community Church for 15 years. She is passionate about expository preaching and discipleship.",
-      imageUrl: "/pastor-1.jpg",
-    },
-    {
-      name: "Lic. Saul Contreras",
-      title: "Associate Pastor",
-      bio: "Pastor Saul leads our worship ministry and is passionate about fostering a deep connection with God through music.",
-      imageUrl: "/pastor-2.jpg",
-    },
-  ];
+// Revalidate every hour (leadership changes infrequently)
+export const revalidate = 3600;
+
+export default async function About() {
+  // Fetch leadership from Sanity
+  const leadership: Leadership[] = await getLeadership();
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -213,26 +207,61 @@ export default function About() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-            {leadership.map((leader) => (
-              <div key={leader.name} className="mb-12">
-                <div className="p-8 text-center">
-                  <div className="mb-6">
-                    <Image
-                      src={leader.imageUrl}
-                      width={128}
-                      height={128}
-                      alt={leader.name}
-                      className="w-32 h-32 rounded-full mx-auto object-cover"
-                    />
+          {leadership.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-slate-600 text-lg">
+                Leadership information coming soon.
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {leadership.map((leader) => (
+                <div key={leader._id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                  <div className="p-8 text-center">
+                    {/* Photo */}
+                    {leader.photo ? (
+                      <div className="mb-6">
+                        <Image
+                          src={urlFor(leader.photo).width(200).height(200).fit('crop').url()}
+                          width={128}
+                          height={128}
+                          alt={leader.name}
+                          className="w-32 h-32 rounded-full mx-auto object-cover border-4 border-blue-100"
+                        />
+                      </div>
+                    ) : (
+                      <div className="mb-6">
+                        <div className="w-32 h-32 rounded-full mx-auto bg-blue-100 flex items-center justify-center border-4 border-blue-200">
+                          <Users className="w-16 h-16 text-blue-600" />
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Name and Role */}
+                    <h3 className="text-xl font-medium mb-2 text-slate-800">{leader.name}</h3>
+                    <p className="text-blue-600 font-medium mb-4">{leader.role}</p>
+
+                    {/* Bio */}
+                    {leader.bio && (
+                      <p className="text-slate-600 text-sm leading-relaxed mb-4">
+                        {leader.bio}
+                      </p>
+                    )}
+
+                    {/* Email */}
+                    {leader.email && (
+                      <a
+                        href={`mailto:${leader.email}`}
+                        className="text-sm text-blue-600 hover:text-blue-700 hover:underline"
+                      >
+                        Contact
+                      </a>
+                    )}
                   </div>
-                  <h3 className="text-xl font-medium mb-2">{leader.name}</h3>
-                  <p className="text-blue-600 mb-4">{leader.title}</p>
-                  <p className="text-slate-600 text-sm">{leader.bio}</p>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </div>
