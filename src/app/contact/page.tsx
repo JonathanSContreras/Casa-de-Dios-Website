@@ -180,7 +180,6 @@ export default function Contact() {
                                   focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       >
                         <option value="general">General Question</option>
-                        <option value="prayer">Prayer Request</option>
                         <option value="visit">Plan a Visit</option>
                         <option value="other">Other</option>
                       </select>
