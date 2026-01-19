@@ -15,7 +15,7 @@ export function Header() {
     { name: "Events", href: "/events" },
     { name: "Give", href: "/give" },
     { name: "Contact", href: "/contact" },
-    // { name: "Prayer Request", href: "/prayer-request" },
+    { name: "Prayer Request", href: "/prayer-request" },
     // { name: "Location/Contact", href: "/location-contact" },
   ];
 

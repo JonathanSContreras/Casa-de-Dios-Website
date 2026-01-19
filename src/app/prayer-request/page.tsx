@@ -37,7 +37,7 @@ export default function PrayerRequestPage() {
         </div>
 
         {/* Approved Prayer Requests (Server Component with Suspense) */}
-        <Suspense
+        {/* <Suspense
           fallback={
             <div className="bg-white rounded-lg shadow-lg p-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-6">
@@ -50,7 +50,7 @@ export default function PrayerRequestPage() {
           }
         >
           <ApprovedRequests />
-        </Suspense>
+        </Suspense> */}
 
         {/* Prayer Encouragement */}
         <section className="mt-12 text-center">
