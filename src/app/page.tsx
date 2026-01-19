@@ -1,8 +1,41 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Clock, Calendar, Users, Heart } from "lucide-react";
+import { Clock, Calendar, Users, Heart, AlertCircle, Info, Bell, Music, BookOpen, Gift } from "lucide-react";
+import { getActiveAnnouncements, getAllEvents } from "@/lib/sanity/queries";
+import type { Announcement, Event } from "@/lib/sanity/types";
 
-export default function HomePage() {
+// Revalidate every 5 minutes (announcements and events change frequently)
+export const revalidate = 300;
+
+// Helper function to get icon based on event category
+function getEventCategoryIcon(category: string) {
+  const iconClass = "w-6 h-6 text-blue-600";
+  switch (category) {
+    case "Outreach":
+      return <Heart className={iconClass} />;
+    case "Youth":
+      return <Music className={iconClass} />;
+    case "Worship":
+      return <Gift className={iconClass} />;
+    case "Prayer":
+      return <BookOpen className={iconClass} />;
+    case "Fellowship":
+      return <Users className={iconClass} />;
+    case "Bible Study":
+      return <BookOpen className={iconClass} />;
+    default:
+      return <Calendar className={iconClass} />;
+  }
+}
+
+export default async function HomePage() {
+  // Fetch active announcements and featured events from Sanity
+  const announcements: Announcement[] = await getActiveAnnouncements();
+
+  // TEMPORARY: Using getAllEvents() to show all events regardless of date
+  // Change back to getFeaturedEvents(3) once you update event dates to 2026
+  const allEvents: Event[] = await getAllEvents();
+  const upcomingEvents: Event[] = allEvents.slice(0, 3); // Get first 3 events
   const serviceTimes = [
     {
       name: "Sunday School",
@@ -30,26 +63,6 @@ export default function HomePage() {
     }
   ];
 
-  const upcomingEvents = [
-    {
-      title: "Community Outreach",
-      date: "December 15, 2024",
-      description: "Join us as we serve our local community with food and fellowship.",
-      icon: <Calendar className="w-6 h-6 text-blue-600" />,
-    },
-    {
-      title: "Youth Christmas Play",
-      date: "December 22, 2024",
-      description: "Our youth group presents the nativity story in a beautiful performance.",
-      icon: <Users className="w-6 h-6 text-blue-600" />,
-    },
-    {
-      title: "New Year Prayer Service",
-      date: "December 31, 2024",
-      description: "Welcome the new year with prayer, worship, and community.",
-      icon: <Heart className="w-6 h-6 text-blue-600" />,
-    },
-  ]
 
   return (
     <div className="min-h-screen">
@@ -90,6 +103,89 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Announcements Section */}
+      {announcements.length > 0 && (
+        <section className="py-12 bg-slate-50 border-b-2 border-slate-200">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="flex items-center gap-2 mb-6">
+              <Bell className="w-6 h-6 text-blue-600" />
+              <h2 className="text-2xl font-semibold text-slate-800">Announcements</h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {announcements.map((announcement) => {
+                // Priority-based styling
+                const priorityStyles = {
+                  urgent: {
+                    border: 'border-l-4 border-red-500 bg-red-50',
+                    icon: <AlertCircle className="w-5 h-5 text-red-600" />,
+                    iconBg: 'bg-red-100',
+                    badge: 'bg-red-100 text-red-800',
+                  },
+                  normal: {
+                    border: 'border-l-4 border-blue-500 bg-blue-50',
+                    icon: <Info className="w-5 h-5 text-blue-600" />,
+                    iconBg: 'bg-blue-100',
+                    badge: 'bg-blue-100 text-blue-800',
+                  },
+                  low: {
+                    border: 'border-l-4 border-gray-400 bg-white',
+                    icon: <Info className="w-5 h-5 text-gray-600" />,
+                    iconBg: 'bg-gray-100',
+                    badge: 'bg-gray-100 text-gray-800',
+                  },
+                };
+
+                const style = priorityStyles[announcement.priority];
+                const publishDate = new Date(announcement.publishDate).toLocaleDateString('en-US', {
+                  month: 'short',
+                  day: 'numeric',
+                });
+
+                return (
+                  <div
+                    key={announcement._id}
+                    className={`${style.border} rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow`}
+                  >
+                    <div className="flex items-start gap-3 mb-3">
+                      <div className={`${style.iconBg} p-2 rounded-lg flex-shrink-0`}>
+                        {style.icon}
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className={`${style.badge} text-xs font-medium px-2 py-1 rounded-full uppercase`}>
+                            {announcement.priority}
+                          </span>
+                          <span className="text-xs text-slate-500">{publishDate}</span>
+                        </div>
+                        <h3 className="font-semibold text-slate-800 mb-2">
+                          {announcement.title}
+                        </h3>
+                      </div>
+                    </div>
+
+                    <p className="text-sm text-slate-600 mb-3 leading-relaxed">
+                      {announcement.message}
+                    </p>
+
+                    {announcement.link && (
+                      <a
+                        href={announcement.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-blue-600 hover:text-blue-700 font-medium hover:underline"
+                      >
+                        Learn More →
+                      </a>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Service Times */}
       <section className="py-16 bg-blue-50">
         <div className="max-w-7xl mx-auto px-4">
@@ -122,28 +218,44 @@ export default function HomePage() {
             <h2 className="text-4xl font-serif text-slate-800 mb-4">Upcoming Events</h2>
             <p className="text-xl text-slate-600">Don&apos;t miss these special gatherings</p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {upcomingEvents.map((event) => (
-              <div className="p-6" key={event.title}>
-                <div className="flex items-start gap-4">
-                  <div className="bg-blue-100 p-3 rounded-lg">
-                    {event.icon}
+
+          {upcomingEvents.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-slate-600 text-lg">
+                No upcoming events at this time. Check back soon!
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {upcomingEvents.map((event: Event) => {
+                const eventDate = new Date(event.startDate).toLocaleDateString('en-US', {
+                  month: 'long',
+                  day: 'numeric',
+                  year: 'numeric',
+                });
+
+                return (
+                  <div className="p-6" key={event._id}>
+                    <div className="flex items-start gap-4">
+                      <div className="bg-blue-100 p-3 rounded-lg">
+                        {getEventCategoryIcon(event.category)}
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-medium mb-2">{event.title}</h3>
+                        <p className="text-slate-600 mb-2">{eventDate}</p>
+                        <p className="text-sm text-slate-500 line-clamp-2">
+                          {event.description}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-medium mb-2">{event.title}</h3>
-                    <p className="text-slate-600 mb-2">{event.date}</p>
-                    <p className="text-sm text-slate-500">
-                      {event.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          
+                );
+              })}
+            </div>
+          )}
+
           <div className="text-center mt-12">
-            <Link 
+            <Link
               className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-2xl"
               href={"/events"}
             >
