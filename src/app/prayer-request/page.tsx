@@ -1,130 +1,66 @@
-"use client";
-import { useState } from "react";
+import PrayerForm from './PrayerForm'
+import ApprovedRequests from './ApprovedRequests'
+import { Suspense } from 'react'
 
-export default function PrayerRequest() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [request, setRequest] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
+/**
+ * Prayer Request Page (Server Component)
+ *
+ * This page combines:
+ * 1. A client-side form for submitting prayer requests
+ * 2. A server-side component for displaying approved requests
+ *
+ * Workflow:
+ * - User submits request via form (client component)
+ * - Request is created as "pending" in Sanity
+ * - Church staff reviews and approves in Studio
+ * - Approved requests appear below (server component)
+ */
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Simulate form submission (you can replace this with an API call)
-    console.log({ name, email, request });
-    setIsSubmitted(true);
-    setName("");
-    setEmail("");
-    setRequest("");
-  };
-
+export default function PrayerRequestPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="mx-auto max-w-4xl px-4 py-8">
-        {/* Page Title */}
-        <h1 className="mb-8 text-center text-4xl font-bold text-gray-800">
-          Prayer Requests
-        </h1>
-
-        {/* Introduction */}
-        <section className="mb-12">
-          <p className="text-center leading-relaxed text-gray-600">
-            We believe in the power of prayer. If you have a prayer request,
-            please share it with us. Our community is here to pray for you and
-            support you in your time of need.
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            Prayer Requests
+          </h1>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Submit your prayer request and let our community lift you up in
+            prayer. All requests are reviewed by our team before being shared.
           </p>
-        </section>
+        </div>
 
-        {/* Prayer Request Form */}
-        <section className="rounded-lg bg-white p-8 shadow-md">
-          {isSubmitted ? (
-            <div className="text-center">
-              <h2 className="mb-4 text-2xl font-semibold text-gray-700">
-                Thank You!
+        {/* Prayer Request Form (Client Component) */}
+        <div className="mb-12">
+          <PrayerForm />
+        </div>
+
+        {/* Approved Prayer Requests (Server Component with Suspense) */}
+        <Suspense
+          fallback={
+            <div className="bg-white rounded-lg shadow-lg p-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                Community Prayer Requests
               </h2>
-              <p className="text-gray-600">
-                Your prayer request has been submitted. We will lift it up in
-                prayer.
-              </p>
+              <div className="text-center py-12 text-gray-500">
+                <p>Loading prayer requests...</p>
+              </div>
             </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Name Field */}
-              <div>
-                <label
-                  htmlFor="name"
-                  className="mb-2 block font-medium text-gray-700"
-                >
-                  Your Name (Optional)
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
-                  placeholder="John Doe"
-                />
-              </div>
-
-              {/* Email Field */}
-              <div>
-                <label
-                  htmlFor="email"
-                  className="mb-2 block font-medium text-gray-700"
-                >
-                  Your Email (Optional)
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
-                  placeholder="john.doe@example.com"
-                />
-              </div>
-
-              {/* Prayer Request Field */}
-              <div>
-                <label
-                  htmlFor="request"
-                  className="mb-2 block font-medium text-gray-700"
-                >
-                  Your Prayer Request
-                </label>
-                <textarea
-                  id="request"
-                  value={request}
-                  onChange={(e) => setRequest(e.target.value)}
-                  className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
-                  rows={5}
-                  placeholder="Please share your prayer request..."
-                  required
-                ></textarea>
-              </div>
-
-              {/* Submit Button */}
-              <div>
-                <button
-                  type="submit"
-                  className="w-full rounded-lg bg-blue-600 px-4 py-2 text-white transition duration-300 hover:bg-blue-700"
-                >
-                  Submit Prayer Request
-                </button>
-              </div>
-            </form>
-          )}
-        </section>
+          }
+        >
+          <ApprovedRequests />
+        </Suspense>
 
         {/* Prayer Encouragement */}
         <section className="mt-12 text-center">
           <p className="text-gray-600 italic">
-            Do not be anxious about anything, but in every situation, by prayer
-            and petition, with thanksgiving, present your requests to God. -
-            Philippians 4:6
+            &quot;Do not be anxious about anything, but in every situation, by
+            prayer and petition, with thanksgiving, present your requests to
+            God.&quot; - Philippians 4:6
           </p>
         </section>
       </div>
     </div>
-  );
+  )
 }
