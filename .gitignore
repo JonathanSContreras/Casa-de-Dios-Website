@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/sanity/node_modules
 /.pnp
 .pnp.js
 
@@ -20,6 +21,11 @@ next-env.d.ts
 
 # production
 /build
+
+# sanity
+/sanity/dist
+/sanity/.sanity
+/sanity/package-lock.json
 
 # misc
 .DS_Store

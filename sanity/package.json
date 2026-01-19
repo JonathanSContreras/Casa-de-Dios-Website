@@ -1,0 +1,17 @@
+{
+  "name": "casa-de-dios-studio",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@sanity/client": "^7.14.0",
+    "@sanity/dashboard": "^5.0.1",
+    "@sanity/image-url": "^2.0.3",
+    "@sanity/ui": "^3.1.11",
+    "@sanity/vision": "^5.4.0",
+    "lucide-react": "^0.544.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sanity": "^5.4.0",
+    "styled-components": "^6.3.8"
+  }
+}
