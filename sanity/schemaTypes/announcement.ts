@@ -95,13 +95,13 @@ export default defineType({
       publishDate: 'publishDate',
       expirationDate: 'expirationDate',
     },
-    prepare({ title, priority, publishDate, expirationDate }) {
+    prepare({ title, priority, publishDate, expirationDate }: { title: string; priority: string; publishDate: string; expirationDate?: string }) {
       // Format priority for display
       const priorityEmoji = {
         urgent: '🔴',
         normal: '🔵',
         low: '⚪',
-      }[priority] || '🔵'
+      }[priority as 'urgent' | 'normal' | 'low'] || '🔵'
 
       // Format publish date
       const publishDateStr = publishDate
