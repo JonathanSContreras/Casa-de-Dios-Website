@@ -3,7 +3,7 @@ import type { MinistryType } from '@/lib/sanity/types';
 import { MinistrySection } from './_components/MinistrySection';
 
 // Revalidate this page every 60 seconds
-export const revalidate = 60;
+export const revalidate = 300;
 
 export default async function Ministries() {
   const leadersByMinistry = await getAllLeadersByMinistry();
