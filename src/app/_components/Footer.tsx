@@ -1,86 +1,99 @@
-import { Phone, MapPin, Mail, Clock, Cross } from "lucide-react";
+import Link from 'next/link';
+import { Facebook, Instagram, Youtube, Mail, Phone, MapPin } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="bg-slate-800 text-white">
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Church Info */}
+    <footer className="bg-[#2C2C2C] text-white mt-32">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-20 py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
+          {/* About Section */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <Cross className="w-6 h-6" />
-              <h3 className="text-xl font-serif">Iglesia Pentecostal Casa de Dios</h3>
-            </div>
-            <p className="text-slate-300 mb-4">
-              A welcoming community where faith, love, and hope come together. 
-              Join us in worship and fellowship as we grow in Christ.
+            <h3 className="text-xl font-bold mb-6">House of God</h3>
+            <p className="text-[#E5E5E5] leading-relaxed mb-2">
+              A contemporary Pentecostal congregation welcoming all.
             </p>
-            <p className="text-slate-400 text-sm">
-              &quot;For where two or three gather in my name, there am I with them.&quot; - Matthew 18:20
+            <p className="text-[#E5E5E5] leading-relaxed">
+              Una congregación pentecostal contemporánea que da la bienvenida a todos.
             </p>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-xl font-bold mb-6">Quick Links</h3>
+            <nav className="space-y-3">
+              <Link href="/" className="block text-[#E5E5E5] hover:text-white transition-colors">
+                Home / Inicio
+              </Link>
+              <Link href="/about" className="block text-[#E5E5E5] hover:text-white transition-colors">
+                About / Nosotros
+              </Link>
+              <Link href="/events" className="block text-[#E5E5E5] hover:text-white transition-colors">
+                Events / Eventos
+              </Link>
+              <Link href="/give" className="block text-[#E5E5E5] hover:text-white transition-colors">
+                Give / Ofrendar
+              </Link>
+            </nav>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-medium mb-4">Contact Us</h4>
-            <div className="space-y-3">
-              <div className="flex items-center gap-3">
-                <MapPin className="w-5 h-5 text-slate-400" />
-                <div>
-                  <p>13315 Veterans Memorial Dr #409</p>
-                  <p>Houston, TX 77014</p>
-                </div>
+            <h3 className="text-xl font-bold mb-6">Contact / Contacto</h3>
+            <div className="space-y-4">
+              <div className="flex items-start gap-3">
+                <MapPin size={20} className="mt-1 flex-shrink-0" />
+                <span className="text-[#E5E5E5]">
+                  13315 Veterans Memorial Dr<br />
+                  Suite #102<br />
+                  Houston, TX 77014
+                </span>
               </div>
               <div className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-slate-400" />
-                <p>(281) 713-0681</p>
+                <Phone size={20} className="flex-shrink-0" />
+                <span className="text-[#E5E5E5]">(512) 555-0123</span>
               </div>
               <div className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-slate-400" />
-                <p>info@church.org</p>
+                <Mail size={20} className="flex-shrink-0" />
+                <span className="text-[#E5E5E5]">hello@livinghope.org</span>
               </div>
             </div>
           </div>
 
           {/* Service Times */}
           <div>
-            <h4 className="text-lg font-medium mb-4">Service Times</h4>
+            <h3 className="text-xl font-bold mb-6">Service Times</h3>
             <div className="space-y-3">
-              <div className="flex items-start gap-3">
-                <Clock className="w-5 h-5 text-slate-400 mt-0.5" />
-                <div>
-                  <p className="font-medium">Sunday School</p>
-                  <p className="text-slate-300">10:30 AM</p>
-                </div>
+              <div>
+                <p className="font-medium">Sunday / Domingo</p>
+                <p className="text-[#E5E5E5]">10:30 AM & 12:00 PM</p>
               </div>
-              <div className="flex items-start gap-3">
-                <Clock className="w-5 h-5 text-slate-400 mt-0.5" />
-                <div>
-                  <p className="font-medium">Sunday Service</p>
-                  <p className="text-slate-300">12:00 PM</p>
-                </div>
+              <div>
+                <p className="font-medium">Tuesday / Martes</p>
+                <p className="text-[#E5E5E5]">8:00 PM</p>
               </div>
-              <div className="flex items-start gap-3">
-                <Clock className="w-5 h-5 text-slate-400 mt-0.5" />
-                <div>
-                  <p className="font-medium">Tuesday Prayer</p>
-                  <p className="text-slate-300">8:00 PM</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <Clock className="w-5 h-5 text-slate-400 mt-0.5" />
-                <div>
-                  <p className="font-medium">Friday Service</p>
-                  <p className="text-slate-300">8:00 PM</p>
-                </div>
+              <div>
+                <p className="font-medium">Friday / Viernes</p>
+                <p className="text-[#E5E5E5]">8:00 PM</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-slate-700 mt-8 pt-8 text-center">
-          <p className="text-slate-400">
-            © {new Date().getFullYear()} Iglesia Pentecostal Casa de Dios. All rights reserved. | Built with love and faith.
+        {/* Social Media & Copyright */}
+        <div className="mt-16 pt-8 border-t border-[#4A4A4A] flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex gap-6">
+            <a href="#" className="text-[#E5E5E5] hover:text-white transition-colors">
+              <Facebook size={24} />
+            </a>
+            <a href="#" className="text-[#E5E5E5] hover:text-white transition-colors">
+              <Instagram size={24} />
+            </a>
+            <a href="#" className="text-[#E5E5E5] hover:text-white transition-colors">
+              <Youtube size={24} />
+            </a>
+          </div>
+          <p className="text-[#E5E5E5] text-sm">
+            © {new Date().getFullYear()}  Iglesia Pentecostal Casa de Dios. All rights reserved.
           </p>
         </div>
       </div>

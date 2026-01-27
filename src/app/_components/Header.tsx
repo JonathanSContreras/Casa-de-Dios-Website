@@ -1,30 +1,35 @@
-"use client";
+'use client';
+import Link from 'next/link';
+import { useState } from 'react';
+import { Menu, X, Phone, MapPin, Clock} from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
-import { useState } from "react";
-import { usePathname } from "next/navigation";
-import { Phone, MapPin, Clock, Menu, X } from "lucide-react";
-import Link from "next/link";
 
 export function Header() {
-  const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [language, setLanguage] = useState<'en' | 'es'>('en');
+
+  const isActive = (path: string) => pathname === path;
+
+  const toggleLanguage = () => {
+    setLanguage(language === 'en' ? 'es' : 'en');
+  };
 
   const navItems = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Events", href: "/events" },
-    { name: "Give", href: "/give" },
-    { name: "Contact", href: "/contact" },
-    { name: "Prayer Request", href: "/prayer-request" },
-    // { name: "Location/Contact", href: "/location-contact" },
+    { path: '/', labelEn: 'Home', labelEs: 'Inicio' },
+    { path: '/about', labelEn: 'About', labelEs: 'Nosotros' },
+    { path: '/ministries', labelEn: 'Ministries', labelEs: 'Ministerios' },
+    { path: '/events', labelEn: 'Events', labelEs: 'Eventos' },
+    { path: '/prayer-request', labelEn: 'Prayer', labelEs: 'Oración' },
+    { path: '/contact', labelEn: 'Contact', labelEs: 'Contacto' },
+    { path: '/give', labelEn: 'Give', labelEs: 'Ofrendar' },
   ];
 
-  const currentPage = navItems.find((item) => item.href === pathname)?.href;
-
   return (
-    <>
-      {/* Top bar with contact info */}
-      <div className="bg-slate-800 text-white py-2 px-4">
+  <>
+    {/* Top bar with contact info */}
+      <div className="bg-[#1A5D5D] text-white py-2 px-4">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between text-sm">
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2">
@@ -33,7 +38,7 @@ export function Header() {
             </div>
             <div className="flex items-center gap-2">
               <MapPin className="w-4 h-4" />
-              <span>13315 Veterans Memorial Dr #409, Houston, TX 77014</span>
+              <span>13315 Veterans Memorial Dr #102, Houston, TX 77014</span>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -42,77 +47,92 @@ export function Header() {
           </div>
         </div>
       </div>
+    <nav className="sticky top-0 z-50 bg-white">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo */}
+          <Link href="/" className="text-2xl font-bold text-[#1A5D5D]">
+            {language === 'en' ? 'HOUSE OF GOD' : 'CASA DE DIOS'}
+          </Link>
 
-      {/* Main navigation */}
-      <nav className="bg-white shadow-sm border-b sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo */}
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <h1 className="text-xl font-serif text-slate-800">
-                  Iglesia Pentecostal Casa de Dios
-                </h1>
-              </div>
-            </div>
-
-            {/* Desktop Navigation */}
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-8">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`px-3 py-2 text-sm font-medium transition-colors ${
-                      currentPage === item.href
-                        ? "text-blue-700 border-b-2 border-blue-700"
-                        : "text-slate-600 hover:text-blue-700"
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            {/* Mobile menu button */}
-            <div className="md:hidden">
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="inline-flex items-center justify-center p-2 rounded-md text-slate-600 hover:text-slate-800 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center gap-12">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                href={item.path}
+                className={`text-base font-medium transition-colors ${
+                  isActive(item.path)
+                    ? 'text-[#1A5D5D]'
+                    : 'text-[#4A4A4A] hover:text-[#1A5D5D]'
+                }`}
               >
-                {isOpen ? (
-                  <X className="block h-6 w-6" />
-                ) : (
-                  <Menu className="block h-6 w-6" />
-                )}
+                {language === 'en' ? item.labelEn : item.labelEs}
+              </Link>
+            ))}
+          </div>
+
+          {/* CTA and Language Toggle */}
+          <div className="hidden lg:flex items-center gap-6">
+            <button
+              onClick={toggleLanguage}
+              className="text-sm font-medium text-[#4A4A4A] hover:text-[#1A5D5D] transition-colors"
+            >
+              {language === 'en' ? 'ES' : 'EN'}
+            </button>
+            <Link
+              href="/contact"
+              className="bg-[#1A5D5D] text-white px-8 py-3 font-medium hover:bg-[#154A4A] transition-colors"
+            >
+              {language === 'en' ? 'Service Times' : 'Horarios'}
+            </Link>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden text-[#4A4A4A]"
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden bg-white border-t border-[#E5E5E5]">
+          <div className="px-6 py-6 space-y-6">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                href={item.path}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`block text-base font-medium ${
+                  isActive(item.path) ? 'text-[#1A5D5D]' : 'text-[#4A4A4A]'
+                }`}
+              >
+                {language === 'en' ? item.labelEn : item.labelEs}
+              </Link>
+            ))}
+            <div className="pt-4 border-t border-[#E5E5E5] space-y-4">
+              <button
+                onClick={toggleLanguage}
+                className="block w-full text-left text-sm font-medium text-[#4A4A4A]"
+              >
+                {language === 'en' ? 'Español' : 'English'}
               </button>
+              <Link
+                href="/contact"
+                className="block w-full bg-[#1A5D5D] text-white px-8 py-3 font-medium text-center"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {language === 'en' ? 'Service Times' : 'Horarios'}
+              </Link>
             </div>
           </div>
         </div>
-
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                    currentPage === item.href
-                      ? "text-blue-700 bg-blue-50"
-                      : "text-slate-600 hover:text-blue-700 hover:bg-slate-50"
-                  }`}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
-        )}
-      </nav>
+      )}
+    </nav>
     </>
   );
 }

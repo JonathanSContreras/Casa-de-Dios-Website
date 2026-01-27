@@ -1,267 +1,272 @@
-import { Heart, Users, BookOpen, Cross, Globe, Handshake } from "lucide-react";
-import Image from "next/image";
-import { getLeadership } from "@/lib/sanity/queries";
+import { Heart, Users, Globe, Book } from 'lucide-react';
+import Image from 'next/image';
+import { getChurchLeadership } from "@/lib/sanity/queries";
 import { urlFor } from "@/lib/sanity/image";
 import type { Leadership } from "@/lib/sanity/types";
 
 // Revalidate every hour (leadership changes infrequently)
 export const revalidate = 3600;
 
-export default async function About() {
+export default async function AboutPage() {
   // Fetch leadership from Sanity
-  const leadership: Leadership[] = await getLeadership();
+  const leadership: Leadership[] = await getChurchLeadership();
+
+  const values = [
+    {
+      id: 1,
+      icon: Heart,
+      titleEn: 'Love',
+      titleEs: 'Amor',
+      descEn: 'We believe in loving God and loving people without conditions or limits.',
+      descEs: 'Creemos en amar a Dios y amar a las personas sin condiciones ni límites.',
+    },
+    {
+      id: 2,
+      icon: Users,
+      titleEn: 'Community',
+      titleEs: 'Comunidad',
+      descEn: 'We are stronger together, supporting and encouraging one another in faith.',
+      descEs: 'Somos más fuertes juntos, apoyándonos y animándonos unos a otros en la fe.',
+    },
+    {
+      id: 3,
+      icon: Globe,
+      titleEn: 'Service',
+      titleEs: 'Servicio',
+      descEn: 'We are called to serve our community and make a positive impact in our city.',
+      descEs: 'Estamos llamados a servir a nuestra comunidad y tener un impacto positivo en nuestra ciudad.',
+    },
+    {
+      id: 4,
+      icon: Book,
+      titleEn: 'Truth',
+      titleEs: 'Verdad',
+      descEn: 'We are committed to teaching and living according to biblical truth.',
+      descEs: 'Estamos comprometidos a enseñar y vivir de acuerdo con la verdad bíblica.',
+    },
+  ];
+
+  const pastors = [
+    {
+      id: 1,
+      name: 'Pastor Michael & Sarah Johnson',
+      role: 'Lead Pastors / Pastores Principales',
+      bio: 'Leading with passion and vision for over 15 years. / Liderando con pasión y visión durante más de 15 años.',
+    },
+    {
+      id: 2,
+      name: 'Pastor Carlos & Maria Rodriguez',
+      role: 'Associate Pastors / Pastores Asociados',
+      bio: 'Dedicated to youth and family ministries. / Dedicados a los ministerios de jóvenes y familias.',
+    },
+    {
+      id: 3,
+      name: 'Pastor David Kim',
+      role: 'Worship Pastor / Pastor de Alabanza',
+      bio: 'Creating authentic worship experiences that connect hearts to God. / Creando experiencias de adoración auténticas.',
+    },
+  ];
+
   return (
-    <div className="min-h-screen">
+    <div className="bg-[#F8F9FA]">
       {/* Hero Section */}
-      <section className="relative py-24 bg-slate-800">
-        <div className="absolute inset-0">
+      <section className="bg-[#1A5D5D] text-white py-20 lg:py-32">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
+          <h1 className="text-5xl lg:text-7xl font-bold mb-6">About Us</h1>
+          <h2 className="text-5xl lg:text-7xl font-bold">Sobre Nosotros</h2>
+        </div>
+      </section>
+
+      {/* Our Story Section */}
+      <section className="py-20 lg:py-32">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+            <div>
+              <h2 className="text-4xl lg:text-5xl font-bold mb-8">Our Story</h2>
+              <div className="space-y-6">
+                <p className="text-lg text-[#4A4A4A] leading-relaxed">
+                  Living Hope Church was founded in 2009 with a simple vision: to be a place where everyone can 
+                  encounter God&apos;s love and discover their purpose. What started as a small group of families has 
+                  grown into a vibrant, multicultural community of faith.
+                </p>
+                <p className="text-lg text-[#4A4A4A] leading-relaxed">
+                  We are a contemporary Pentecostal church that values both the power of the Holy Spirit and the 
+                  depth of biblical teaching. Our worship is energetic and authentic, our community is warm and 
+                  welcoming, and our mission is clear: to share the hope we&apos;ve found in Jesus with our city and beyond.
+                </p>
+                <p className="text-lg text-[#4A4A4A] leading-relaxed">
+                  Today, we serve hundreds of families from diverse backgrounds, offering services in both English 
+                  and Spanish, and providing ministries for every age and stage of life.
+                </p>
+              </div>
+            </div>
+            <div>
+              <h2 className="text-4xl lg:text-5xl font-bold mb-8">Nuestra Historia</h2>
+              <div className="space-y-6">
+                <p className="text-lg text-[#4A4A4A] leading-relaxed">
+                  Living Hope Church fue fundada en 2009 con una visión simple: ser un lugar donde todos puedan 
+                  encontrar el amor de Dios y descubrir su propósito. Lo que comenzó como un pequeño grupo de 
+                  familias se ha convertido en una comunidad de fe vibrante y multicultural.
+                </p>
+                <p className="text-lg text-[#4A4A4A] leading-relaxed">
+                  Somos una iglesia pentecostal contemporánea que valora tanto el poder del Espíritu Santo como la 
+                  profundidad de la enseñanza bíblica. Nuestra adoración es enérgica y auténtica, nuestra comunidad 
+                  es cálida y acogedora, y nuestra misión es clara: compartir la esperanza que hemos encontrado en 
+                  Jesús con nuestra ciudad y más allá.
+                </p>
+                <p className="text-lg text-[#4A4A4A] leading-relaxed">
+                  Hoy servimos a cientos de familias de diversos orígenes, ofreciendo servicios en inglés y español, 
+                  y brindando ministerios para cada edad y etapa de la vida.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Image Section */}
+      <section className="bg-white">
+        <div className="max-w-[1440px] mx-auto">
           <Image
-            src="/placeholder-2.jpg"
+            src="/images/group-picture.jpg"
+            alt="Community gathering"
+            className="w-full h-[400px] lg:h-[600px] object-cover"
             width={1920}
-            height={1080}
-            alt="Cross with sunlight"
-            className="w-full h-full object-cover opacity-30"
+            height={600}
           />
         </div>
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center text-white">
-          <h1 className="text-5xl font-serif mb-6">About Grace Community Church</h1>
-          <p className="text-xl text-blue-100">
-            Discover our heart, our mission, and the community that makes us who we are.
-          </p>
-        </div>
       </section>
 
-      {/* Who We Are */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-serif text-slate-800 mb-6">Who We Are</h2>
-              <p className="text-lg text-slate-600 mb-6">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut dolorum quibusdam quaerat! Et, a veritatis nisi quibusdam maiores rerum cupiditate rem perferendis doloremque excepturi. Rem magni eius explicabo illum facilis?
-              </p>
-              <p className="text-lg text-slate-600 mb-6">
-                Our church is characterized by passionate worship, authentic community, 
-                biblical teaching, and a heart for service. We believe in the power of 
-                the Holy Spirit to transform lives and communities.
-              </p>
-              <p className="text-lg text-slate-600">
-                Whether you&apos;re a longtime believer or just beginning to explore faith, 
-                you&apos;ll find a warm welcome and a place to grow in your relationship with God.
-              </p>
-            </div>
-            <div>
-              <Image
-                src="/images/group-picture.JPG"
-                alt="Church worship service"
-                className="rounded-lg shadow-lg w-full h-auto"
-                width={1920}
-                height={1080}
-              />
-            </div>
+      {/* Our Values Section */}
+      <section className="py-20 lg:py-32">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
+          <div className="mb-16">
+            <h2 className="text-4xl lg:text-6xl font-bold mb-4">Our Values</h2>
+            <h3 className="text-4xl lg:text-6xl font-bold text-[#4A4A4A]">Nuestros Valores</h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            {values.map((value) => {
+              const Icon = value.icon;
+              return (
+                <div key={value.id} className="bg-white p-10">
+                  <Icon size={48} className="text-[#1A5D5D] mb-6" />
+                  <h3 className="text-2xl font-bold mb-2">{value.titleEn}</h3>
+                  <h4 className="text-xl font-bold text-[#4A4A4A] mb-4">{value.titleEs}</h4>
+                  <p className="text-lg text-[#4A4A4A] mb-3">{value.descEn}</p>
+                  <p className="text-lg text-[#4A4A4A]">{value.descEs}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Our Mission & Values */}
-      <section className="py-16 bg-blue-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-serif text-slate-800 mb-4">Our Mission & Values</h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              We exist to glorify God by making disciples who love Jesus, love people, and serve the world.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div>
-              <div className="p-8 text-center">
-                <Cross className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-                <h3 className="text-xl font-medium mb-4">Christ-Centered</h3>
-                <p className="text-slate-600">
-                  Jesus is the foundation of everything we do. We seek to honor Him 
-                  in our worship, teaching, and daily lives.
-                </p>
-              </div>
-            </div>
-            
-            <div>
-              <div className="p-8 text-center">
-                <BookOpen className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-                <h3 className="text-xl font-medium mb-4">Bible-Based</h3>
-                <p className="text-slate-600">
-                  Scripture is our authority for faith and practice. We believe in 
-                  teaching and living by God&apos;s Word.
-                </p>
-              </div>
-            </div>
-            
-            <div>
-              <div className="p-8 text-center">
-                <Heart className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-                <h3 className="text-xl font-medium mb-4">Spirit-Filled</h3>
-                <p className="text-slate-600">
-                  We embrace the gifts and power of the Holy Spirit in our worship, 
-                  ministry, and personal transformation.
-                </p>
-              </div>
-            </div>
-            
-            <div>
-              <div className="p-8 text-center">
-                <Users className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-                <h3 className="text-xl font-medium mb-4">Community-Focused</h3>
-                <p className="text-slate-600">
-                  We believe in authentic relationships and supporting one another 
-                  through life&apos;s joys and challenges.
-                </p>
-              </div>
-            </div>
-            
-            <div>
-              <div className="p-8 text-center">
-                <Globe className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-                <h3 className="text-xl font-medium mb-4">Mission-Minded</h3>
-                <p className="text-slate-600">
-                  We are called to share the Gospel both locally and globally, 
-                  making disciples of all nations.
-                </p>
-              </div>
-            </div>
-            
-            <div>
-              <div className="p-8 text-center">
-                <Handshake className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-                <h3 className="text-xl font-medium mb-4">Grace-Filled</h3>
-                <p className="text-slate-600">
-                  We extend the same grace we&apos;ve received from God to others, 
-                  creating a welcoming environment for all.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* What We Believe */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-serif text-slate-800 mb-4">What We Believe</h2>
-            <p className="text-xl text-slate-600">
-              Our beliefs are rooted in Scripture and the historic Christian faith.
-            </p>
-          </div>
-          
-          <div className="space-y-8">
-            <div className="bg-white p-8 rounded-lg shadow-sm border">
-              <h3 className="text-xl font-medium mb-3">The Trinity</h3>
-              <p className="text-slate-600">
-                We believe in one God eternally existing in three persons: Father, Son, and Holy Spirit, 
-                each fully God yet distinct in their roles within the Godhead.
-              </p>
-            </div>
-            
-            <div className="bg-white p-8 rounded-lg shadow-sm border">
-              <h3 className="text-xl font-medium mb-3">Salvation by Grace</h3>
-              <p className="text-slate-600">
-                Salvation is a gift from God received through faith in Jesus Christ alone. 
-                It is not earned by works but freely given to all who believe.
-              </p>
-            </div>
-            
-            <div className="bg-white p-8 rounded-lg shadow-sm border">
-              <h3 className="text-xl font-medium mb-3">The Authority of Scripture</h3>
-              <p className="text-slate-600">
-                The Bible is the inspired, infallible Word of God and our final authority 
-                for all matters of faith and Christian living.
-              </p>
-            </div>
-            
-            <div className="bg-white p-8 rounded-lg shadow-sm border">
-              <h3 className="text-xl font-medium mb-3">The Gifts of the Spirit</h3>
-              <p className="text-slate-600">
-                We believe in the baptism of the Holy Spirit and the continuation of 
-                spiritual gifts for the edification of the church and the glory of God.
-              </p>
-            </div>
-            
-            <div className="bg-white p-8 rounded-lg shadow-sm border">
-              <h3 className="text-xl font-medium mb-3">The Great Commission</h3>
-              <p className="text-slate-600">
-                Every believer is called to share the Gospel and make disciples, 
-                both in our local community and around the world.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Leadership */}
-      <section className="py-16 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-serif text-slate-800 mb-4">Our Leadership</h2>
-            <p className="text-xl text-slate-600">
-              Meet the pastoral team called to shepherd our congregation.
-            </p>
+      {/* Our Leadership Section */}
+      <section className="bg-white py-20 lg:py-32">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
+          <div className="mb-16">
+            <h2 className="text-4xl lg:text-6xl font-bold mb-4">Our Leadership</h2>
+            <h3 className="text-4xl lg:text-6xl font-bold text-[#4A4A4A]">Nuestro Liderazgo</h3>
           </div>
 
-          {leadership.length === 0 ? (
+          {}{leadership.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-slate-600 text-lg">
-                Leadership information coming soon.
+              <p className="text-[#4A4A4A] text-lg">
+                Leadership information coming soon. / Información de liderazgo próximamente.
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {leadership.map((leader) => (
-                <div key={leader._id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                  <div className="p-8 text-center">
-                    {/* Photo */}
-                    {leader.photo ? (
-                      <div className="mb-6">
-                        <Image
-                          src={urlFor(leader.photo).width(200).height(200).fit('crop').url()}
-                          width={128}
-                          height={128}
-                          alt={leader.name}
-                          className="w-32 h-32 rounded-full mx-auto object-cover border-4 border-blue-100"
-                        />
-                      </div>
-                    ) : (
-                      <div className="mb-6">
-                        <div className="w-32 h-32 rounded-full mx-auto bg-blue-100 flex items-center justify-center border-4 border-blue-200">
-                          <Users className="w-16 h-16 text-blue-600" />
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Name and Role */}
-                    <h3 className="text-xl font-medium mb-2 text-slate-800">{leader.name}</h3>
-                    <p className="text-blue-600 font-medium mb-4">{leader.role}</p>
-
-                    {/* Bio */}
-                    {leader.bio && (
-                      <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                        {leader.bio}
-                      </p>
-                    )}
-
-                    {/* Email */}
-                    {leader.email && (
-                      <a
-                        href={`mailto:${leader.email}`}
-                        className="text-sm text-blue-600 hover:text-blue-700 hover:underline"
-                      >
-                        Contact
-                      </a>
-                    )}
-                  </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+            {leadership.map((leader) => (
+              <div key={leader._id} className="border-4 border-[#1A5D5D] p-8">
+                <div className="bg-[#E5E5E5] w-full h-64 mb-6">
+                  {leader.photo ? (
+                    <Image
+                      src={urlFor(leader.photo).width(400).height(400).fit('crop').url()}
+                      width={400}
+                      height={400}
+                      alt={leader.name}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-[#C4C4C4] flex items-center justify-center">
+                      <Users size={64} className="text-white" />
+                    </div>
+                  )}
                 </div>
-              ))}
-            </div>
+                <h3 className="text-xl font-bold mb-2">{leader.name}</h3>
+                <p className="text-[#1A5D5D] font-bold mb-4">{leader.role}</p>
+                <p className="text-[#4A4A4A]">{leader.bio}</p>
+              </div>
+            ))}
+          </div>
           )}
+        </div>
+      </section>
+
+      {/* Beliefs Section */}
+      <section className="py-20 lg:py-32">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
+          <div className="mb-16">
+            <h2 className="text-4xl lg:text-6xl font-bold mb-4">What We Believe</h2>
+            <h3 className="text-4xl lg:text-6xl font-bold text-[#4A4A4A]">En Qué Creemos</h3>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-2xl font-bold mb-3">The Bible</h3>
+                <p className="text-lg text-[#4A4A4A]">
+                  We believe the Bible is the inspired and authoritative Word of God, our guide for faith and life.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold mb-3">God</h3>
+                <p className="text-lg text-[#4A4A4A]">
+                  We believe in one God who exists eternally in three persons: Father, Son, and Holy Spirit.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold mb-3">Jesus Christ</h3>
+                <p className="text-lg text-[#4A4A4A]">
+                  We believe Jesus is the Son of God who died for our sins and rose again, offering salvation to all.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold mb-3">The Holy Spirit</h3>
+                <p className="text-lg text-[#4A4A4A]">
+                  We believe the Holy Spirit empowers believers for life and ministry with spiritual gifts.
+                </p>
+              </div>
+            </div>
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-2xl font-bold mb-3">La Biblia</h3>
+                <p className="text-lg text-[#4A4A4A]">
+                  Creemos que la Biblia es la Palabra inspirada y autoritativa de Dios, nuestra guía para la fe y la vida.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold mb-3">Dios</h3>
+                <p className="text-lg text-[#4A4A4A]">
+                  Creemos en un Dios que existe eternamente en tres personas: Padre, Hijo y Espíritu Santo.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold mb-3">Jesucristo</h3>
+                <p className="text-lg text-[#4A4A4A]">
+                  Creemos que Jesús es el Hijo de Dios que murió por nuestros pecados y resucitó, ofreciendo salvación a todos.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold mb-3">El Espíritu Santo</h3>
+                <p className="text-lg text-[#4A4A4A]">
+                  Creemos que el Espíritu Santo empodera a los creyentes para la vida y el ministerio con dones espirituales.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>

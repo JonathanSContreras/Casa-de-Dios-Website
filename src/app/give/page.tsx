@@ -1,256 +1,263 @@
-import { Heart, Smartphone, CreditCard, Building, HandHeart, Users, Globe, BookOpen } from "lucide-react";
-import Image from "next/image";
+import { Heart, Users, Globe, Book } from 'lucide-react';
+import Image from 'next/image';
 
 export default function GivePage() {
-  const givingMethods = [
+  const givingOptions = [
     {
       id: 1,
-      method: "CashApp",
-      icon: <Smartphone className="w-8 h-8 text-blue-600" />,
-      details: "$IglesiaCasaDeDios",
-      description: "Quick and easy mobile giving through CashApp.",
-      instructions: "Send your gift to $IglesiaCasaDeDios with a note indicating your preferred designation."
+      titleEn: 'CashApp',
+      titleEs: '$IglesiaCasaDeDios',
+      descEn: 'Send your offering quickly and securely through CashApp. Contact the church office for our CashApp tag.',
+      descEs: 'Envía tu ofrenda de manera rápida y segura a través de CashApp. Contacta la oficina de la iglesia para nuestro tag de CashApp.',
     },
     {
       id: 2,
-      method: "Zelle",
-      icon: <CreditCard className="w-8 h-8 text-blue-600" />,
-      details: "(281) 713-0681",
-      description: "Secure bank-to-bank transfer through Zelle.",
-      instructions: "Use our church number as the recipient for your Zelle transfer."
+      titleEn: 'Zelle',
+      titleEs: '(281) 713-0681',
+      descEn: 'Give conveniently using Zelle through your bank app. Contact the church office for our Zelle information.',
+      descEs: 'Da convenientemente usando Zelle a través de tu aplicación bancaria. Contacta la oficina de la iglesia para nuestra información de Zelle.',
     },
-    // {
-    //   id: 3,
-    //   method: "Check",
-    //   icon: <Building className="w-8 h-8 text-blue-600" />,
-    //   details: "Mail to Church Office",
-    //   description: "Traditional giving by check through mail or in-person.",
-    //   instructions: "Make checks payable to 'Grace Community Church' and mail to 123 Faith Street, City, ST 12345"
-    // },
     {
       id: 3,
-      method: "In-Person",
-      icon: <HandHeart className="w-8 h-8 text-blue-600" />,
-      details: "During Services",
-      description: "Give during our Sunday worship services.",
-      instructions: "Offering boxes are available at the back of the sanctuary, or give during our offering time."
-    }
+      titleEn: 'In-Person',
+      titleEs: 'En Persona',
+      descEn: 'Give during any service using offering boxes located throughout the sanctuary.',
+      descEs: 'Da durante cualquier servicio usando las cajas de ofrendas ubicadas en el santuario.',
+    },
+    // {
+    //   id: 4,
+    //   titleEn: 'Bank Transfer',
+    //   titleEs: 'Transferencia Bancaria',
+    //   descEn: 'Set up direct bank transfers for one-time or recurring gifts. Contact us for account details.',
+    //   descEs: 'Configura transferencias bancarias directas para ofrendas únicas o recurrentes. Contáctanos para los detalles de la cuenta.',
+    // },
   ];
 
-  const givingAreas = [
+  const impactAreas = [
     {
-      title: "General Fund",
-      description: "Supports the overall ministry and operations of the church including utilities and facility maintenance.",
-      icon: <Building className="w-8 h-8 text-blue-600" />
+      id: 1,
+      icon: Heart,
+      titleEn: 'Worship & Ministry',
+      titleEs: 'Adoración y Ministerio',
+      descEn: 'Supporting powerful worship experiences, biblical teaching, and pastoral care for our community.',
+      descEs: 'Apoyando experiencias de adoración poderosas, enseñanza bíblica y cuidado pastoral para nuestra comunidad.',
     },
     {
-      title: "Missions",
-      description: "Funds our local and global mission efforts, supporting missionaries and outreach programs.",
-      icon: <Globe className="w-8 h-8 text-blue-600" />
+      id: 2,
+      icon: Users,
+      titleEn: 'Community Outreach',
+      titleEs: 'Alcance Comunitario',
+      descEn: 'Serving our city through food banks, homeless ministry, and community support programs.',
+      descEs: 'Sirviendo a nuestra ciudad a través de bancos de alimentos, ministerio para personas sin hogar y programas de apoyo comunitario.',
     },
     {
-      title: "Building Fund",
-      description: "Helps with facility improvements, maintenance, and future expansion projects.",
-      icon: <Building className="w-8 h-8 text-blue-600" />
+      id: 3,
+      icon: Globe,
+      titleEn: 'Global Missions',
+      titleEs: 'Misiones Globales',
+      descEn: 'Partnering with missionaries and churches around the world to share the gospel.',
+      descEs: 'Asociándonos con misioneros e iglesias alrededor del mundo para compartir el evangelio.',
     },
-    // {
-    //   title: "Benevolence",
-    //   description: "Assists church members and community members facing financial hardships.",
-    //   icon: <Heart className="w-8 h-8 text-blue-600" />
-    // },
-    // {
-    //   title: "Youth Ministry",
-    //   description: "Supports programs, activities, and mission trips for our youth and young adults.",
-    //   icon: <Users className="w-8 h-8 text-blue-600" />
-    // },
-    // {
-    //   title: "Children's Ministry",
-    //   description: "Funds Sunday school materials, VBS, and special programs for our children.",
-    //   icon: <BookOpen className="w-8 h-8 text-blue-600" />
-    // }
+    {
+      id: 4,
+      icon: Book,
+      titleEn: 'Next Generation',
+      titleEs: 'Próxima Generación',
+      descEn: 'Investing in children and youth ministries to raise up future leaders of faith.',
+      descEs: 'Invirtiendo en ministerios de niños y jóvenes para formar futuros líderes de fe.',
+    },
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="bg-[#F8F9FA]">
       {/* Hero Section */}
-      <section className="relative py-24 bg-slate-800">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/placeholder-2.jpg"
-            width={1920}
-            height={1080}
-            alt="Cross with sunlight"
-            className="w-full h-full object-cover opacity-20"
-          />
-        </div>
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center text-white">
-          <h1 className="text-5xl font-serif mb-6">Ways to Give</h1>
-          <p className="text-xl text-blue-100 mb-8">
-            &quot;Each of you should give what you have decided in your heart to give, 
-            not reluctantly or under compulsion, for God loves a cheerful giver.&quot; - 2 Corinthians 9:7
-          </p>
-          <p className="text-lg text-slate-200">
-            Your generous gifts help us fulfill our mission to share God&apos;s love in our community and beyond.
+      <section className="bg-[#1A5D5D] text-white py-20 lg:py-32">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
+          <h1 className="text-5xl lg:text-7xl font-bold mb-6">Give</h1>
+          <h2 className="text-5xl lg:text-7xl font-bold mb-8">Ofrendar</h2>
+          <p className="text-xl lg:text-2xl max-w-3xl text-[#E5E5E5]">
+            Your generosity makes ministry possible and transforms lives in our community and around the world.
           </p>
         </div>
       </section>
 
-      {/* Why We Give */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      {/* Why We Give Section */}
+      <section className="py-20 lg:py-32">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
             <div>
-              <h2 className="text-4xl font-serif text-slate-800 mb-6">Why We Give</h2>
-              <p className="text-lg text-slate-600 mb-6">
-                Giving is an act of worship and obedience to God. It&apos;s not about what the church
-                needs from you, but about what God wants to do through you. When we give, we
-                participate in God&apos;s work of transforming lives and communities.
-              </p>
-              <p className="text-lg text-slate-600 mb-6">
-                Every gift, no matter the size, makes a difference. Your generosity helps us:
-              </p>
-              <ul className="text-slate-600 space-y-2 mb-8">
-                <li className="flex items-center gap-3">
-                  <Heart className="w-5 h-5 text-blue-600 flex-shrink-0" />
-                  <span>Spread the Gospel through preaching and outreach</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Users className="w-5 h-5 text-blue-600 flex-shrink-0" />
-                  <span>Support families and individuals in our community</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Globe className="w-5 h-5 text-blue-600 flex-shrink-0" />
-                  <span>Fund missions locally and around the world</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <BookOpen className="w-5 h-5 text-blue-600 flex-shrink-0" />
-                  <span>Provide excellent children&apos;s and youth programs</span>
-                </li>
-              </ul>
+              <h2 className="text-4xl lg:text-5xl font-bold mb-8">Why We Give</h2>
+              <div className="space-y-6">
+                <p className="text-lg text-[#4A4A4A] leading-relaxed">
+                  Giving is an act of worship and obedience to God. The Bible teaches us that everything we have 
+                  comes from God, and giving is one way we express our gratitude and trust in His provision.
+                </p>
+                <p className="text-lg text-[#4A4A4A] leading-relaxed">
+                  When you give to House of God, you&apos;re investing in lives being changed, communities being 
+                  served, and the gospel being shared. Every dollar given goes directly toward fulfilling our mission 
+                  to share hope and transform lives.
+                </p>
+                <p className="text-lg text-[#4A4A4A] leading-relaxed">
+                  We believe in financial transparency and stewardship. Our leadership team ensures that every gift 
+                  is used wisely and effectively for God&apos;s kingdom work.
+                </p>
+              </div>
             </div>
             <div>
-              <Image
-                src="/images/placeholder-1.jpg"
-                alt="Community fellowship and giving"
-                className="rounded-lg shadow-lg w-full h-auto"
-                width={1920}
-                height={1080}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Giving Methods */}
-      <section className="py-16 bg-blue-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-serif text-slate-800 mb-4">How to Give</h2>
-            <p className="text-xl text-slate-600">
-              We&apos;ve made it easy and convenient to give in the way that works best for you.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {givingMethods.map((method) => {
-              return (
-                <div key={method.id} className="hover:shadow-lg transition-shadow border-2 border-gray-100 rounded-lg bg-white">
-                  <div className="p-8">
-                    <div className="flex items-start gap-4">
-                      <div className="flex-1">
-                        <h3 className="text-xl font-medium mb-2">{method.method}</h3>
-                        <p className="text-blue-600 font-medium mb-3">{method.details}</p>
-                        <p className="text-slate-600 mb-4">{method.description}</p>
-                        <p className="text-sm text-slate-500 bg-slate-50 p-3 rounded-lg">
-                          <strong>Instructions:</strong> {method.instructions}
-                        </p>
-                      </div>
-                      <div className="bg-blue-100 p-3 rounded-lg flex-shrink-0">
-                        {method.icon}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Giving Areas */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-serif text-slate-800 mb-4">Where Your Gifts Go</h2>
-            <p className="text-xl text-slate-600">
-              You can designate your gifts to specific areas of ministry that are close to your heart.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {givingAreas.map((area, index) => {
-              return (
-                <div key={index}>
-                  <div className="p-6 text-center">
-                    <div className="bg-blue-100 p-3 rounded-lg w-fit mx-auto mb-4">
-                      {area.icon}
-                    </div>
-                    <h3 className="text-lg font-medium mb-3">{area.title}</h3>
-                    <p className="text-slate-600 text-sm">{area.description}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Important Notes */}
-      {/* <section className="py-16 bg-slate-50">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="border-l-4 border-blue-600">
-            <div className="p-8">
-              <h3 className="text-xl font-medium mb-4 text-slate-800">Important Information</h3>
-              <div className="space-y-4 text-slate-600">
-                <p>
-                  <strong>Tax Deductibility:</strong> Grace Community Church is a 501(c)(3) organization. 
-                  All donations are tax-deductible to the full extent allowed by law. You will receive 
-                  a giving statement for tax purposes at the end of each year.
+              <h2 className="text-4xl lg:text-5xl font-bold mb-8">Por Qué Damos</h2>
+              <div className="space-y-6">
+                <p className="text-lg text-[#4A4A4A] leading-relaxed">
+                  Dar es un acto de adoración y obediencia a Dios. La Biblia nos enseña que todo lo que tenemos 
+                  viene de Dios, y dar es una forma de expresar nuestra gratitud y confianza en Su provisión.
                 </p>
-                <p>
-                  <strong>Privacy & Security:</strong> Figma Make is not designed for collecting personally 
-                  identifiable information (PII) or handling sensitive financial data. Please use our 
-                  official church giving methods for all donations.
+                <p className="text-lg text-[#4A4A4A] leading-relaxed">
+                  Cuando das a House of God, estás invirtiendo en vidas que están siendo transformadas, 
+                  comunidades que están siendo servidas y el evangelio que está siendo compartido. Cada dólar dado 
+                  va directamente hacia el cumplimiento de nuestra misión de compartir esperanza y transformar vidas.
                 </p>
-                <p>
-                  <strong>Questions?</strong> If you have questions about giving or need assistance with 
-                  any of these methods, please contact our church office at (555) 123-4567 or 
-                  giving@gracecommunitychurch.org.
+                <p className="text-lg text-[#4A4A4A] leading-relaxed">
+                  Creemos en la transparencia financiera y la mayordomía. Nuestro equipo de liderazgo asegura que 
+                  cada ofrenda se use sabia y efectivamente para la obra del reino de Dios.
                 </p>
               </div>
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
 
-      {/* Call to Action */}
-      {/* <section className="py-16 bg-blue-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-serif mb-4">Ready to Give?</h2>
-          <p className="text-xl text-blue-100 mb-8">
-            Thank you for your heart to give and support God&apos;s work through Grace Community Church. 
-            Your generosity makes a real difference in our community and beyond.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <div className="p-4 bg-blue-500 rounded-lg">
-              Contact Office for Assistance
-            </div>
-            <div className="border border-white text-white hover:bg-white hover:text-blue-600">
-              Learn More About Stewardship
+      {/* Image Section */}
+      <section className="bg-white">
+        <div className="max-w-[1440px] mx-auto">
+          <Image
+            src="/images/placeholder-1.jpg"
+            alt="Community meeting"
+            className="w-full h-[400px] lg:h-[600px] object-cover"
+            width={1920}
+            height={1080}
+          />
+        </div>
+      </section>
+
+      {/* Your Impact Section */}
+      <section className="py-20 lg:py-32">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
+          <div className="mb-16">
+            <h2 className="text-4xl lg:text-6xl font-bold mb-4">Your Impact</h2>
+            <h3 className="text-4xl lg:text-6xl font-bold text-[#4A4A4A]">Tu Impacto</h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            {impactAreas.map((area) => {
+              const Icon = area.icon;
+              return (
+                <div key={area.id} className="bg-white p-10">
+                  <Icon size={48} className="text-[#1A5D5D] mb-6" />
+                  <h3 className="text-2xl font-bold mb-2">{area.titleEn}</h3>
+                  <h4 className="text-xl font-bold text-[#4A4A4A] mb-4">{area.titleEs}</h4>
+                  <p className="text-lg text-[#4A4A4A] mb-3">{area.descEn}</p>
+                  <p className="text-lg text-[#4A4A4A]">{area.descEs}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Ways to Give Section */}
+      <section className="bg-white py-20 lg:py-32">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
+          <div className="mb-16">
+            <h2 className="text-4xl lg:text-6xl font-bold mb-4">Ways to Give</h2>
+            <h3 className="text-4xl lg:text-6xl font-bold text-[#4A4A4A]">Formas de Dar</h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {givingOptions.map((option) => (
+              <div key={option.id} className="border-4 border-[#1A5D5D] p-8">
+                <h3 className="text-xl font-bold mb-2">{option.titleEn}</h3>
+                <h4 className="text-lg font-bold text-[#4A4A4A] mb-4">{option.titleEs}</h4>
+                <p className="text-[#4A4A4A] mb-2">{option.descEn}</p>
+                <p className="text-[#4A4A4A]">{option.descEs}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Questions About Giving Section */}
+      <section className="py-20 lg:py-32">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
+          <div className="bg-[#1A5D5D] text-white p-12 lg:p-20">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-4xl lg:text-5xl font-bold mb-6">Questions About Giving?</h2>
+              <h3 className="text-4xl lg:text-5xl font-bold mb-8">¿Preguntas Sobre las Ofrendas?</h3>
+              <p className="text-xl mb-4 text-[#E5E5E5]">
+                We&apos;re here to help! Whether you have questions about giving options, planned giving, or stewardship, our team is ready to assist you.
+              </p>
+              <p className="text-xl mb-12 text-[#E5E5E5]">
+                ¡Estamos aquí para ayudar! Ya sea que tengas preguntas sobre opciones de donación, donaciones planificadas o mayordomía, nuestro equipo está listo para asistirte.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                  href="/contact"
+                  className="bg-white text-[#1A5D5D] px-12 py-5 font-bold text-lg hover:bg-[#F8F9FA] transition-colors inline-block"
+                >
+                  Contact Us / Contáctanos
+                </a>
+                <a
+                  href="mailto:giving@houseofgod.org"
+                  className="bg-transparent border-2 border-white text-white px-12 py-5 font-bold text-lg hover:bg-white/10 transition-colors inline-block"
+                >
+                  Email Us / Envíanos un Email
+                </a>
+              </div>
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
+
+      {/* Biblical Foundation Section */}
+      <section className="py-20 lg:py-32">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
+          <div className="mb-16">
+            <h2 className="text-4xl lg:text-6xl font-bold mb-4">Biblical Foundation</h2>
+            <h3 className="text-4xl lg:text-6xl font-bold text-[#4A4A4A]">Fundamento Bíblico</h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            <div className="bg-white p-10">
+              <p className="text-xl text-[#4A4A4A] italic mb-4">
+                &quot;Each of you should give what you have decided in your heart to give, not reluctantly or under 
+                compulsion, for God loves a cheerful giver.&quot;
+              </p>
+              <p className="text-lg font-bold">2 Corinthians 9:7</p>
+            </div>
+            <div className="bg-white p-10">
+              <p className="text-xl text-[#4A4A4A] italic mb-4">
+                &quot;Cada uno debe dar según lo que haya decidido en su corazón, no de mala gana ni por obligación, 
+                porque Dios ama al que da con alegría.&quot;
+              </p>
+              <p className="text-lg font-bold">2 Corintios 9:7</p>
+            </div>
+            <div className="bg-white p-10">
+              <p className="text-xl text-[#4A4A4A] italic mb-4">
+                &quot;Bring the whole tithe into the storehouse, that there may be food in my house. Test me in this, 
+                says the LORD Almighty, and see if I will not throw open the floodgates of heaven and pour out 
+                so much blessing that there will not be room enough to store it.&quot;
+              </p>
+              <p className="text-lg font-bold">Malachi 3:10</p>
+            </div>
+            <div className="bg-white p-10">
+              <p className="text-xl text-[#4A4A4A] italic mb-4">
+                &quot;Traigan íntegro el diezmo para los fondos del templo, y así habrá alimento en mi casa. Pruébenme 
+                en esto, dice el SEÑOR Todopoderoso, y vean si no abro las compuertas del cielo y derramo sobre 
+                ustedes bendición hasta que sobreabunde.&quot;
+              </p>
+              <p className="text-lg font-bold">Malaquías 3:10</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
