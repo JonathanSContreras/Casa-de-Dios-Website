@@ -13,8 +13,15 @@ export default defineType({
   fields: [
     defineField({
       name: 'title',
-      title: 'Event Title',
+      title: 'Event Title (English)',
       type: 'string',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'titleEs',
+      title: 'Event Title (Spanish)',
+      type: 'string',
+      description: 'Spanish translation of the event title',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -29,8 +36,15 @@ export default defineType({
     }),
     defineField({
       name: 'description',
-      title: 'Description',
+      title: 'Description (English)',
       type: 'text',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'descriptionEs',
+      title: 'Description (Spanish)',
+      type: 'text',
+      description: 'Spanish translation of the event description',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -46,8 +60,14 @@ export default defineType({
     }),
     defineField({
       name: 'location',
-      title: 'Location',
+      title: 'Location (English)',
       type: 'string',
+    }),
+    defineField({
+      name: 'locationEs',
+      title: 'Location (Spanish)',
+      type: 'string',
+      description: 'Spanish translation of the location (if different from English)',
     }),
     defineField({
       name: 'category',
