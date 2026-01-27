@@ -164,18 +164,22 @@
 import { Users, X, Mail } from 'lucide-react';
 import { useState } from 'react';
 import Image from 'next/image';
-import type { Leadership, MinistryType } from '@/lib/sanity/types';
-import { urlFor } from '@/lib/sanity/image';
+interface LeaderInfo {
+  name: string;
+  role: string;
+  email: string;
+  imageUrl: string;
+}
 
 interface Ministry {
-  id: MinistryType;
+  id: number;
   titleEn: string;
   titleEs: string;
   shortDescEn: string;
   shortDescEs: string;
   fullDescEn: string;
   fullDescEs: string;
-  leaders: Leadership[];
+  leadership: LeaderInfo[];
 }
 
 interface MinistrySectionProps {
@@ -199,25 +203,25 @@ export default function Ministries() {
           name: 'Sarah Martinez',
           role: "Children's Director / Directora de Niños",
           email: 'sarah@livinghope.org',
-          imageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400',
+          imageUrl: '/images/placeholder-2.jpg',
         },
         {
           name: 'Michael Chen',
           role: 'Elementary Coordinator / Coordinador de Primaria',
           email: 'michael.chen@livinghope.org',
-          imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400',
+          imageUrl: '/images/placeholder-2.jpg',
         },
         {
           name: 'Jessica Williams',
           role: 'Preschool Coordinator / Coordinadora de Preescolar',
           email: 'jessica.w@livinghope.org',
-          imageUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400',
+          imageUrl: '/images/placeholder-2.jpg',
         },
         {
           name: 'Daniel Foster',
           role: 'Nursery Coordinator / Coordinador de Guardería',
           email: 'daniel.f@livinghope.org',
-          imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400',
+          imageUrl: '/images/placeholder-2.jpg',
         },
       ],
     },
@@ -234,31 +238,31 @@ export default function Ministries() {
           name: 'Pastor Carlos Rodriguez',
           role: 'Youth Pastor / Pastor de Jóvenes',
           email: 'carlos@livinghope.org',
-          imageUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400',
+          imageUrl: '/images/placeholder-2.jpg',
         },
         {
           name: 'Maria Rodriguez',
           role: 'Youth Ministry Co-Lead / Co-Líder del Ministerio de Jóvenes',
           email: 'maria.r@livinghope.org',
-          imageUrl: 'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=400',
+          imageUrl: '/images/placeholder-2.jpg',
         },
         {
           name: 'Brandon Taylor',
           role: 'High School Leader / Líder de Preparatoria',
           email: 'brandon.t@livinghope.org',
-          imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400',
+          imageUrl: '/images/placeholder-2.jpg',
         },
         {
           name: 'Ashley Moore',
           role: 'Middle School Leader / Líder de Secundaria',
           email: 'ashley.m@livinghope.org',
-          imageUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400',
+          imageUrl: '/images/placeholder-2.jpg',
         },
         {
           name: 'Jordan Lee',
           role: 'Worship Leader / Líder de Alabanza',
           email: 'jordan.l@livinghope.org',
-          imageUrl: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=400',
+          imageUrl: '/images/placeholder-2.jpg',
         },
       ],
     },
@@ -275,25 +279,25 @@ export default function Ministries() {
           name: 'David Kim',
           role: 'Small Groups Pastor / Pastor de Grupos Pequeños',
           email: 'david.k@livinghope.org',
-          imageUrl: 'https://images.unsplash.com/photo-1504257432389-52343af06ae3?w=400',
+          imageUrl: '/images/placeholder-2.jpg',
         },
         {
           name: 'Jennifer Kim',
           role: 'Small Groups Coordinator / Coordinadora de Grupos Pequeños',
           email: 'jennifer.k@livinghope.org',
-          imageUrl: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=400',
+          imageUrl: '/images/placeholder-2.jpg',
         },
         {
           name: 'Robert Thompson',
           role: "Men's Groups Leader / Líder de Grupos de Hombres",
           email: 'robert.t@livinghope.org',
-          imageUrl: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=400',
+          imageUrl: '/images/placeholder-2.jpg',
         },
         {
           name: 'Linda Johnson',
           role: "Women's Groups Leader / Líder de Grupos de Mujeres",
           email: 'linda.j@livinghope.org',
-          imageUrl: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400',
+          imageUrl: '/images/placeholder-2.jpg',
         },
       ],
     },
@@ -310,19 +314,19 @@ export default function Ministries() {
           name: 'Pastor David Kim',
           role: 'Worship Pastor / Pastor de Alabanza',
           email: 'worship@livinghope.org',
-          imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400',
+          imageUrl: '/images/placeholder-2.jpg',
         },
         {
           name: 'Amanda Cruz',
           role: 'Worship Leader / Líder de Alabanza',
           email: 'amanda.c@livinghope.org',
-          imageUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400',
+          imageUrl: '/images/placeholder-2.jpg',
         },
         {
           name: 'Marcus Johnson',
           role: 'Band Director / Director de Banda',
           email: 'marcus.j@livinghope.org',
-          imageUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400',
+          imageUrl: '/images/placeholder-2.jpg',
         },
       ],
     },
@@ -339,19 +343,19 @@ export default function Ministries() {
           name: 'Pastor Michael Johnson',
           role: 'Outreach Pastor / Pastor de Alcance',
           email: 'outreach@livinghope.org',
-          imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400',
+          imageUrl: '/images/placeholder-2.jpg',
         },
         {
           name: 'Elena Ramirez',
           role: 'Missions Coordinator / Coordinadora de Misiones',
           email: 'elena.r@livinghope.org',
-          imageUrl: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400',
+          imageUrl: '/images/placeholder-2.jpg',
         },
         {
           name: 'James Wilson',
           role: 'Community Outreach Leader / Líder de Alcance Comunitario',
           email: 'james.w@livinghope.org',
-          imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400',
+          imageUrl: '/images/placeholder-2.jpg',
         },
       ],
     },
@@ -368,19 +372,19 @@ export default function Ministries() {
           name: 'Grace Taylor',
           role: 'Hospitality Director / Directora de Hospitalidad',
           email: 'grace.t@livinghope.org',
-          imageUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400',
+          imageUrl: '/images/placeholder-2.jpg',
         },
         {
           name: 'Samuel Park',
           role: 'Greeter Coordinator / Coordinador de Recepcionistas',
           email: 'samuel.p@livinghope.org',
-          imageUrl: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=400',
+          imageUrl: '/images/placeholder-2.jpg',
         },
         {
           name: 'Rachel Green',
           role: 'Newcomer Experience / Experiencia de Nuevos Visitantes',
           email: 'rachel.g@livinghope.org',
-          imageUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400',
+          imageUrl: '/images/placeholder-2.jpg',
         },
       ],
     },
@@ -435,7 +439,7 @@ export default function Ministries() {
             <h3 className="text-4xl lg:text-5xl font-bold text-[#4A4A4A] mb-8">Involúcrate</h3>
             <p className="text-xl text-[#4A4A4A] mb-4">
               Every ministry at Living Hope Church is built by volunteers who use their gifts to serve others. 
-              There's a place for you to make a difference.
+              There&apos;s a place for you to make a difference.
             </p>
             <p className="text-xl text-[#4A4A4A] mb-8">
               Cada ministerio en Living Hope Church está construido por voluntarios que usan sus dones para servir a otros. 
@@ -491,9 +495,11 @@ export default function Ministries() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {selectedMinistry.leadership.map((leader, index) => (
                     <div key={index} className="bg-white p-6">
-                      <ImageWithFallback
+                      <Image
                         src={leader.imageUrl}
                         alt={leader.name}
+                        width={400}
+                        height={300}
                         className="w-full h-48 object-cover mb-4"
                       />
                       <h5 className="text-lg font-bold mb-1">{leader.name}</h5>
