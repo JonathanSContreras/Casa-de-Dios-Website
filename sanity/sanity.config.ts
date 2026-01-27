@@ -24,7 +24,8 @@ export default defineConfig({
   projectId: 'qisvzbm2',
   dataset: 'production',
 
-  basePath: '/studio',
+  // basePath removed for standalone studio deployment
+  // basePath: '/studio',
 
   plugins: [
     dashboardTool({
