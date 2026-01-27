@@ -27,11 +27,11 @@ export function MinistrySection({ ministries }: MinistrySectionProps) {
   return (
     <>
       {/* Ministries Section */}
-      <section className="bg-white py-20 lg:py-32">
+      <section className="bg-[#F8F9FA] py-20 lg:py-32">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
           <div className="mb-16">
-            <h2 className="text-4xl lg:text-6xl font-bold mb-4">Ministries</h2>
-            <h3 className="text-4xl lg:text-6xl font-bold text-[#4A4A4A]">Ministerios</h3>
+            <h2 className="text-4xl lg:text-6xl font-bold mb-4">Explore Our Ministries</h2>
+            <h3 className="text-4xl lg:text-6xl font-bold text-[#4A4A4A]">Explora Nuestros Ministerios</h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
