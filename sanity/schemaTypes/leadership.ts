@@ -68,18 +68,72 @@ export default defineType({
       description: 'Contact email (optional)',
     }),
     defineField({
+      name: 'showOnAboutPage',
+      title: 'Show on About Page',
+      type: 'boolean',
+      initialValue: false,
+      description: 'Check this to show this person on the About page (for pastors, secretary, treasurer, etc.)',
+    }),
+    defineField({
+      name: 'ministries',
+      title: 'Ministry Roles',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: {
+        list: [
+          { title: 'Men\'s Ministry', value: 'mens' },
+          { title: 'Women\'s Ministry', value: 'womens' },
+          { title: 'Youth Ministry', value: 'youth' },
+          { title: 'Kids Ministry', value: 'kids' },
+          { title: 'Street Evangelism', value: 'street-evangelism' },
+        ],
+        layout: 'grid',
+      },
+      validation: (Rule) => Rule.max(5),
+      description: 'Select which ministry(ies) this leader serves (optional, max 5). They will appear in the ministry sections on the Events page.',
+    }),
+    defineField({
       name: 'order',
       title: 'Display Order',
       type: 'number',
       initialValue: 0,
-      description: 'Lower numbers appear first (0 = first, 1 = second, etc.)',
+      description: 'Lower numbers appear first within each ministry (0 = first, 1 = second, etc.)',
     }),
   ],
   preview: {
     select: {
       title: 'name',
-      subtitle: 'role',
+      role: 'role',
+      showOnAboutPage: 'showOnAboutPage',
+      ministries: 'ministries',
       media: 'photo',
+    },
+    prepare({ title, role, showOnAboutPage, ministries }) {
+      const ministryLabels = {
+        'mens': 'Men\'s',
+        'womens': 'Women\'s',
+        'youth': 'Youth',
+        'kids': 'Kids',
+        'street-evangelism': 'Street Evangelism',
+      }
+
+      const badges = []
+
+      if (showOnAboutPage) {
+        badges.push('About Page')
+      }
+
+      if (ministries && ministries.length > 0) {
+        const ministryNames = ministries.map((m: string) => ministryLabels[m as keyof typeof ministryLabels]).join(', ')
+        badges.push(ministryNames)
+      }
+
+      const subtitle = badges.length > 0 ? `${role} • ${badges.join(' • ')}` : role
+
+      return {
+        title,
+        subtitle,
+      }
     },
   },
   orderings: [

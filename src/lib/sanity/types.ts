@@ -19,6 +19,16 @@ export type EventCategory =
   | 'Bible Study'
 
 /**
+ * Ministry Types
+ */
+export type MinistryType =
+  | 'mens'
+  | 'womens'
+  | 'youth'
+  | 'kids'
+  | 'street-evangelism'
+
+/**
  * Announcement Priority Types
  */
 export type AnnouncementPriority = 'urgent' | 'normal' | 'low'
@@ -61,14 +71,17 @@ export interface Event {
   _createdAt: string
   _updatedAt: string
   title: string
+  titleEs: string // Spanish translation of title
   slug: {
     current: string
     _type: 'slug'
   }
   description: string
+  descriptionEs: string // Spanish translation of description
   startDate: string // ISO datetime string
   endDate?: string // ISO datetime string
   location?: string
+  locationEs?: string // Spanish translation of location
   category: EventCategory
   featuredImage?: SanityImage
   registrationLink?: string
@@ -81,11 +94,14 @@ export interface Event {
 export interface EventDisplay {
   id: string
   title: string
+  titleEs: string
   slug: string
   description: string
+  descriptionEs: string
   startDate: Date
   endDate?: Date
   location?: string
+  locationEs?: string
   category: EventCategory
   featuredImage?: SanityImageSource
   registrationLink?: string
@@ -121,7 +137,12 @@ export interface Announcement {
  * Leadership Document Type
  * Represents a church leadership team member
  *
- * The 'order' field controls display order (lower numbers appear first)
+ * A leader can serve in multiple capacities:
+ * - If showOnAboutPage is true, they appear on the About page (pastors, secretary, treasurer, etc.)
+ * - If ministries array is populated, they appear in those ministry sections on the Events page
+ * - A person can have BOTH (e.g., Church Secretary who also leads Women's Ministry)
+ *
+ * The 'order' field controls display order within each context (lower numbers appear first)
  */
 export interface Leadership {
   _id: string
@@ -137,6 +158,8 @@ export interface Leadership {
   bio?: string
   photo?: SanityImage
   email?: string
+  showOnAboutPage: boolean
+  ministries?: MinistryType[]
   order: number
 }
 
