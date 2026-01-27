@@ -26,6 +26,8 @@ next-env.d.ts
 /sanity/dist
 /sanity/.sanity
 /sanity/package-lock.json
+/.sanity
+/dist
 
 # misc
 .DS_Store
