@@ -183,10 +183,15 @@ const announcementFields = `
   _id,
   _type,
   title,
+  titleEs,
   message,
+  messageEs,
+  dateLabel,
+  dateLabelEs,
   priority,
   link,
   publishDate,
+  expirationDate,
   slug
 `
 

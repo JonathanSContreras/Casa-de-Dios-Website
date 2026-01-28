@@ -20,10 +20,17 @@ export default defineType({
   fields: [
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Title (English)',
       type: 'string',
       validation: (Rule) => Rule.required(),
       description: 'Brief, attention-grabbing title for the announcement',
+    }),
+    defineField({
+      name: 'titleEs',
+      title: 'Title (Spanish)',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+      description: 'Spanish translation of the title',
     }),
     defineField({
       name: 'slug',
@@ -38,7 +45,7 @@ export default defineType({
     }),
     defineField({
       name: 'message',
-      title: 'Message',
+      title: 'Message (English)',
       type: 'text',
       rows: 4,
       validation: (Rule) =>
@@ -46,6 +53,29 @@ export default defineType({
           .max(300)
           .warning('Keep messages concise for better readability'),
       description: 'The main announcement message (max 300 characters)',
+    }),
+    defineField({
+      name: 'messageEs',
+      title: 'Message (Spanish)',
+      type: 'text',
+      rows: 4,
+      validation: (Rule) =>
+        Rule.required()
+          .max(300)
+          .warning('Keep messages concise for better readability'),
+      description: 'Spanish translation of the message',
+    }),
+    defineField({
+      name: 'dateLabel',
+      title: 'Date Label (English)',
+      type: 'string',
+      description: 'Optional short date badge (e.g., "Starting Jan 28", "Feb 1-15")',
+    }),
+    defineField({
+      name: 'dateLabelEs',
+      title: 'Date Label (Spanish)',
+      type: 'string',
+      description: 'Spanish translation of the date label',
     }),
     defineField({
       name: 'priority',

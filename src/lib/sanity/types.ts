@@ -122,11 +122,15 @@ export interface Announcement {
   _createdAt: string
   _updatedAt: string
   title: string
+  titleEs: string // Spanish translation of title
   slug: {
     current: string
     _type: 'slug'
   }
   message: string
+  messageEs: string // Spanish translation of message
+  dateLabel?: string // Optional date badge (e.g., "Starting Jan 28")
+  dateLabelEs?: string // Spanish translation of date label
   priority: AnnouncementPriority
   publishDate: string // ISO datetime string
   expirationDate?: string // ISO datetime string
