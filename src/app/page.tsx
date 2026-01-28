@@ -5,7 +5,7 @@ import { getActiveAnnouncements, getAllEvents } from "@/lib/sanity/queries";
 import type { Announcement, Event } from "@/lib/sanity/types";
 
 // Revalidate every 5 minutes (announcements and events change frequently)
-export const revalidate = 10;
+export const revalidate = 300;
 
 // Helper function to get icon based on event category
 function getEventCategoryIcon(category: string) {
@@ -31,43 +31,6 @@ function getEventCategoryIcon(category: string) {
 export default async function HomePage() {
   // Fetch active announcements and featured events from Sanity
   const announcements: Announcement[] = await getActiveAnnouncements();
-
-  console.log('Announcements:', announcements);
-
-  // const announcements = [
-  //   {
-  //     id: 1,
-  //     titleEn: 'New Small Groups Starting',
-  //     titleEs: 'Nuevos Grupos Pequeños Comenzando',
-  //     descEn: 'Join us for our new winter small group session starting January 28. Sign up at the welcome desk or online.',
-  //     descEs: 'Únete a nosotros para nuestra nueva sesión de grupos pequeños de invierno que comienza el 28 de enero. Regístrate en el mostrador de bienvenida o en línea.',
-  //     date: 'Starting Jan 28',
-  //   },
-  //   {
-  //     id: 2,
-  //     titleEn: 'Parking Lot Construction',
-  //     titleEs: 'Construcción del Estacionamiento',
-  //     descEn: 'Our main parking lot will be under construction Feb 1-15. Please use the overflow lot on Adams Street.',
-  //     descEs: 'Nuestro estacionamiento principal estará en construcción del 1 al 15 de febrero. Por favor use el estacionamiento adicional en Adams Street.',
-  //     date: 'Feb 1-15',
-  //   },
-  //   {
-  //     id: 3,
-  //     titleEn: 'Volunteer Appreciation Lunch',
-  //     titleEs: 'Almuerzo de Apreciación para Voluntarios',
-  //     descEn: 'Join us for a special lunch to honor our amazing volunteers. RSVP by January 25.',
-  //     descEs: 'Únete a nosotros para un almuerzo especial para honrar a nuestros increíbles voluntarios. Confirma asistencia antes del 25 de enero.',
-  //     date: 'Jan 27',
-  //   },
-  //   {
-  //     id: 4,
-  //     titleEn: 'Church Office Hours Update',
-  //     titleEs: 'Actualización de Horario de Oficina',
-  //     descEn: 'Starting February, office hours will be Monday-Friday, 9:00 AM - 4:00 PM.',
-  //     descEs: 'A partir de febrero, el horario de oficina será de lunes a viernes, 9:00 AM - 4:00 PM.',
-  //     date: 'Effective Feb 1',
-  //   },
-  // ];
 
   // TEMPORARY: Using getAllEvents() to show all events regardless of date
   // Change back to getFeaturedEvents(3) once you update event dates to 2026
