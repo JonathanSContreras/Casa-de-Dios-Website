@@ -19,13 +19,13 @@ export type EventCategory =
   | 'Bible Study'
 
 /**
- * Ministry Types
+ * Ministry Slug Types (for type-safe ministry identifiers)
  */
-export type MinistryType =
-  | 'mens'
-  | 'womens'
-  | 'youth'
-  | 'kids'
+export type MinistrySlug =
+  | 'mens-ministry'
+  | 'womens-ministry'
+  | 'youth-ministry'
+  | 'kids-ministry'
   | 'street-evangelism'
 
 /**
@@ -142,11 +142,11 @@ export interface Announcement {
  * Represents a church leadership team member
  *
  * A leader can serve in multiple capacities:
- * - If showOnAboutPage is true, they appear on the About page (pastors, secretary, treasurer, etc.)
- * - If ministries array is populated, they appear in those ministry sections on the Events page
- * - A person can have BOTH (e.g., Church Secretary who also leads Women's Ministry)
+ * - If showOnAboutPage is true, they appear on the About page with their primary 'role'
+ * - They can be referenced by Ministry documents with an optional roleOverride
+ * - A person can have BOTH (e.g., "Treasurer" on About page, "President" in Women's Ministry)
  *
- * The 'order' field controls display order within each context (lower numbers appear first)
+ * The 'order' field controls display order on the About page (lower numbers appear first)
  */
 export interface Leadership {
   _id: string
@@ -158,20 +158,31 @@ export interface Leadership {
     current: string
     _type: 'slug'
   }
-  role: string
+  role?: string
   bio?: string
   photo?: SanityImage
   email?: string
   showOnAboutPage: boolean
-  ministries?: MinistryType[]
   order: number
 }
 
 /**
- * Ministry Document Type
- * Represents a church ministry
+ * Leader Reference with Role Override
+ * Used when a leader is referenced from a Ministry document
  *
- * Ministries can reference a leader from the leadership schema.
+ * The roleOverride allows displaying a different title for this ministry context.
+ * If roleOverride is not set, the leader's primary 'role' should be displayed.
+ */
+export interface LeaderReference {
+  person: Leadership
+  roleOverride?: string
+}
+
+/**
+ * Ministry Document Type
+ * Represents a church ministry with its leaders
+ *
+ * Each ministry can have multiple leaders, each with an optional roleOverride.
  * The 'isActive' field controls visibility (inactive ministries are hidden)
  */
 export interface Ministry {
@@ -189,28 +200,7 @@ export interface Ministry {
   location?: string
   contactEmail?: string
   isActive: boolean
-  // Leader reference - can be a simple reference or populated
-  leader?: {
-    _ref: string
-    _type: 'reference'
-  }
-}
-
-/**
- * Ministry with Populated Leader
- * Used when fetching ministries with full leader data
- *
- * This is what you get when using the -> operator in GROQ queries
- * to populate the leader reference with actual leader data
- */
-export interface MinistryWithLeader extends Omit<Ministry, 'leader'> {
-  leader?: {
-    _id: string
-    name: string
-    role: string
-    photo?: SanityImage
-    email?: string
-  }
+  leaders?: LeaderReference[]
 }
 
 /**
