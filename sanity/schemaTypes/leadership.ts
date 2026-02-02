@@ -5,9 +5,13 @@ import { Users } from 'lucide-react'
  * Leadership Schema
  *
  * Manages church leadership team members.
- * Can be referenced by ministries to show who leads each ministry.
+ * Leaders can appear on the About page (showOnAboutPage=true) and/or
+ * be referenced by ministries with optional role overrides.
  *
- * The 'order' field controls display order (lower numbers appear first)
+ * The 'role' field is their primary church role (e.g., "Treasurer").
+ * When referenced from a ministry, a roleOverride can display a different title.
+ *
+ * The 'order' field controls display order on the About page (lower numbers first).
  */
 export default defineType({
   name: 'leadership',
@@ -35,10 +39,9 @@ export default defineType({
     }),
     defineField({
       name: 'role',
-      title: 'Role/Title',
+      title: 'Primary Church Role',
       type: 'string',
-      validation: (Rule) => Rule.required(),
-      description: 'e.g., "Senior Pastor", "Youth Director", "Worship Leader"',
+      description: 'Their main church role (e.g., "Senior Pastor", "Treasurer"). This is shown on the About page. Leave blank if they only serve in ministry-specific roles.',
     }),
     defineField({
       name: 'bio',
@@ -72,32 +75,14 @@ export default defineType({
       title: 'Show on About Page',
       type: 'boolean',
       initialValue: false,
-      description: 'Check this to show this person on the About page (for pastors, secretary, treasurer, etc.)',
-    }),
-    defineField({
-      name: 'ministries',
-      title: 'Ministry Roles',
-      type: 'array',
-      of: [{ type: 'string' }],
-      options: {
-        list: [
-          { title: 'Men\'s Ministry', value: 'mens' },
-          { title: 'Women\'s Ministry', value: 'womens' },
-          { title: 'Youth Ministry', value: 'youth' },
-          { title: 'Kids Ministry', value: 'kids' },
-          { title: 'Street Evangelism', value: 'street-evangelism' },
-        ],
-        layout: 'grid',
-      },
-      validation: (Rule) => Rule.max(5),
-      description: 'Select which ministry(ies) this leader serves (optional, max 5). They will appear in the ministry sections on the Events page.',
+      description: 'Check this to display this person under Church Leadership on the About page.',
     }),
     defineField({
       name: 'order',
       title: 'Display Order',
       type: 'number',
       initialValue: 0,
-      description: 'Lower numbers appear first within each ministry (0 = first, 1 = second, etc.)',
+      description: 'Display order on the About page (lower numbers appear first: 0 = first, 1 = second, etc.).',
     }),
   ],
   preview: {
@@ -105,30 +90,10 @@ export default defineType({
       title: 'name',
       role: 'role',
       showOnAboutPage: 'showOnAboutPage',
-      ministries: 'ministries',
       media: 'photo',
     },
-    prepare({ title, role, showOnAboutPage, ministries }) {
-      const ministryLabels = {
-        'mens': 'Men\'s',
-        'womens': 'Women\'s',
-        'youth': 'Youth',
-        'kids': 'Kids',
-        'street-evangelism': 'Street Evangelism',
-      }
-
-      const badges = []
-
-      if (showOnAboutPage) {
-        badges.push('About Page')
-      }
-
-      if (ministries && ministries.length > 0) {
-        const ministryNames = ministries.map((m: string) => ministryLabels[m as keyof typeof ministryLabels]).join(', ')
-        badges.push(ministryNames)
-      }
-
-      const subtitle = badges.length > 0 ? `${role} • ${badges.join(' • ')}` : role
+    prepare({ title, role, showOnAboutPage }) {
+      const subtitle = showOnAboutPage ? `${role} • About Page` : role
 
       return {
         title,
