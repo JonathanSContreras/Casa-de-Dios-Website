@@ -5,7 +5,11 @@ import { Heart } from 'lucide-react'
  * Ministry Schema
  *
  * Manages church ministries with leader references.
- * Each ministry can reference a leader from the leadership schema.
+ * Each ministry can have multiple leaders, each with an optional role override.
+ *
+ * Role Override: When a leader is added to a ministry, you can specify a
+ * different role title for that ministry context. For example, someone who
+ * is "Treasurer" church-wide might be "President" in the Women's Ministry.
  *
  * The 'isActive' field allows hiding ministries without deleting them.
  * Inactive ministries won't appear on the website but remain in the database.
@@ -55,12 +59,52 @@ export default defineType({
       description: 'Where this ministry meets (e.g., "Fellowship Hall", "Youth Room")',
     }),
     defineField({
-      name: 'leader',
-      title: 'Ministry Leader',
-      type: 'reference',
-      to: [{ type: 'leadership' }],
+      name: 'leaders',
+      title: 'Ministry Leaders',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          name: 'leaderReference',
+          fields: [
+            defineField({
+              name: 'person',
+              title: 'Person',
+              type: 'reference',
+              to: [{ type: 'leadership' }],
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: 'roleOverride',
+              title: 'Role for This Ministry',
+              type: 'string',
+              description:
+                'Their title within this ministry (e.g., "President", "Director"). Leave blank to use their primary church role.',
+            }),
+          ],
+          preview: {
+            select: {
+              name: 'person.name',
+              role: 'roleOverride',
+              defaultRole: 'person.role',
+              media: 'person.photo',
+            },
+            prepare(selection) {
+              const { name, role, defaultRole } = selection as {
+                name?: string
+                role?: string
+                defaultRole?: string
+              }
+              return {
+                title: name || 'Select a person',
+                subtitle: role || defaultRole || 'No role set',
+              }
+            },
+          },
+        },
+      ],
       description:
-        'The person leading this ministry (reference to a leadership member)',
+        'Leaders for this ministry. You can customize their role title for this specific ministry.',
     }),
     defineField({
       name: 'contactEmail',
@@ -86,25 +130,31 @@ export default defineType({
     select: {
       title: 'name',
       meetingTime: 'meetingTime',
-      leaderName: 'leader.name',
-      leaderRole: 'leader.role',
+      leaders: 'leaders',
       isActive: 'isActive',
     },
-    prepare({ title, meetingTime, leaderName, isActive }) {
+    prepare(selection) {
+      const { title, meetingTime, leaders, isActive } = selection as {
+        title?: string
+        meetingTime?: string
+        leaders?: Array<{ person?: { name?: string } }>
+        isActive?: boolean
+      }
       const subtitle = []
 
       if (meetingTime) {
         subtitle.push(meetingTime)
       }
 
-      if (leaderName) {
-        subtitle.push(`Led by ${leaderName}`)
+      if (leaders && leaders.length > 0) {
+        const leaderCount = leaders.length
+        subtitle.push(`${leaderCount} leader${leaderCount > 1 ? 's' : ''}`)
       }
 
       const statusBadge = isActive ? '' : ' (Inactive)'
 
       return {
-        title: `${title}${statusBadge}`,
+        title: `${title || 'Untitled'}${statusBadge}`,
         subtitle: subtitle.join(' • '),
       }
     },
