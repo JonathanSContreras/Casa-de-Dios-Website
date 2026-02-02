@@ -3,8 +3,7 @@ import type {
   Announcement,
   Event,
   Leadership,
-  MinistryType,
-  MinistryWithLeader,
+  Ministry,
   PublicPrayerRequest,
 } from './types'
 
@@ -300,7 +299,6 @@ const leadershipFields = `
   },
   email,
   showOnAboutPage,
-  ministries,
   order,
   slug
 `
@@ -356,32 +354,6 @@ export async function getChurchLeadership(): Promise<Leadership[]> {
 }
 
 /**
- * Get ministry leadership (for ministry sections)
- *
- * Returns leaders who have at least one ministry assigned, ordered by the 'order' field.
- * These are the leaders that appear in ministry sections.
- *
- * @returns Array of ministry leadership members
- *
- * @example
- * ```tsx
- * const ministryLeadership = await getMinistryLeadership()
- * // Returns: [
- * //   { name: "Mike Johnson", role: "Youth Director", ministries: ["youth"], ... },
- * //   { name: "Sarah Lee", role: "Kids Director", ministries: ["kids"], ... },
- * //   { name: "Jane Smith", role: "Church Secretary", showOnAboutPage: true, ministries: ["womens"], ... },
- * // ]
- * ```
- */
-export async function getMinistryLeadership(): Promise<Leadership[]> {
-  const query = `*[_type == "leadership" && count(ministries) > 0] | order(order asc) {
-    ${leadershipFields}
-  }`
-
-  return client.fetch(query)
-}
-
-/**
  * Get a single leadership member by slug
  *
  * @param slug - The leadership member's slug
@@ -403,92 +375,17 @@ export async function getLeadershipBySlug(
 }
 
 /**
- * Get leaders by ministry
- *
- * Returns all leaders who serve in a specific ministry, ordered by the 'order' field (lower numbers first).
- * Includes leaders regardless of whether they're also on the About page.
- *
- * @param ministry - The ministry type (e.g., 'youth', 'mens', 'womens')
- * @returns Array of leadership members who serve in that ministry
- *
- * @example
- * ```tsx
- * const youthLeaders = await getLeadershipByMinistry('youth')
- * // Returns: [
- * //   { name: "Jane Smith", role: "Youth Director", ministries: ["youth"], order: 0, ... },
- * //   { name: "John Doe", role: "Youth Assistant", ministries: ["youth"], order: 1, ... },
- * // ]
- * ```
- */
-export async function getLeadershipByMinistry(
-  ministry: string
-): Promise<Leadership[]> {
-  const query = `*[_type == "leadership" && $ministry in ministries] | order(order asc) {
-    ${leadershipFields}
-  }`
-
-  return client.fetch(query, { ministry })
-}
-
-/**
- * Get all leaders grouped by ministry
- *
- * Returns an object with ministry names as keys and arrays of leaders as values.
- * Only includes ministry-level leadership (leadershipType = "ministry").
- * Useful for displaying all ministries with their leaders in one query.
- *
- * @returns Object with ministry leaders grouped by ministry type
- *
- * @example
- * ```tsx
- * const leadersByMinistry = await getAllLeadersByMinistry()
- * // Returns: {
- * //   mens: [{ name: "John Doe", role: "Men's Leader", ... }],
- * //   womens: [{ name: "Jane Smith", role: "Women's Leader", ... }],
- * //   youth: [{ name: "Mike Johnson", role: "Youth Director", ... }],
- * //   kids: [{ name: "Sarah Lee", role: "Kids Director", ... }],
- * //   "street-evangelism": [{ name: "David Brown", role: "Outreach Coordinator", ... }]
- * // }
- * ```
- */
-export async function getAllLeadersByMinistry(): Promise<Record<MinistryType, Leadership[]>> {
-  const allMinistryLeaders = await getMinistryLeadership()
-
-  const grouped: Record<MinistryType, Leadership[]> = {
-    'mens': [],
-    'womens': [],
-    'youth': [],
-    'kids': [],
-    'street-evangelism': [],
-  }
-
-  allMinistryLeaders.forEach(leader => {
-    leader.ministries?.forEach(ministry => {
-      grouped[ministry].push(leader)
-    })
-  })
-
-  // Sort each ministry's leaders by order
-  Object.keys(grouped).forEach(ministry => {
-    grouped[ministry as MinistryType].sort((a, b) => a.order - b.order)
-  })
-
-  return grouped
-}
-
-/**
  * ============================================================================
  * MINISTRY QUERIES
  * ============================================================================
  */
 
 /**
- * Common ministry fields projection with populated leader
+ * Common ministry fields projection with populated leaders
  * Used across ministry queries to keep them consistent
  *
- * The leader field uses the -> operator to populate (dereference) the leader reference.
- * This means instead of getting just { _ref: "leader-id" },
- * we get the full leader object with name, role, photo, etc.
+ * The leaders array uses the -> operator to populate (dereference) each person reference.
+ * Each leader includes their roleOverride (if set) and full person data.
  */
 const ministryFields = `
   _id,
@@ -499,19 +396,23 @@ const ministryFields = `
   location,
   contactEmail,
   slug,
-  leader->{
-    _id,
-    name,
-    role,
-    photo{
-      asset->{
-        _id,
-        url
+  isActive,
+  leaders[]{
+    roleOverride,
+    person->{
+      _id,
+      name,
+      role,
+      photo{
+        asset->{
+          _id,
+          url
+        },
+        hotspot,
+        crop
       },
-      hotspot,
-      crop
-    },
-    email
+      email
+    }
   }
 `
 
@@ -519,9 +420,9 @@ const ministryFields = `
  * Get active ministries
  *
  * Returns only ministries where isActive = true, ordered alphabetically by name.
- * The leader reference is populated with full leader data.
+ * Each ministry includes its leaders array with roleOverride and full person data.
  *
- * @returns Array of active ministries with populated leader data
+ * @returns Array of active ministries with populated leaders
  *
  * @example
  * ```tsx
@@ -529,13 +430,15 @@ const ministryFields = `
  * // Returns: [
  * //   {
  * //     name: "Youth Ministry",
- * //     leader: { name: "Jane Smith", role: "Youth Director", photo: {...} },
+ * //     leaders: [
+ * //       { roleOverride: "Director", person: { name: "Jane Smith", role: "Treasurer", ... } },
+ * //     ],
  * //     ...
  * //   },
  * // ]
  * ```
  */
-export async function getActiveMinistries(): Promise<MinistryWithLeader[]> {
+export async function getActiveMinistries(): Promise<Ministry[]> {
   const query = `*[_type == "ministry" && isActive == true] | order(name asc) {
     ${ministryFields}
   }`
@@ -549,14 +452,14 @@ export async function getActiveMinistries(): Promise<MinistryWithLeader[]> {
  * Returns all ministries regardless of active status, ordered alphabetically.
  * Useful for admin views where you want to see inactive ministries too.
  *
- * @returns Array of all ministries with populated leader data
+ * @returns Array of all ministries with populated leaders
  *
  * @example
  * ```tsx
  * const allMinistries = await getAllMinistries()
  * ```
  */
-export async function getAllMinistries(): Promise<MinistryWithLeader[]> {
+export async function getAllMinistries(): Promise<Ministry[]> {
   const query = `*[_type == "ministry"] | order(name asc) {
     ${ministryFields}
   }`
@@ -568,7 +471,7 @@ export async function getAllMinistries(): Promise<MinistryWithLeader[]> {
  * Get a single ministry by slug
  *
  * @param slug - The ministry slug
- * @returns Single ministry with populated leader or null if not found
+ * @returns Single ministry with populated leaders or null if not found
  *
  * @example
  * ```tsx
@@ -577,7 +480,7 @@ export async function getAllMinistries(): Promise<MinistryWithLeader[]> {
  */
 export async function getMinistryBySlug(
   slug: string
-): Promise<MinistryWithLeader | null> {
+): Promise<Ministry | null> {
   const query = `*[_type == "ministry" && slug.current == $slug][0] {
     ${ministryFields}
   }`
