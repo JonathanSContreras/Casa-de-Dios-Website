@@ -3,18 +3,31 @@
 import { useState } from 'react';
 import { Users, X, Mail } from 'lucide-react';
 import Image from 'next/image';
-import type { Leadership, MinistryType } from '@/lib/sanity/types';
+import type { SanityImage } from '@/lib/sanity/types';
 import { urlFor } from '@/lib/sanity/image';
 
+/**
+ * Leader with display role
+ * The displayRole is either the roleOverride (if set) or their default church role
+ */
+interface LeaderWithDisplayRole {
+  _id: string;
+  name: string;
+  displayRole: string;
+  photo?: SanityImage;
+  email?: string;
+}
+
 interface Ministry {
-  id: MinistryType;
+  id: string;
+  slug: string;
   titleEn: string;
   titleEs: string;
   shortDescEn: string;
   shortDescEs: string;
   fullDescEn: string;
   fullDescEs: string;
-  leaders: Leadership[];
+  leaders: LeaderWithDisplayRole[];
 }
 
 interface MinistrySectionProps {
@@ -36,7 +49,7 @@ export function MinistrySection({ ministries }: MinistrySectionProps) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
             {ministries.map((ministry) => (
-              <div key={String(ministry.id)} className="p-8 border-4 border-[#1A5D5D]">
+              <div key={ministry.id} className="p-8 border-4 border-[#1A5D5D]">
                 <Users size={48} className="text-[#1A5D5D] mb-6" />
                 <h3 className="text-2xl font-bold mb-2">{ministry.titleEn}</h3>
                 <h4 className="text-xl font-bold text-[#4A4A4A] mb-4">{ministry.titleEs}</h4>
@@ -106,7 +119,7 @@ export function MinistrySection({ ministries }: MinistrySectionProps) {
                           <Image
                             src={urlFor(leader.photo).width(400).height(400).fit('crop').url()}
                             alt={leader.name}
-                            className="w-full h-48 object-cover mb-4"
+                            className="w-full h-48 object-cover mb-4 object-[50%_0%]"
                             width={400}
                             height={300}
                           />
@@ -116,7 +129,7 @@ export function MinistrySection({ ministries }: MinistrySectionProps) {
                           </div>
                         )}
                         <h5 className="text-lg font-bold mb-1">{leader.name}</h5>
-                        <p className="text-sm text-[#4A4A4A] mb-4">{leader.role}</p>
+                        <p className="text-sm text-[#4A4A4A] mb-4">{leader.displayRole}</p>
                         {leader.email && (
                           <a
                             href={`mailto:${leader.email}`}
