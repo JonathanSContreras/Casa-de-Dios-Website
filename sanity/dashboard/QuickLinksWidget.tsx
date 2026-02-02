@@ -11,27 +11,27 @@ export function QuickLinksWidget() {
     {
       label: 'New Event',
       icon: <Calendar size={16} />,
-      href: '/studio/intent/create/template=event',
+      href: '/intent/create/template=event',
     },
     {
       label: 'New Announcement',
       icon: <Bell size={16} />,
-      href: '/studio/intent/create/template=announcement',
+      href: '/intent/create/template=announcement',
     },
     {
       label: 'Review Prayers',
       icon: <HandHeart size={16} />,
-      href: '/studio/structure/prayerRequest',
+      href: '/structure/prayerRequest',
     },
     {
       label: 'Manage Leadership',
       icon: <Users size={16} />,
-      href: '/studio/structure/leadership',
+      href: '/structure/leadership',
     },
     {
       label: 'Manage Ministries',
       icon: <Heart size={16} />,
-      href: '/studio/structure/ministry',
+      href: '/structure/ministry',
     },
   ]
 

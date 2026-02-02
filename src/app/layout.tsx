@@ -1,7 +1,8 @@
 import "@/styles/globals.css";
 import { type Metadata } from "next";
 import { Geist } from "next/font/google";
-import { LayoutWrapper } from "./_components/LayoutWrapper";
+import { Header } from "./_components/Header";
+import { Footer } from "./_components/Footer";
 
 export const metadata: Metadata = {
   title: "Iglesia Pentecostal Casa de Dios",
@@ -30,7 +31,9 @@ export default function RootLayout({
         </style>
       </head>
       <body>
-        <LayoutWrapper>{children}</LayoutWrapper>
+        <Header />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
