@@ -187,7 +187,7 @@ export default async function AboutPage() {
                       width={400}
                       height={400}
                       alt={leader.name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover object-[50%_0%]"
                     />
                   ) : (
                     <div className="w-full h-full bg-[#C4C4C4] flex items-center justify-center">
@@ -196,7 +196,7 @@ export default async function AboutPage() {
                   )}
                 </div>
                 <h3 className="text-xl font-bold mb-2">{leader.name}</h3>
-                <p className="text-[#1A5D5D] font-bold mb-4">{leader.role}</p>
+                {leader.role && <p className="text-[#1A5D5D] font-bold mb-4">{leader.role}</p>}
                 <p className="text-[#4A4A4A]">{leader.bio}</p>
               </div>
             ))}
