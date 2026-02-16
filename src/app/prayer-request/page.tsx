@@ -280,10 +280,10 @@ export default function PrayerRequestPage() {
             <h3 className="text-4xl lg:text-6xl font-bold text-[#4A4A4A]">Únete a Nosotros en Oración</h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             <div className="border-4 border-[#1A5D5D] p-10">
-              <h3 className="text-2xl font-bold mb-2">Tuesday Night Prayer</h3>
-              <h4 className="text-xl font-bold text-[#4A4A4A] mb-4">Oración del Martes por la Noche</h4>
+              <h3 className="text-2xl font-bold mb-2">Tuesday Night of Intercession</h3>
+              <h4 className="text-xl font-bold text-[#4A4A4A] mb-4">Martes por la noche de Intercesión</h4>
               <p className="text-lg text-[#4A4A4A] mb-2">8:00 PM - 10:00 PM</p>
               {/* <p className="text-lg text-[#4A4A4A] mb-4">Main Sanctuary / Santuario Principal</p> */}
               <p className="text-[#4A4A4A] mb-4">
@@ -297,8 +297,8 @@ export default function PrayerRequestPage() {
             </div>
 
             <div className="border-4 border-[#1A5D5D] p-10">
-              <h3 className="text-2xl font-bold mb-2">Thursday Afternoon Prayer</h3>
-              <h4 className="text-xl font-bold text-[#4A4A4A] mb-4">Oración del Jueves por la Tarde</h4>
+              <h3 className="text-2xl font-bold mb-2">Thursday Morning Prayer</h3>
+              <h4 className="text-xl font-bold text-[#4A4A4A] mb-4">Oración del Jueves por la Mañana</h4>
               <p className="text-lg text-[#4A4A4A] mb-2">9:00 AM - 12:00 PM</p>
               {/* <p className="text-lg text-[#4A4A4A] mb-4">Main Sanctuary / Santuario Principal</p> */}
               <p className="text-[#4A4A4A] mb-4">
@@ -311,11 +311,11 @@ export default function PrayerRequestPage() {
               </p>
             </div>
 
-            <div className="border-4 border-[#1A5D5D] p-10">
+            {/* <div className="border-4 border-[#1A5D5D] p-10">
               <h3 className="text-2xl font-bold mb-2">24/7 Prayer Line</h3>
               <h4 className="text-xl font-bold text-[#4A4A4A] mb-4">Línea de Oración 24/7</h4>
               <p className="text-lg text-[#4A4A4A] mb-2">(512) 555-PRAY</p>
-              {/* <p className="text-lg text-[#4A4A4A] mb-4">Available anytime</p> */}
+              <p className="text-lg text-[#4A4A4A] mb-4">Available anytime</p>
               <p className="text-[#4A4A4A] mb-4">
                 Call our prayer line anytime for immediate prayer support from our prayer team.
               </p>
@@ -324,7 +324,7 @@ export default function PrayerRequestPage() {
                   Llame a nuestra línea de oración en cualquier momento para recibir apoyo inmediato de nuestro equipo de oración.
                 </i>
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

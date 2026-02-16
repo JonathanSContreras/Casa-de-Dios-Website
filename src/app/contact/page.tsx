@@ -255,7 +255,7 @@ export default function ContactPage() {
       <section className="py-20 lg:py-32">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
           <div className="bg-[#1A5D5D] text-white p-12 lg:p-16">
-            <div className="max-w-3xl mx-auto text-center">
+            <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-4xl lg:text-5xl font-bold mb-6">First Time Visitor?</h2>
               <h3 className="text-4xl lg:text-5xl font-bold mb-8">¿Primera Vez?</h3>
               <p className="text-xl mb-4 text-[#E5E5E5]">
@@ -264,18 +264,30 @@ export default function ContactPage() {
               <p className="text-xl mb-8 text-[#E5E5E5]">
                 Sabemos que visitar una iglesia nueva puede ser abrumador. Aquí está lo que puedes esperar cuando visites House of God.
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-12">
                 <div>
                   <h4 className="text-xl font-bold mb-3">Parking / Estacionamiento</h4>
                   <p className="text-[#E5E5E5]">Free parking available in our main lot and street parking nearby.</p>
+                  <p className="text-[#E5E5E5] pt-8">Estacionamiento gratuito disponible en nuestro lote principal y estacionamiento en la calle cercano.</p>
                 </div>
                 <div>
                   <h4 className="text-xl font-bold mb-3">Dress Code / Código de Vestimenta</h4>
                   <p className="text-[#E5E5E5]">Come as you are! We welcome casual or formal attire.</p>
+                  <p className="text-[#E5E5E5] pt-8">¡Ven tal como eres! Aceptamos vestimenta informal o formal.</p>
                 </div>
-                <div>
+                {/* <div>
                   <h4 className="text-xl font-bold mb-3">Kids / Niños</h4>
                   <p className="text-[#E5E5E5]">Safe, engaging programs for all ages during services.</p>
+                </div> */}
+                <div>
+                  <h4 className="text-xl font-bold mb-3">Worship / Adoración</h4>
+                  <p className="text-[#E5E5E5]">Contemporary worship with modern music that moves your heart and honors God.</p>
+                  <p className="text-[#E5E5E5] pt-8">Adoración contemporánea con música moderna que mueve tu corazón y honra a Dios.</p>
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold mb-3">Translation / Traducción</h4>
+                  <p className="text-[#E5E5E5]">We offer translation services in Spanish and English to help you connect with God.</p>
+                  <p className="text-[#E5E5E5] pt-8">Ofrecemos servicios de traducción en español e inglés para ayudarte a conectarte con Dios.</p>
                 </div>
               </div>
             </div>
