@@ -184,6 +184,7 @@ export interface LeaderReference {
  *
  * Each ministry can have multiple leaders, each with an optional roleOverride.
  * The 'isActive' field controls visibility (inactive ministries are hidden)
+ * The 'order' field controls display order (lower numbers appear first)
  */
 export interface Ministry {
   _id: string
@@ -200,6 +201,7 @@ export interface Ministry {
   location?: string
   contactEmail?: string
   isActive: boolean
+  order: number
   leaders?: LeaderReference[]
 }
 

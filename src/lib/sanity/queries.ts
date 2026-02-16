@@ -397,6 +397,7 @@ const ministryFields = `
   contactEmail,
   slug,
   isActive,
+  order,
   leaders[]{
     roleOverride,
     person->{
@@ -419,7 +420,9 @@ const ministryFields = `
 /**
  * Get active ministries
  *
- * Returns only ministries where isActive = true, ordered alphabetically by name.
+ * Returns only ministries where isActive = true, ordered by the 'order' field.
+ * Lower order numbers appear first (0 = first, 1 = second, etc.)
+ * Falls back to alphabetical by name if order values are the same.
  * Each ministry includes its leaders array with roleOverride and full person data.
  *
  * @returns Array of active ministries with populated leaders
@@ -429,7 +432,8 @@ const ministryFields = `
  * const ministries = await getActiveMinistries()
  * // Returns: [
  * //   {
- * //     name: "Youth Ministry",
+ * //     name: "Sunday School",
+ * //     order: 0,
  * //     leaders: [
  * //       { roleOverride: "Director", person: { name: "Jane Smith", role: "Treasurer", ... } },
  * //     ],
@@ -439,7 +443,7 @@ const ministryFields = `
  * ```
  */
 export async function getActiveMinistries(): Promise<Ministry[]> {
-  const query = `*[_type == "ministry" && isActive == true] | order(name asc) {
+  const query = `*[_type == "ministry" && isActive == true] | order(order asc, name asc) {
     ${ministryFields}
   }`
 
@@ -449,7 +453,8 @@ export async function getActiveMinistries(): Promise<Ministry[]> {
 /**
  * Get all ministries (for admin/management views)
  *
- * Returns all ministries regardless of active status, ordered alphabetically.
+ * Returns all ministries regardless of active status, ordered by the 'order' field.
+ * Falls back to alphabetical by name if order values are the same.
  * Useful for admin views where you want to see inactive ministries too.
  *
  * @returns Array of all ministries with populated leaders
@@ -460,7 +465,7 @@ export async function getActiveMinistries(): Promise<Ministry[]> {
  * ```
  */
 export async function getAllMinistries(): Promise<Ministry[]> {
-  const query = `*[_type == "ministry"] | order(name asc) {
+  const query = `*[_type == "ministry"] | order(order asc, name asc) {
     ${ministryFields}
   }`
 
