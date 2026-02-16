@@ -160,23 +160,22 @@ export default async function EventsPage() {
 
                 return (
                   <div key={event._id} className="bg-white border-4 border-[#1A5D5D]">
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-12">
                       {/* Event Image */}
                       {event.featuredImage && (
-                        <div className="lg:col-span-4">
+                        <div className="lg:col-span-3 relative">
                           <Image
-                            // src={urlFor(event.featuredImage).width(600).height(800).fit('crop').url()}
-                            src={'/images/placeholder-1.jpg'}
+                            src={urlFor(event.featuredImage).width(400).height(500).fit('crop').quality(90).url()}
                             alt={event.title}
                             className="w-full h-64 lg:h-full object-cover"
-                            width={600}
-                            height={800}
+                            width={400}
+                            height={500}
                           />
                         </div>
                       )}
 
                       {/* Event Details */}
-                      <div className={event.featuredImage ? 'lg:col-span-8 p-8 lg:p-10' : 'lg:col-span-12 p-8 lg:p-10'}>
+                      <div className={event.featuredImage ? 'lg:col-span-9 p-8 lg:p-10' : 'lg:col-span-12 p-8 lg:p-10'}>
                         <h3 className="text-3xl font-bold mb-2">{event.title}</h3>
                         <h4 className="text-2xl font-bold text-[#4A4A4A] mb-6">{event.titleEs}</h4>
 
