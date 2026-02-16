@@ -1,7 +1,7 @@
 import { Calendar, MapPin, Clock, Heart, Music, Gift, BookOpen, Users, Bell } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getActiveAnnouncements, getAllEvents } from "@/lib/sanity/queries";
+import { getActiveAnnouncements, getUpcomingEvents } from "@/lib/sanity/queries";
 import type { Announcement, Event } from "@/lib/sanity/types";
 import { urlFor } from '@/lib/sanity/image';
 
@@ -30,13 +30,10 @@ function getEventCategoryIcon(category: string) {
 }
 
 export default async function HomePage() {
-  // Fetch active announcements and featured events from Sanity
+  // Fetch active announcements and upcoming events from Sanity
   const announcements: Announcement[] = await getActiveAnnouncements();
-
-  // TEMPORARY: Using getAllEvents() to show all events regardless of date
-  // Change back to getFeaturedEvents(3) once you update event dates to 2026
-  const allEvents: Event[] = await getAllEvents();
-  const upcomingEvents: Event[] = allEvents.slice(0, 3); // Get first 3 events
+  const allUpcomingEvents: Event[] = await getUpcomingEvents();
+  const upcomingEvents: Event[] = allUpcomingEvents.slice(0, 3); // Show first 3 upcoming events
 
   // Helper to format date and time
 function formatEventDateTime(event: Event) {
