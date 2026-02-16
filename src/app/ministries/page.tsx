@@ -37,7 +37,7 @@ export default async function Ministries() {
           <h1 className="text-5xl lg:text-7xl font-bold mb-6">Ministries</h1>
           <h2 className="text-5xl lg:text-7xl font-bold mb-8">Ministerios</h2>
           <p className="text-xl lg:text-2xl max-w-3xl text-[#E5E5E5]">
-            Discover ways to connect, grow, and serve through our various ministries at Living Hope Church.
+            Discover ways to connect, grow, and serve through our various ministries at House of God Church.
           </p>
         </div>
       </section>
@@ -52,11 +52,11 @@ export default async function Ministries() {
             <h2 className="text-4xl lg:text-5xl font-bold mb-6">Get Involved</h2>
             <h3 className="text-4xl lg:text-5xl font-bold text-[#4A4A4A] mb-8">Involúcrate</h3>
             <p className="text-xl text-[#4A4A4A] mb-4">
-              Every ministry at Living Hope Church is built by volunteers who use their gifts to serve others. 
+              Every ministry at House of God Church is built by volunteers who use their gifts to serve others. 
               There&apos;s a place for you to make a difference.
             </p>
             <p className="text-xl text-[#4A4A4A] mb-8">
-              Cada ministerio en Living Hope Church está construido por voluntarios que usan sus dones para servir a otros. 
+              Cada ministerio en Iglesia Pentecostal Casa de Dios está construido por voluntarios que usan sus dones para servir a otros. 
               Hay un lugar para que marques la diferencia.
             </p>
             <a

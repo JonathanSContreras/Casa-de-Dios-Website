@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getActiveAnnouncements, getAllEvents } from "@/lib/sanity/queries";
 import type { Announcement, Event } from "@/lib/sanity/types";
+import { urlFor } from '@/lib/sanity/image';
 
 // Revalidate every 5 minutes (announcements and events change frequently)
 export const revalidate = 300;
@@ -78,10 +79,10 @@ function formatEventDateTime(event: Event) {
               Bienvenido a Casa
             </h2>
             <p className="text-xl lg:text-2xl mb-4 text-[#E5E5E5]">
-              Join us for worship every Sunday at 9:00 AM & 11:00 AM
+              Join us for Sunday School at 10:30 AM and worship every Sunday 12:00 PM
             </p>
             <p className="text-xl lg:text-2xl mb-12 text-[#E5E5E5]">
-              Únete a nosotros para adorar cada domingo a las 9:00 AM y 11:00 AM
+              Únase a nosotros para la Escuela Dominical a las 10:30 AM y adorar todos los domingos a las 12:00 PM
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
@@ -272,6 +273,77 @@ function formatEventDateTime(event: Event) {
                 );
               })}
             </div>
+            // <div className="space-y-8">
+            //   {upcomingEvents.map((event: Event) => {
+            //     const { date, time } = formatEventDateTime(event);
+
+            //     return (
+            //       <div
+            //         className="bg-white border-4 border-[#1A5D5D] overflow-hidden"
+            //         key={event._id}
+            //       >
+            //         <div className="grid grid-cols-1 lg:grid-cols-2">
+            //           {/* Text content on the left */}
+            //           <div className="p-8 lg:p-12 flex flex-col justify-center">
+            //             <h3 className="text-3xl lg:text-4xl font-bold mb-2">{event.title}</h3>
+            //             <h4 className="text-2xl lg:text-3xl font-bold text-[#4A4A4A] mb-6">{event.titleEs}</h4>
+
+            //             {event.description && (
+            //               <p className="text-[#4A4A4A] mb-6 line-clamp-3">
+            //                 {event.description}
+            //               </p>
+            //             )}
+
+            //             <div className="space-y-3 mb-6">
+            //               <div className="flex items-center gap-3">
+            //                 <Calendar size={24} className="text-[#1A5D5D] flex-shrink-0"/>
+            //                 <span className="text-[#4A4A4A] text-lg">{date}</span>
+            //               </div>
+            //               <div className="flex items-center gap-3">
+            //                 <Clock size={24} className="text-[#1A5D5D] flex-shrink-0" />
+            //                 <span className="text-[#4A4A4A] text-lg">{time}</span>
+            //               </div>
+            //               <div className="flex items-center gap-3">
+            //                 <MapPin size={24} className="text-[#1A5D5D] flex-shrink-0" />
+            //                 <span className="text-[#4A4A4A] text-lg">{event.location ?? 'Temple / Templo'}</span>
+            //               </div>
+            //             </div>
+
+            //             {event.registrationLink && (
+            //               <a
+            //                 href={event.registrationLink}
+            //                 target="_blank"
+            //                 rel="noopener noreferrer"
+            //                 className="inline-block bg-[#1A5D5D] text-white px-8 py-3 font-bold hover:bg-[#154A4A] transition-colors w-fit"
+            //               >
+            //                 Register / Registrarse
+            //               </a>
+            //             )}
+            //           </div>
+
+            //           {/* Image on the right */}
+            //           <div className="relative h-64 lg:h-auto">
+            //             {event.featuredImage ? (
+            //               <Image
+            //                 src={urlFor(event.featuredImage).width(800).height(600).fit('crop').quality(90).url()}
+            //                 alt={event.title}
+            //                 fill
+            //                 className="object-cover"
+            //                 sizes="(max-width: 1024px) 100vw, 50vw"
+            //               />
+            //             ) : (
+            //               <div className="w-full h-full bg-[#E5E5E5] flex items-center justify-center">
+            //                 <div className="bg-[#1A5D5D] w-20 h-20 flex items-center justify-center">
+            //                   {getEventCategoryIcon(event.category)}
+            //                 </div>
+            //               </div>
+            //             )}
+            //           </div>
+            //         </div>
+            //       </div>
+            //     );
+            //   })}
+            // </div>
           )}
 
           <div className="text-center mt-12">

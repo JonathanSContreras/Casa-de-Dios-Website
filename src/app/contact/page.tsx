@@ -38,7 +38,7 @@ export default function ContactPage() {
       </section>
 
       {/* Service Times Section */}
-      <section className="bg-white py-20 lg:py-24">
+      {/* <section className="bg-white py-20 lg:py-24">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
           <div className="mb-16">
             <h2 className="text-4xl lg:text-6xl font-bold mb-4">Service Times</h2>
@@ -50,10 +50,10 @@ export default function ContactPage() {
               <div className="bg-[#F8F9FA] p-8">
                 <div className="flex items-center gap-4 mb-4">
                   <Clock size={32} className="text-[#1A5D5D]" />
-                  <h3 className="text-2xl font-bold">Sunday Worship</h3>
+                  <h3 className="text-2xl font-bold">Sunday Service</h3>
                 </div>
-                <p className="text-xl text-[#4A4A4A] mb-2">9:00 AM - English Service</p>
-                <p className="text-xl text-[#4A4A4A]">11:00 AM - Bilingual Service</p>
+                <p className="text-xl text-[#4A4A4A] mb-2">10:30 AM - Sunday School / Escuela Dominical</p>
+                <p className="text-xl text-[#4A4A4A]">12:00 PM - Evangelistic Serice / Servicio Evangelístico</p>
               </div>
 
               <div className="bg-[#F8F9FA] p-8">
@@ -85,7 +85,7 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Contact Info & Form Section */}
       <section className="py-20 lg:py-32">
