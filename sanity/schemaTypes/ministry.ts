@@ -118,6 +118,15 @@ export default defineType({
       description: 'Contact email for this ministry (optional)',
     }),
     defineField({
+      name: 'order',
+      title: 'Display Order',
+      type: 'number',
+      initialValue: 0,
+      validation: (Rule) => Rule.required().min(0).integer(),
+      description:
+        'Order in which this ministry appears on the website (0 = first, 1 = second, etc.)',
+    }),
+    defineField({
       name: 'isActive',
       title: 'Is Active',
       type: 'boolean',
@@ -132,15 +141,21 @@ export default defineType({
       meetingTime: 'meetingTime',
       leaders: 'leaders',
       isActive: 'isActive',
+      order: 'order',
     },
     prepare(selection) {
-      const { title, meetingTime, leaders, isActive } = selection as {
+      const { title, meetingTime, leaders, isActive, order } = selection as {
         title?: string
         meetingTime?: string
         leaders?: Array<{ person?: { name?: string } }>
         isActive?: boolean
+        order?: number
       }
       const subtitle = []
+
+      if (order !== undefined) {
+        subtitle.push(`Order: ${order}`)
+      }
 
       if (meetingTime) {
         subtitle.push(meetingTime)
@@ -160,6 +175,14 @@ export default defineType({
     },
   },
   orderings: [
+    {
+      title: 'Display Order',
+      name: 'orderAsc',
+      by: [
+        { field: 'order', direction: 'asc' },
+        { field: 'name', direction: 'asc' },
+      ],
+    },
     {
       title: 'Name, A-Z',
       name: 'nameAsc',
