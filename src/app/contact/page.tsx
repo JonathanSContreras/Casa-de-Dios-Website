@@ -119,8 +119,6 @@ export default function ContactPage() {
                     <h4 className="text-xl font-bold mb-2">Phone / Teléfono</h4>
                     <p className="text-lg text-[#4A4A4A]">
                       (281) 713-0681<br />
-                      Monday - Friday: 9:00 AM - 5:00 PM<br />
-                      Lunes - Viernes: 9:00 AM - 5:00 PM
                     </p>
                   </div>
                 </div>
