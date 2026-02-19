@@ -13,11 +13,11 @@ export default async function Ministries() {
     id: ministry._id,
     slug: ministry.slug?.current || '',
     titleEn: ministry.name,
-    titleEs: ministry.name, // TODO: Add Spanish translations to Sanity schema
+    titleEs: ministry.name,
     shortDescEn: ministry.description?.substring(0, 100) + '...' || '',
-    shortDescEs: ministry.description?.substring(0, 100) + '...' || '', // TODO: Add Spanish translations
+    shortDescEs: ministry.description?.substring(0, 100) + '...' || '',
     fullDescEn: ministry.description || '',
-    fullDescEs: ministry.description || '', // TODO: Add Spanish translations
+    fullDescEs: ministry.description || '',
     leaders: (ministry.leaders ?? [])
       .filter((leader) => leader.person) // Filter out any null references
       .map((leader) => ({

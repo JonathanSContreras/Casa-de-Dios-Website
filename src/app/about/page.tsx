@@ -46,27 +46,6 @@ export default async function AboutPage() {
     },
   ];
 
-  const pastors = [
-    {
-      id: 1,
-      name: 'Pastor Michael & Sarah Johnson',
-      role: 'Lead Pastors / Pastores Principales',
-      bio: 'Leading with passion and vision for over 15 years. / Liderando con pasión y visión durante más de 15 años.',
-    },
-    {
-      id: 2,
-      name: 'Pastor Carlos & Maria Rodriguez',
-      role: 'Associate Pastors / Pastores Asociados',
-      bio: 'Dedicated to youth and family ministries. / Dedicados a los ministerios de jóvenes y familias.',
-    },
-    {
-      id: 3,
-      name: 'Pastor David Kim',
-      role: 'Worship Pastor / Pastor de Alabanza',
-      bio: 'Creating authentic worship experiences that connect hearts to God. / Creando experiencias de adoración auténticas.',
-    },
-  ];
-
   return (
     <div className="bg-[#F8F9FA]">
       {/* Hero Section */}
