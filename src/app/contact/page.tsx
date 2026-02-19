@@ -130,8 +130,7 @@ export default function ContactPage() {
                   <div>
                     <h4 className="text-xl font-bold mb-2">Email / Correo Electrónico</h4>
                     <p className="text-lg text-[#4A4A4A]">
-                      info@livinghope.org<br />
-                      prayer@livinghope.org
+                      CasadeDios.AIC@gmail.com
                     </p>
                   </div>
                 </div>
