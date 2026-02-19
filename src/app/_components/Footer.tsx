@@ -27,12 +27,22 @@ export function Footer() {
               <Link href="/about" className="block text-[#E5E5E5] hover:text-white transition-colors">
                 About / Nosotros
               </Link>
+              <Link href="/ministries" className="block text-[#E5E5E5] hover:text-white transition-colors">
+                Ministries / Ministerios
+              </Link>
               <Link href="/events" className="block text-[#E5E5E5] hover:text-white transition-colors">
                 Events / Eventos
+              </Link>
+              <Link href="/prayer-request" className="block text-[#E5E5E5] hover:text-white transition-colors">
+                Prayer / Oracion
+              </Link>
+              <Link href="/contact" className="block text-[#E5E5E5] hover:text-white transition-colors">
+                Contact / Contacto
               </Link>
               <Link href="/give" className="block text-[#E5E5E5] hover:text-white transition-colors">
                 Give / Ofrendar
               </Link>
+              
             </nav>
           </div>
 
@@ -54,7 +64,7 @@ export function Footer() {
               </div>
               <div className="flex items-center gap-3">
                 <Mail size={20} className="flex-shrink-0" />
-                <span className="text-[#E5E5E5]">hello@livinghope.org</span>
+                <span className="text-[#E5E5E5]">CasadeDios.AIC@gmail.com</span>
               </div>
             </div>
           </div>
