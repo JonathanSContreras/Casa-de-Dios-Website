@@ -104,8 +104,8 @@ export default function ContactPage() {
                   <div>
                     <h4 className="text-xl font-bold mb-2">Address / Dirección</h4>
                     <p className="text-lg text-[#4A4A4A]">
-                      123 Faith Avenue<br />
-                      Austin, TX 78701<br />
+                      13315 Veterans Memorial Dr #102<br />
+                      Houston, TX 77014<br />
                       United States
                     </p>
                   </div>
