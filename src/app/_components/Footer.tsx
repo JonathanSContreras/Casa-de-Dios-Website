@@ -82,15 +82,15 @@ export function Footer() {
         {/* Social Media & Copyright */}
         <div className="mt-16 pt-8 border-t border-[#4A4A4A] flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex gap-6">
-            <a href="#" className="text-[#E5E5E5] hover:text-white transition-colors">
+            <a href="https://www.facebook.com/casadedios.aic" className="text-[#E5E5E5] hover:text-white transition-colors">
               <Facebook size={24} />
             </a>
-            <a href="#" className="text-[#E5E5E5] hover:text-white transition-colors">
+            <a href="https://www.instagram.com/casadedios.aic/" className="text-[#E5E5E5] hover:text-white transition-colors">
               <Instagram size={24} />
             </a>
-            <a href="#" className="text-[#E5E5E5] hover:text-white transition-colors">
+            {/* <a href="#" className="text-[#E5E5E5] hover:text-white transition-colors">
               <Youtube size={24} />
-            </a>
+            </a> */}
           </div>
           <p className="text-[#E5E5E5] text-sm">
             © {new Date().getFullYear()}  Iglesia Pentecostal Casa de Dios. All rights reserved.
