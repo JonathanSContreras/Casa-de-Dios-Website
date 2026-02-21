@@ -159,7 +159,9 @@ export interface Leadership {
     _type: 'slug'
   }
   role?: string
+  roleEs?: string // Spanish translation of role
   bio?: string
+  bioEs?: string // Spanish translation of bio
   photo?: SanityImage
   email?: string
   showOnAboutPage: boolean
@@ -176,6 +178,7 @@ export interface Leadership {
 export interface LeaderReference {
   person: Leadership
   roleOverride?: string
+  roleOverrideEs?: string
 }
 
 /**
@@ -192,11 +195,13 @@ export interface Ministry {
   _createdAt: string
   _updatedAt: string
   name: string
+  nameEs?: string // Spanish translation of name
   slug: {
     current: string
     _type: 'slug'
   }
   description: string
+  descriptionEs?: string // Spanish translation of description
   meetingTime?: string
   location?: string
   contactEmail?: string

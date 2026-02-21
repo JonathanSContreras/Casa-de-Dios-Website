@@ -391,7 +391,9 @@ const ministryFields = `
   _id,
   _type,
   name,
+  nameEs,
   description,
+  descriptionEs,
   meetingTime,
   location,
   contactEmail,
@@ -400,10 +402,12 @@ const ministryFields = `
   order,
   leaders[]{
     roleOverride,
+    roleOverrideEs,
     person->{
       _id,
       name,
       role,
+      roleEs,
       photo{
         asset->{
           _id,

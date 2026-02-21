@@ -30,20 +30,22 @@ export function Header() {
   <>
     {/* Top bar with contact info */}
       <div className="bg-[#1A5D5D] text-white py-2 px-4">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between text-sm">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2">
-              <Phone className="w-4 h-4" />
-              <span>(281) 713-0681</span>
+        <div className="max-w-7xl mx-auto text-sm">
+          <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-6">
+              <div className="flex items-center gap-2">
+                <Phone className="w-4 h-4 flex-shrink-0" />
+                <span>(281) 713-0681</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 flex-shrink-0" />
+                <span>13315 Veterans Memorial Dr #102, Houston, TX 77014</span>
+              </div>
             </div>
             <div className="flex items-center gap-2">
-              <MapPin className="w-4 h-4" />
-              <span>13315 Veterans Memorial Dr #102, Houston, TX 77014</span>
+              <Clock className="w-4 h-4 flex-shrink-0" />
+              <span>Sunday Services: 12:00 PM</span>
             </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <Clock className="w-4 h-4" />
-            <span>Sunday Services: 12:00 PM</span>
           </div>
         </div>
       </div>

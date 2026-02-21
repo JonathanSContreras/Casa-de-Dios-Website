@@ -39,12 +39,27 @@ export default defineType({
       description: 'Auto-generated URL-friendly identifier',
     }),
     defineField({
+      name: 'nameEs',
+      title: 'Ministry Name (Spanish)',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+      description: 'Spanish name of the ministry',
+    }),
+    defineField({
       name: 'description',
       title: 'Description',
       type: 'text',
       rows: 5,
       validation: (Rule) => Rule.required(),
-      description: 'Description of what this ministry does and who it serves',
+      description: 'Description of what this ministry does and who it serves (English)',
+    }),
+    defineField({
+      name: 'descriptionEs',
+      title: 'Description (Spanish)',
+      type: 'text',
+      rows: 5,
+      validation: (Rule) => Rule.required(),
+      description: 'Spanish description of what this ministry does and who it serves',
     }),
     defineField({
       name: 'meetingTime',
@@ -76,10 +91,17 @@ export default defineType({
             }),
             defineField({
               name: 'roleOverride',
-              title: 'Role for This Ministry',
+              title: 'Role for This Ministry (English)',
               type: 'string',
               description:
-                'Their title within this ministry (e.g., "President", "Director"). Leave blank to use their primary church role.',
+                'Their title within this ministry in English (e.g., "President", "Director"). Leave blank to use their primary church role.',
+            }),
+            defineField({
+              name: 'roleOverrideEs',
+              title: 'Role for This Ministry (Spanish)',
+              type: 'string',
+              description:
+                'Su título en este ministerio en español (ej. "Presidente", "Director"). Dejar en blanco para usar su rol principal.',
             }),
           ],
           preview: {

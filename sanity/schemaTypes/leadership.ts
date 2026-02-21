@@ -44,11 +44,24 @@ export default defineType({
       description: 'Their main church role (e.g., "Senior Pastor", "Treasurer"). This is shown on the About page. Leave blank if they only serve in ministry-specific roles.',
     }),
     defineField({
+      name: 'roleEs',
+      title: 'Primary Church Role (Spanish)',
+      type: 'string',
+      description: 'Spanish translation of their primary church role.',
+    }),
+    defineField({
       name: 'bio',
       title: 'Biography',
       type: 'text',
       rows: 5,
-      description: 'Brief biography or description of the leader',
+      description: 'Brief biography or description of the leader (English)',
+    }),
+    defineField({
+      name: 'bioEs',
+      title: 'Biography (Spanish)',
+      type: 'text',
+      rows: 5,
+      description: 'Spanish biography or description of the leader',
     }),
     defineField({
       name: 'photo',
