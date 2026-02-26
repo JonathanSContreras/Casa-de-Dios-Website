@@ -107,33 +107,33 @@ function formatEventDateTime(event: Event) {
               <div className="bg-[#1A5D5D] w-16 h-16 flex items-center justify-center mx-auto mb-6">
                 <Clock size={32} className="text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-3">Sunday School</h3>
-              <p className="text-lg text-[#4A4A4A] mb-2">10:30 AM</p>
-              <p className="text-lg text-[#4A4A4A]">Escuela Dominical</p>
+              <h3 className="text-2xl font-bold mb-3">Sundays / Domingos <br />10:30 AM</h3>
+              <p className="text-lg text-[#4A4A4A] mb-2">Sunday School / Escuela Dominical</p>
+              {/* <p className="text-lg text-[#4A4A4A]">Escuela Dominical</p> */}
             </div>
             <div className="text-center">
               <div className="bg-[#1A5D5D] w-16 h-16 flex items-center justify-center mx-auto mb-6">
                 <Clock size={32} className="text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-3">Sunday Service</h3>
-              <p className="text-lg text-[#4A4A4A] mb-2">12:00 PM</p>
-              <p className="text-lg text-[#4A4A4A]">Servicio Dominical</p>
+              <h3 className="text-2xl font-bold mb-3">Sundays / Domingos <br />12:00 PM</h3>
+              <p className="text-lg text-[#4A4A4A] mb-2">Worship / Servicio de Adoración</p>
+              {/* <p className="text-lg text-[#4A4A4A]">Servicio Dominical</p> */}
             </div>
             <div className="text-center">
               <div className="bg-[#1A5D5D] w-16 h-16 flex items-center justify-center mx-auto mb-6">
                 <Clock size={32} className="text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-3">Tuesday Prayer</h3>
-              <p className="text-lg text-[#4A4A4A] mb-2">8:00 PM</p>
-              <p className="text-lg text-[#4A4A4A]">Oración del Martes</p>
+              <h3 className="text-2xl font-bold mb-3">Tuesdays / Martes <br />8:00 PM</h3>
+              <p className="text-lg text-[#4A4A4A] mb-2">Night of Intercession / Noche de Intercesión</p>
+              {/* <p className="text-lg text-[#4A4A4A]">Oración del Martes</p> */}
             </div>
             <div className="text-center">
               <div className="bg-[#1A5D5D] w-16 h-16 flex items-center justify-center mx-auto mb-6">
                 <Clock size={32} className="text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-3">Worship Service</h3>
-              <p className="text-lg text-[#4A4A4A] mb-2">8:00 PM</p>
-              <p className="text-lg text-[#4A4A4A]">Servicio de Adoracion</p>
+              <h3 className="text-2xl font-bold mb-3">Fridays / Viernes <br />8:00 PM</h3>
+              <p className="text-lg text-[#4A4A4A] mb-2">Worship / Servicio de Adoración</p>
+              {/* <p className="text-lg text-[#4A4A4A]">Servicio de Adoracion</p> */}
             </div>
           </div>
         </div>

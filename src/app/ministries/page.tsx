@@ -13,17 +13,18 @@ export default async function Ministries() {
     id: ministry._id,
     slug: ministry.slug?.current || '',
     titleEn: ministry.name,
-    titleEs: ministry.name,
+    titleEs: ministry.nameEs,
     shortDescEn: ministry.description?.substring(0, 100) + '...' || '',
-    shortDescEs: ministry.description?.substring(0, 100) + '...' || '',
+    shortDescEs: ministry.descriptionEs?.substring(0, 100) + '...' || '',
     fullDescEn: ministry.description || '',
-    fullDescEs: ministry.description || '',
+    fullDescEs: ministry.descriptionEs ?? '',
     leaders: (ministry.leaders ?? [])
       .filter((leader) => leader.person) // Filter out any null references
       .map((leader) => ({
         _id: leader.person._id,
         name: leader.person.name,
         displayRole: leader.roleOverride ?? leader.person.role ?? '',
+        displayRoleEs: leader.roleOverrideEs ?? leader.person.roleEs ?? '',
         photo: leader.person.photo,
         email: leader.person.email,
       })),

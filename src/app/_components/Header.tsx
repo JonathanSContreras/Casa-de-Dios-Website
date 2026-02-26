@@ -1,19 +1,23 @@
 'use client';
 import Link from 'next/link';
-import { useState } from 'react';
-import { Menu, X, Phone, MapPin, Clock} from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Menu, X, Phone, MapPin, Clock } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-
 
 export function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [language, setLanguage] = useState<'en' | 'es'>('en');
+  const [primaryLang, setPrimaryLang] = useState<'en' | 'es'>('en');
 
-  const isActive = (path: string) => pathname === path;
+  useEffect(() => {
+    const saved = localStorage.getItem('primaryLang') as 'en' | 'es' | null;
+    if (saved) setPrimaryLang(saved);
+  }, []);
 
   const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'es' : 'en');
+    const next = primaryLang === 'en' ? 'es' : 'en';
+    setPrimaryLang(next);
+    localStorage.setItem('primaryLang', next);
   };
 
   const navItems = [
@@ -26,9 +30,11 @@ export function Header() {
     { path: '/give', labelEn: 'Give', labelEs: 'Ofrendar' },
   ];
 
+  const isActive = (path: string) => pathname === path;
+
   return (
-  <>
-    {/* Top bar with contact info */}
+    <>
+      {/* Top bar with contact info */}
       <div className="bg-[#1A5D5D] text-white py-2 px-4">
         <div className="max-w-7xl mx-auto text-sm">
           <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
@@ -49,92 +55,191 @@ export function Header() {
           </div>
         </div>
       </div>
-    <nav className="sticky top-0 z-50 bg-white">
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link href="/" className="text-2xl font-bold text-[#1A5D5D]">
-            {language === 'en' ? 'HOUSE OF GOD' : 'CASA DE DIOS'}
-          </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-12">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                href={item.path}
-                className={`text-base font-medium transition-colors ${
-                  isActive(item.path)
-                    ? 'text-[#1A5D5D]'
-                    : 'text-[#4A4A4A] hover:text-[#1A5D5D]'
+      <nav className="sticky top-0 z-50 bg-white shadow-sm">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
+          <div className="flex items-center justify-between h-24">
+
+            {/* Logo — both names, primary on top */}
+            <Link href="/" className="flex flex-col leading-none">
+              <span
+                className={`font-bold transition-all duration-200 ${
+                  primaryLang === 'en'
+                    ? 'text-xl text-[#1A5D5D]'
+                    : 'text-sm text-[#8A8A8A]'
                 }`}
               >
-                {language === 'en' ? item.labelEn : item.labelEs}
-              </Link>
-            ))}
-          </div>
-
-          {/* CTA and Language Toggle */}
-          <div className="hidden lg:flex items-center gap-6">
-            <button
-              onClick={toggleLanguage}
-              className="text-sm font-medium text-[#4A4A4A] hover:text-[#1A5D5D] transition-colors"
-            >
-              {language === 'en' ? 'ES' : 'EN'}
-            </button>
-            <Link
-              href="/contact"
-              className="bg-[#1A5D5D] text-white px-8 py-3 font-medium hover:bg-[#154A4A] transition-colors"
-            >
-              {language === 'en' ? 'Service Times' : 'Horarios'}
+                HOUSE OF GOD
+              </span>
+              <span
+                className={`font-bold transition-all duration-200 ${
+                  primaryLang === 'es'
+                    ? 'text-xl text-[#1A5D5D]'
+                    : 'text-sm text-[#8A8A8A]'
+                }`}
+              >
+                CASA DE DIOS
+              </span>
             </Link>
-          </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden text-[#4A4A4A]"
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </div>
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center gap-8">
+              {navItems.map((item) => {
+                const active = isActive(item.path);
+                const primaryLabel = primaryLang === 'en' ? item.labelEn : item.labelEs;
+                const secondaryLabel = primaryLang === 'en' ? item.labelEs : item.labelEn;
 
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden bg-white border-t border-[#E5E5E5]">
-          <div className="px-6 py-6 space-y-6">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                href={item.path}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`block text-base font-medium ${
-                  isActive(item.path) ? 'text-[#1A5D5D]' : 'text-[#4A4A4A]'
-                }`}
-              >
-                {language === 'en' ? item.labelEn : item.labelEs}
-              </Link>
-            ))}
-            <div className="pt-4 border-t border-[#E5E5E5] space-y-4">
+                return (
+                  <Link
+                    key={item.path}
+                    href={item.path}
+                    className="group flex flex-col items-center"
+                  >
+                    <span
+                      className={`text-sm font-semibold leading-tight transition-colors ${
+                        active
+                          ? 'text-[#1A5D5D]'
+                          : 'text-[#4A4A4A] group-hover:text-[#1A5D5D]'
+                      }`}
+                    >
+                      {primaryLabel}
+                    </span>
+                    <span
+                      className={`text-xs leading-tight transition-colors ${
+                        active
+                          ? 'text-[#1A5D5D]/50'
+                          : 'text-[#9A9A9A] group-hover:text-[#1A5D5D]/50'
+                      }`}
+                    >
+                      {secondaryLabel}
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* Language Toggle + CTA */}
+            <div className="hidden lg:flex items-center gap-6">
+              {/* EN / ES toggle — bold whichever is primary */}
               <button
                 onClick={toggleLanguage}
-                className="block w-full text-left text-sm font-medium text-[#4A4A4A]"
+                className="flex items-center gap-1 text-sm transition-colors"
+                aria-label="Toggle language order"
               >
-                {language === 'en' ? 'Español' : 'English'}
+                <span
+                  className={`font-semibold transition-colors ${
+                    primaryLang === 'en' ? 'text-[#1A5D5D]' : 'text-[#9A9A9A]'
+                  }`}
+                >
+                  EN
+                </span>
+                <span className="text-[#C5C5C5]">/</span>
+                <span
+                  className={`font-semibold transition-colors ${
+                    primaryLang === 'es' ? 'text-[#1A5D5D]' : 'text-[#9A9A9A]'
+                  }`}
+                >
+                  ES
+                </span>
               </button>
+
+              {/* CTA — both languages stacked */}
               <Link
                 href="/contact"
-                className="block w-full bg-[#1A5D5D] text-white px-8 py-3 font-medium text-center"
-                onClick={() => setMobileMenuOpen(false)}
+                className="flex flex-col items-center bg-[#1A5D5D] text-white px-8 py-2 hover:bg-[#154A4A] transition-colors"
               >
-                {language === 'en' ? 'Service Times' : 'Horarios'}
+                <span className="text-sm font-semibold">
+                  {primaryLang === 'en' ? 'Service Times' : 'Horarios'}
+                </span>
+                <span className="text-xs opacity-70">
+                  {primaryLang === 'en' ? 'Horarios' : 'Service Times'}
+                </span>
               </Link>
             </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden text-[#4A4A4A]"
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
         </div>
-      )}
-    </nav>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden bg-white border-t border-[#E5E5E5]">
+            <div className="px-6 py-6 space-y-5">
+              {navItems.map((item) => {
+                const active = isActive(item.path);
+                const primaryLabel = primaryLang === 'en' ? item.labelEn : item.labelEs;
+                const secondaryLabel = primaryLang === 'en' ? item.labelEs : item.labelEn;
+
+                return (
+                  <Link
+                    key={item.path}
+                    href={item.path}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block"
+                  >
+                    <span
+                      className={`block text-base font-semibold leading-tight ${
+                        active ? 'text-[#1A5D5D]' : 'text-[#4A4A4A]'
+                      }`}
+                    >
+                      {primaryLabel}
+                    </span>
+                    <span
+                      className={`block text-sm leading-tight ${
+                        active ? 'text-[#1A5D5D]/50' : 'text-[#9A9A9A]'
+                      }`}
+                    >
+                      {secondaryLabel}
+                    </span>
+                  </Link>
+                );
+              })}
+
+              <div className="pt-4 border-t border-[#E5E5E5] space-y-4">
+                <button
+                  onClick={toggleLanguage}
+                  className="flex items-center gap-1 text-sm"
+                >
+                  <span
+                    className={`font-semibold ${
+                      primaryLang === 'en' ? 'text-[#1A5D5D]' : 'text-[#9A9A9A]'
+                    }`}
+                  >
+                    EN
+                  </span>
+                  <span className="text-[#C5C5C5]">/</span>
+                  <span
+                    className={`font-semibold ${
+                      primaryLang === 'es' ? 'text-[#1A5D5D]' : 'text-[#9A9A9A]'
+                    }`}
+                  >
+                    ES
+                  </span>
+                </button>
+
+                <Link
+                  href="/contact"
+                  className="block bg-[#1A5D5D] text-white px-8 py-3 text-center"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <span className="block text-sm font-semibold">
+                    {primaryLang === 'en' ? 'Service Times' : 'Horarios'}
+                  </span>
+                  <span className="block text-xs opacity-70">
+                    {primaryLang === 'en' ? 'Horarios' : 'Service Times'}
+                  </span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
+      </nav>
     </>
   );
 }

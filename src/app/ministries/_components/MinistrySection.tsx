@@ -14,6 +14,7 @@ interface LeaderWithDisplayRole {
   _id: string;
   name: string;
   displayRole: string;
+  displayRoleEs?: string;
   photo?: SanityImage;
   email?: string;
 }
@@ -22,11 +23,11 @@ interface Ministry {
   id: string;
   slug: string;
   titleEn: string;
-  titleEs: string;
+  titleEs?: string;
   shortDescEn: string;
-  shortDescEs: string;
+  shortDescEs?: string;
   fullDescEn: string;
-  fullDescEs: string;
+  fullDescEs?: string;
   leaders: LeaderWithDisplayRole[];
 }
 
@@ -129,7 +130,7 @@ export function MinistrySection({ ministries }: MinistrySectionProps) {
                           </div>
                         )}
                         <h5 className="text-lg font-bold mb-1">{leader.name}</h5>
-                        <p className="text-sm text-[#4A4A4A] mb-4">{leader.displayRole}</p>
+                        <p className="text-sm text-[#4A4A4A] mb-4">{leader.displayRole} / {leader.displayRoleEs}</p>
                         {leader.email && (
                           <a
                             href={`mailto:${leader.email}`}
