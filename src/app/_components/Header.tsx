@@ -24,6 +24,7 @@ export function Header() {
     { path: '/', labelEn: 'Home', labelEs: 'Inicio' },
     { path: '/about', labelEn: 'About', labelEs: 'Nosotros' },
     { path: '/ministries', labelEn: 'Ministries', labelEs: 'Ministerios' },
+    { path: '/calendar', labelEn: 'Calendar', labelEs: 'Calendario' },
     { path: '/events', labelEn: 'Events', labelEs: 'Eventos' },
     { path: '/prayer-request', labelEn: 'Prayer', labelEs: 'Oración' },
     { path: '/contact', labelEn: 'Contact', labelEs: 'Contacto' },
@@ -145,7 +146,7 @@ export function Header() {
 
               {/* CTA — both languages stacked */}
               <Link
-                href="/contact"
+                href="/calendar"
                 className="flex flex-col items-center bg-[#1A5D5D] text-white px-8 py-2 hover:bg-[#154A4A] transition-colors"
               >
                 <span className="text-sm font-semibold">
@@ -224,7 +225,7 @@ export function Header() {
                 </button>
 
                 <Link
-                  href="/contact"
+                  href="/calendar"
                   className="block bg-[#1A5D5D] text-white px-8 py-3 text-center"
                   onClick={() => setMobileMenuOpen(false)}
                 >

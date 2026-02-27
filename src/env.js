@@ -10,6 +10,9 @@ export const env = createEnv({
     NODE_ENV: z.enum(["development", "test", "production"]),
     // Sanity write token (server-side only for security)
     SANITY_WRITE_TOKEN: z.string().optional(),
+    // Google Calendar (server-side only — never expose to client)
+    GOOGLE_CALENDAR_API_KEY: z.string(),
+    GOOGLE_CALENDAR_ID: z.string(),
   },
 
   /**
@@ -36,6 +39,8 @@ export const env = createEnv({
     NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,
     NEXT_PUBLIC_SANITY_READ_TOKEN: process.env.NEXT_PUBLIC_SANITY_READ_TOKEN,
     SANITY_WRITE_TOKEN: process.env.SANITY_WRITE_TOKEN,
+    GOOGLE_CALENDAR_API_KEY: process.env.GOOGLE_CALENDAR_API_KEY,
+    GOOGLE_CALENDAR_ID: process.env.GOOGLE_CALENDAR_ID,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
