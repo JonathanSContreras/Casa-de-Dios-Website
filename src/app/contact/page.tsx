@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { useState } from 'react';
 
@@ -27,8 +28,11 @@ export default function ContactPage() {
   return (
     <div className="bg-[#F8F9FA]">
       {/* Hero Section */}
-      <section className="bg-[#1A5D5D] text-white py-20 lg:py-32">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
+      <section className="relative bg-[#1A5D5D] text-white py-20 lg:py-32 overflow-hidden">
+        {/* TODO: Replace src with contact page hero background image */}
+        <Image src="/images/group-picture.jpg" alt="" fill className="object-cover" priority />
+        <div className="absolute inset-0 bg-[#1A5D5D]/85" />
+        <div className="relative z-10 max-w-[1440px] mx-auto px-6 lg:px-20">
           <h1 className="text-5xl lg:text-7xl font-bold mb-6">Contact Us</h1>
           <h2 className="text-5xl lg:text-7xl font-bold mb-8">Contáctanos</h2>
           <p className="text-xl lg:text-2xl max-w-3xl text-[#E5E5E5]">

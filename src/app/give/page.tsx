@@ -71,8 +71,11 @@ export default function GivePage() {
   return (
     <div className="bg-[#F8F9FA]">
       {/* Hero Section */}
-      <section className="bg-[#1A5D5D] text-white py-20 lg:py-32">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
+      <section className="relative bg-[#1A5D5D] text-white py-20 lg:py-32 overflow-hidden">
+        {/* TODO: Replace src with give page hero background image */}
+        <Image src="/images/group-picture.jpg" alt="" fill className="object-cover" priority />
+        <div className="absolute inset-0 bg-[#1A5D5D]/85" />
+        <div className="relative z-10 max-w-[1440px] mx-auto px-6 lg:px-20">
           <h1 className="text-5xl lg:text-7xl font-bold mb-6">Give</h1>
           <h2 className="text-5xl lg:text-7xl font-bold mb-8">Ofrendar</h2>
           <p className="text-xl lg:text-2xl max-w-3xl text-[#E5E5E5]">
@@ -84,39 +87,49 @@ export default function GivePage() {
       {/* Why We Give Section */}
       <section className="py-20 lg:py-32">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-center">
             <div>
               <h2 className="text-4xl lg:text-5xl font-bold mb-8">Why We Give</h2>
               <div className="space-y-6">
                 <p className="text-lg text-[#4A4A4A] leading-relaxed">
-                  Giving is an act of worship and obedience to God. The Bible teaches us that everything we have 
+                  Giving is an act of worship and obedience to God. The Bible teaches us that everything we have
                   comes from God, and giving is one way we express our gratitude and trust in His provision.
                 </p>
                 <p className="text-lg text-[#4A4A4A] leading-relaxed">
-                  When you give to House of God, you&apos;re investing in lives being changed, communities being 
-                  served, and the gospel being shared. Every dollar given goes directly toward fulfilling our mission 
+                  When you give to House of God, you&apos;re investing in lives being changed, communities being
+                  served, and the gospel being shared. Every dollar given goes directly toward fulfilling our mission
                   to share hope and transform lives.
                 </p>
                 <p className="text-lg text-[#4A4A4A] leading-relaxed">
-                  We believe in financial transparency and stewardship. Our leadership team ensures that every gift 
+                  We believe in financial transparency and stewardship. Our leadership team ensures that every gift
                   is used wisely and effectively for God&apos;s kingdom work.
                 </p>
               </div>
             </div>
+
+            <div className="relative h-[350px] lg:h-[500px]">
+              <Image
+                src="/images/giving.jpg"
+                alt="Picture showing people giving to the church and serving the community"
+                fill
+                className="object-cover"
+              />
+            </div>
+
             <div>
               <h2 className="text-4xl lg:text-5xl font-bold mb-8">Por Qué Damos</h2>
               <div className="space-y-6">
                 <p className="text-lg text-[#4A4A4A] leading-relaxed">
-                  Dar es un acto de adoración y obediencia a Dios. La Biblia nos enseña que todo lo que tenemos 
+                  Dar es un acto de adoración y obediencia a Dios. La Biblia nos enseña que todo lo que tenemos
                   viene de Dios, y dar es una forma de expresar nuestra gratitud y confianza en Su provisión.
                 </p>
                 <p className="text-lg text-[#4A4A4A] leading-relaxed">
-                  Cuando das a House of God, estás invirtiendo en vidas que están siendo transformadas, 
-                  comunidades que están siendo servidas y el evangelio que está siendo compartido. Cada dólar dado 
+                  Cuando das a Casa de Dios, estás invirtiendo en vidas que están siendo transformadas,
+                  comunidades que están siendo servidas y el evangelio que está siendo compartido. Cada dólar dado
                   va directamente hacia el cumplimiento de nuestra misión de compartir esperanza y transformar vidas.
                 </p>
                 <p className="text-lg text-[#4A4A4A] leading-relaxed">
-                  Creemos en la transparencia financiera y la mayordomía. Nuestro equipo de liderazgo asegura que 
+                  Creemos en la transparencia financiera y la mayordomía. Nuestro equipo de liderazgo asegura que
                   cada ofrenda se use sabia y efectivamente para la obra del reino de Dios.
                 </p>
               </div>
@@ -129,7 +142,7 @@ export default function GivePage() {
       <section className="bg-white">
         <div className="max-w-[1440px] mx-auto">
           <Image
-            src="/images/placeholder-1.jpg"
+            src="/images/evangelism-outreach.jpg"
             alt="Community meeting"
             className="w-full h-[400px] lg:h-[600px] object-cover"
             width={1920}
@@ -187,8 +200,11 @@ export default function GivePage() {
       {/* Questions About Giving Section */}
       <section className="py-20 lg:py-32">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
-          <div className="bg-[#1A5D5D] text-white p-12 lg:p-20">
-            <div className="max-w-3xl mx-auto text-center">
+          <div className="relative bg-[#1A5D5D] text-white p-12 lg:p-20 overflow-hidden">
+            {/* TODO: Replace src with community/outreach background image */}
+            {/* <Image src="/images/group-picture.jpg" alt="" fill className="object-cover" /> */}
+            <div className="absolute inset-0 bg-[#1A5D5D]/85" />
+            <div className="relative z-10 max-w-3xl mx-auto text-center">
               <h2 className="text-4xl lg:text-5xl font-bold mb-6">Questions About Giving?</h2>
               <h3 className="text-4xl lg:text-5xl font-bold mb-8">¿Preguntas Sobre las Ofrendas?</h3>
               <p className="text-xl mb-4 text-[#E5E5E5]">
@@ -213,6 +229,20 @@ export default function GivePage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Image break before Biblical Foundation */}
+      <section className="bg-white">
+        <div className="max-w-[1440px] mx-auto">
+          {/* TODO: Replace src with open Bible / prayer / quiet worship image */}
+          {/* <Image
+            src="/images/placeholder-2.jpg"
+            alt="Biblical foundation"
+            className="w-full h-[400px] lg:h-[500px] object-cover"
+            width={1920}
+            height={500}
+          /> */}
         </div>
       </section>
 

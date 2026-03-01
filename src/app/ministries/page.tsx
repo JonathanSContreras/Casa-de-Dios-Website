@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { getActiveMinistries } from '@/lib/sanity/queries';
 import { MinistrySection } from './_components/MinistrySection';
 
@@ -33,8 +34,11 @@ export default async function Ministries() {
   return (
     <div className="bg-[#F8F9FA]">
       {/* Hero Section */}
-      <section className="bg-[#1A5D5D] text-white py-20 lg:py-32">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
+      <section className="relative bg-[#1A5D5D] text-white py-20 lg:py-32 overflow-hidden">
+        {/* TODO: Replace src with ministries page hero background image */}
+        <Image src="/images/group-picture.jpg" alt="" fill className="object-cover" priority />
+        <div className="absolute inset-0 bg-[#1A5D5D]/85" />
+        <div className="relative z-10 max-w-[1440px] mx-auto px-6 lg:px-20">
           <h1 className="text-5xl lg:text-7xl font-bold mb-6">Ministries</h1>
           <h2 className="text-5xl lg:text-7xl font-bold mb-8">Ministerios</h2>
           <p className="text-xl lg:text-2xl max-w-3xl text-[#E5E5E5]">
@@ -45,6 +49,19 @@ export default async function Ministries() {
 
       {/* Ministries Section with Modal */}
       <MinistrySection ministries={ministries} />
+
+      {/* Image break before Get Involved */}
+      <section className="bg-[#F8F9FA]">
+        <div className="max-w-[1440px] mx-auto">
+          <Image
+            src="/images/street-evangelism.jpg"
+            alt="Community serving"
+            className="w-full h-[400px] lg:h-[550px] object-cover"
+            width={1920}
+            height={550}
+          />
+        </div>
+      </section>
 
       {/* Get Involved Section */}
       <section className="bg-white py-20 lg:py-32">

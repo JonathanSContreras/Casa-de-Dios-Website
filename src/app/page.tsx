@@ -3,8 +3,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getActiveAnnouncements, getUpcomingEvents } from "@/lib/sanity/queries";
 import type { Announcement, Event } from "@/lib/sanity/types";
-import { urlFor } from '@/lib/sanity/image';
-
 // Revalidate every 5 minutes (announcements and events change frequently)
 export const revalidate = 300;
 
@@ -66,8 +64,17 @@ function formatEventDateTime(event: Event) {
   return (
     <div className="bg-[#F8F9FA]">
       {/* Hero Section */}
-      <section className="bg-[#1A5D5D] text-white">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-20 py-24 lg:py-32">
+      <section className="relative bg-[#1A5D5D] text-white overflow-hidden">
+        {/* TODO: Replace src with home page hero background image */}
+        <Image
+          src="/images/group-picture.jpg"
+          alt=""
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-[#1A5D5D]/85" />
+        <div className="relative z-10 max-w-[1440px] mx-auto px-6 lg:px-20 py-24 lg:py-32">
           <div className="max-w-3xl">
             <h1 className="text-5xl lg:text-7xl font-bold mb-8">
               Welcome Home
@@ -162,6 +169,9 @@ function formatEventDateTime(event: Event) {
                 <h4 className="text-xl font-bold text-[#4A4A4A] mb-4">{announcement.titleEs}</h4>
                 <p className="text-[#4A4A4A] mb-2">{announcement.message}</p>
                 <p className="text-[#4A4A4A]">{announcement.messageEs}</p>
+                <Link href={announcement.link ?? '#'} className="text-[#1A5D5D] font-bold mt-4 inline-block hover:underline">
+                  <p>{announcement.link}</p>
+                </Link>
               </div>
             ))}
           </div>
@@ -171,19 +181,19 @@ function formatEventDateTime(event: Event) {
       {/* Welcome Message Section */}
       <section className="py-20 lg:py-32">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-center">
             <div>
               <h2 className="text-4xl lg:text-6xl font-bold mb-8">
                 A Place to Belong
               </h2>
               <div className="space-y-6">
                 <p className="text-lg text-[#4A4A4A] leading-relaxed">
-                  At House of God Church, we believe that church is more than a building—it&apos;s a family. 
-                  We&apos;re a diverse community of believers who come together to worship God, grow in faith, 
+                  At House of God Church, we believe that church is more than a building—it&apos;s a family.
+                  We&apos;re a diverse community of believers who come together to worship God, grow in faith,
                   and serve our city.
                 </p>
                 <p className="text-lg text-[#4A4A4A] leading-relaxed">
-                  Whether you&apos;re exploring faith for the first time or have been following Jesus for years, 
+                  Whether you&apos;re exploring faith for the first time or have been following Jesus for years,
                   you&apos;ll find a welcoming home here.
                 </p>
                 <Link
@@ -194,18 +204,28 @@ function formatEventDateTime(event: Event) {
                 </Link>
               </div>
             </div>
+
+            <div className="relative h-[350px] lg:h-[500px]">
+              <Image
+                src="/images/isaias-worship.jpg"
+                alt="Isaias worshiping"
+                fill
+                className="object-cover"
+              />
+            </div>
+
             <div>
               <h2 className="text-4xl lg:text-6xl font-bold mb-8">
                 Un Lugar para Pertenecer
               </h2>
               <div className="space-y-6">
                 <p className="text-lg text-[#4A4A4A] leading-relaxed">
-                  En Casa de Dios, creemos que la iglesia es más que un edificio: es una familia. 
-                  Somos una comunidad diversa de creyentes que se reúnen para adorar a Dios, crecer en la fe 
+                  En Casa de Dios, creemos que la iglesia es más que un edificio: es una familia.
+                  Somos una comunidad diversa de creyentes que se reúnen para adorar a Dios, crecer en la fe
                   y servir a nuestra ciudad.
                 </p>
                 <p className="text-lg text-[#4A4A4A] leading-relaxed">
-                  Ya sea que estés explorando la fe por primera vez o hayas estado siguiendo a Jesús durante años, 
+                  Ya sea que estés explorando la fe por primera vez o hayas estado siguiendo a Jesús durante años,
                   encontrarás un hogar acogedor aquí.
                 </p>
               </div>
@@ -218,8 +238,8 @@ function formatEventDateTime(event: Event) {
       <section className="bg-white">
         <div className="max-w-[1440px] mx-auto">
           <Image
-            src="/images/group-picture.jpg"
-            alt="Church worship service"
+            src="/images/group_1.jpg"
+            alt="Collage from various church events"
             className="w-full h-[400px] lg:h-[600px] object-cover"
             width={1920}
             height={600}

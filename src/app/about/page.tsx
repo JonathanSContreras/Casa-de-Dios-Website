@@ -49,8 +49,11 @@ export default async function AboutPage() {
   return (
     <div className="bg-[#F8F9FA]">
       {/* Hero Section */}
-      <section className="bg-[#1A5D5D] text-white py-20 lg:py-32">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
+      <section className="relative bg-[#1A5D5D] text-white py-20 lg:py-32 overflow-hidden">
+        {/* TODO: Replace src with about page hero background image */}
+        <Image src="/images/group-picture.jpg" alt="" fill className="object-cover" priority />
+        <div className="absolute inset-0 bg-[#1A5D5D]/85" />
+        <div className="relative z-10 max-w-[1440px] mx-auto px-6 lg:px-20">
           <h1 className="text-5xl lg:text-7xl font-bold mb-6">About Us</h1>
           <h2 className="text-5xl lg:text-7xl font-bold">Sobre Nosotros</h2>
         </div>
@@ -183,6 +186,20 @@ export default async function AboutPage() {
           )}
         </div>
       </section>
+
+      {/* Image break before Beliefs */}
+      {/* TODO: Replace src with sanctuary or atmospheric worship image */}
+      {/* <section className="bg-white">
+        <div className="max-w-[1440px] mx-auto">
+          <Image
+            src="/images/group-picture.jpg"
+            alt="Church sanctuary"
+            className="w-full h-[400px] lg:h-[550px] object-cover"
+            width={1920}
+            height={550}
+          />
+        </div>
+      </section> */}
 
       {/* Beliefs Section */}
       <section className="py-20 lg:py-32">
