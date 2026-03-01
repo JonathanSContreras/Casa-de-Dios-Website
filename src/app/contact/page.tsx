@@ -263,7 +263,7 @@ export default function ContactPage() {
                 We know visiting a new church can feel overwhelming. Here&apos;s what to expect when you visit House of God.
               </p>
               <p className="text-xl mb-8 text-[#E5E5E5]">
-                Sabemos que visitar una iglesia nueva puede ser abrumador. Aquí está lo que puedes esperar cuando visites House of God.
+                Sabemos que visitar una iglesia nueva puede ser abrumador. Aquí está lo que puedes esperar cuando visites Casa de Dios.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-12">
                 <div>

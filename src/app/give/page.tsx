@@ -221,7 +221,7 @@ export default function GivePage() {
                   Contact Us / Contáctanos
                 </a>
                 <a
-                  href="mailto:giving@houseofgod.org"
+                  href="mailto:CasadeDios.AIC@gmail.com"
                   className="bg-transparent border-2 border-white text-white px-12 py-5 font-bold text-lg hover:bg-white/10 transition-colors inline-block"
                 >
                   Email Us / Envíanos un Email

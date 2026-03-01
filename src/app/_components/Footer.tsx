@@ -8,7 +8,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
           {/* About Section */}
           <div>
-            <h3 className="text-xl font-bold mb-6">House of God</h3>
+            <h3 className="text-xl font-bold mb-6">Church House of God / Iglesia Casa de Dios</h3>
             <p className="text-[#E5E5E5] leading-relaxed mb-2">
               A contemporary Pentecostal congregation welcoming all.
             </p>

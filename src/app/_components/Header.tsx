@@ -70,7 +70,7 @@ export function Header() {
                     : 'text-sm text-[#8A8A8A]'
                 }`}
               >
-                HOUSE OF GOD
+                CHURCH HOUSE OF GOD
               </span>
               <span
                 className={`font-bold transition-all duration-200 ${
@@ -79,7 +79,7 @@ export function Header() {
                     : 'text-sm text-[#8A8A8A]'
                 }`}
               >
-                CASA DE DIOS
+                IGLESIA CASA DE DIOS
               </span>
             </Link>
 
