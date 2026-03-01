@@ -11,11 +11,26 @@ export default function ContactPage() {
     message: '',
     language: 'en',
   });
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Form submitted! This is a demo - no data is actually sent.');
-    setFormData({ name: '', email: '', phone: '', message: '', language: 'en' });
+    setStatus('submitting');
+    try {
+      const res = await fetch('https://formspree.io/f/xkovarbd', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (res.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', phone: '', message: '', language: 'en' });
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -224,10 +239,24 @@ export default function ContactPage() {
 
                 <button
                   type="submit"
-                  className="w-full bg-[#1A5D5D] text-white px-8 py-4 font-bold hover:bg-[#154A4A] transition-colors"
+                  disabled={status === 'submitting'}
+                  className="w-full bg-[#1A5D5D] text-white px-8 py-4 font-bold hover:bg-[#154A4A] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Send Message / Enviar Mensaje
+                  {status === 'submitting' ? 'Sending… / Enviando…' : 'Send Message / Enviar Mensaje'}
                 </button>
+
+                {status === 'success' && (
+                  <p className="text-[#1A5D5D] font-bold text-center">
+                    Message sent! We&apos;ll be in touch soon.<br />
+                    ¡Mensaje enviado! Nos pondremos en contacto pronto.
+                  </p>
+                )}
+                {status === 'error' && (
+                  <p className="text-red-600 font-bold text-center">
+                    Something went wrong. Please try again or email us directly.<br />
+                    Algo salió mal. Inténtalo de nuevo o escríbenos directamente.
+                  </p>
+                )}
               </form>
             </div>
           </div>
