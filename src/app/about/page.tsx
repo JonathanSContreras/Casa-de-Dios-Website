@@ -61,24 +61,31 @@ export default async function AboutPage() {
 
       {/* Our Story Section */}
       <section className="py-20 lg:py-32">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
+        <div className="max-w-[1440] mx-auto px-6 lg:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
             <div>
               <h2 className="text-4xl lg:text-5xl font-bold mb-8">Our Story</h2>
               <div className="space-y-6">
                 <p className="text-lg text-[#4A4A4A] leading-relaxed">
-                  Living Hope Church was founded in 2009 with a simple vision: to be a place where everyone can 
-                  encounter God&apos;s love and discover their purpose. What started as a small group of families has 
-                  grown into a vibrant, multicultural community of faith.
+                  Founded in April 2010 by Pastors Francisca Melendez-Contreras and Saul Contreras, what began as a small gathering of faithful believers has grown into a thriving community rooted in the power of God, the love of Jesus Christ, and movement of the Holy Spirit.
                 </p>
                 <p className="text-lg text-[#4A4A4A] leading-relaxed">
-                  We are a contemporary Pentecostal church that values both the power of the Holy Spirit and the 
-                  depth of biblical teaching. Our worship is energetic and authentic, our community is warm and 
-                  welcoming, and our mission is clear: to share the hope we&apos;ve found in Jesus with our city and beyond.
+                  In those early days, services were held in the humble setting of the Cordero family&apos;s garage — a simple space filled with sincere worship and a hunger for God&apos;s presence. As the colder months drew near, the Flores family graciously opened their home, offering warmth and shelter so the church could continue to grow. From the very beginning, the faithfulness of God&apos;s people laid the foundation for everything that followed.
                 </p>
                 <p className="text-lg text-[#4A4A4A] leading-relaxed">
-                  Today, we serve hundreds of families from diverse backgrounds, offering services in both English 
-                  and Spanish, and providing ministries for every age and stage of life.
+                  By 2011, the congregation had outgrown its surroundings. In His provision, God opened an unexpected door — Church Rock of Salvation extended an invitation to share their facility, welcoming the congregation with open arms. It was in that season that the hand of God moved in undeniable ways: souls were saved, families were restored, and lives were transformed in the name of Jesus.
+                </p>
+                <p className="text-lg text-[#4A4A4A] leading-relaxed">
+                  Within two years, God provided again. The church secured its own dedicated space, marking a significant milestone in its journey. From that location, the congregation continued to serve the surrounding community — hosting outreach events, ministering to families in need, and seeing God&apos;s grace poured out week after week. What had started in a garage had become a place where lives were being changed.
+                </p>
+                <p className="text-lg text-[#4A4A4A] leading-relaxed">
+                  For nearly a decade, the church served faithfully from that location. But as the congregation continued to grow, the space could no longer contain what God was doing. In 2021, the church relocated to a larger facility — not simply out of necessity, but as a reflection of the expanding vision God had placed on its heart.
+                </p>
+                <p className="text-lg text-[#4A4A4A] leading-relaxed">
+                  In this new season, the hand of God continues to move. Families are being restored, prodigals are returning to Christ, and the church stands more equipped than ever to serve the broader community. The relocation has opened new doors for outreach, service, and impact — and we believe the best is still ahead.
+                </p>
+                <p className="text-lg text-[#4A4A4A] leading-relaxed">
+                  We are a church built on faith, sustained by prayer, and driven by one purpose: to see lives transformed by the love of Jesus Christ.
                 </p>
               </div>
             </div>
@@ -86,19 +93,25 @@ export default async function AboutPage() {
               <h2 className="text-4xl lg:text-5xl font-bold mb-8">Nuestra Historia</h2>
               <div className="space-y-6">
                 <p className="text-lg text-[#4A4A4A] leading-relaxed">
-                  Living Hope Church fue fundada en 2009 con una visión simple: ser un lugar donde todos puedan 
-                  encontrar el amor de Dios y descubrir su propósito. Lo que comenzó como un pequeño grupo de 
-                  familias se ha convertido en una comunidad de fe vibrante y multicultural.
+                  Fundada en abril de 2010 por los pastores Francisca Meléndez-Contreras y Saúl Contreras, lo que comenzó como una pequeña reunión de fieles creyentes se ha convertido en una comunidad próspera, arraigada en el poder de Dios, el amor de Jesucristo y el obrar del Espíritu Santo.
                 </p>
                 <p className="text-lg text-[#4A4A4A] leading-relaxed">
-                  Somos una iglesia pentecostal contemporánea que valora tanto el poder del Espíritu Santo como la 
-                  profundidad de la enseñanza bíblica. Nuestra adoración es enérgica y auténtica, nuestra comunidad 
-                  es cálida y acogedora, y nuestra misión es clara: compartir la esperanza que hemos encontrado en 
-                  Jesús con nuestra ciudad y más allá.
+                  En aquellos primeros días, los servicios se celebraban en el humilde garaje de la familia Cordero, un espacio sencillo lleno de adoración sincera y un anhelo por la presencia de Dios. Al acercarse los meses más fríos, la familia Flores abrió amablemente su hogar, ofreciendo calor y refugio para que la iglesia pudiera seguir creciendo. Desde el principio, la fidelidad del pueblo de Dios sentó las bases de todo lo que vino después.
                 </p>
                 <p className="text-lg text-[#4A4A4A] leading-relaxed">
-                  Hoy servimos a cientos de familias de diversos orígenes, ofreciendo servicios en inglés y español, 
-                  y brindando ministerios para cada edad y etapa de la vida.
+                  Para 2011, la congregación había superado su entorno. En su provisión, Dios abrió una puerta inesperada: la Iglesia Roca de Salvación extendió una invitación para compartir sus instalaciones, recibiendo a la congregación con los brazos abiertos. Fue en esa época que la mano de Dios se movió de maneras innegables: almas fueron salvadas, familias restauradas y vidas transformadas en el nombre de Jesús.
+                </p>
+                <p className="text-lg text-[#4A4A4A] leading-relaxed">
+                  En dos años, Dios proveyó de nuevo. La iglesia consiguió su propio espacio, lo que marcó un hito importante en su trayectoria. Desde ese lugar, la congregación continuó sirviendo a la comunidad circundante, organizando eventos de alcance comunitario, ministrando a familias necesitadas y viendo la gracia de Dios derramarse semana tras semana. Lo que comenzó en un garaje se había convertido en un lugar donde vidas cambiaban.
+                </p>
+                <p className="text-lg text-[#4A4A4A] leading-relaxed">
+                  Durante casi una década, la iglesia sirvió fielmente desde ese lugar. Pero a medida que la congregación seguía creciendo, el espacio ya no podía contener lo que Dios estaba haciendo. En 2021, la iglesia se trasladó a unas instalaciones más grandes, no solo por necesidad, sino como reflejo de la visión expansiva que Dios había puesto en su corazón.
+                </p>
+                <p className="text-lg text-[#4A4A4A] leading-relaxed">
+                  En esta nueva época, la mano de Dios continúa obrando. Familias están siendo restauradas, los pródigos están regresando a Cristo y la iglesia está más preparada que nunca para servir a la comunidad en general. La reubicación ha abierto nuevas puertas para la difusión, el servicio y el impacto, y creemos que lo mejor está por venir.
+                </p>
+                <p className="text-lg text-[#4A4A4A] leading-relaxed">
+                  Somos una iglesia cimentada en la fe, sostenida por la oración e impulsada por un solo propósito: ver vidas transformadas por el amor de Jesucristo.
                 </p>
               </div>
             </div>
