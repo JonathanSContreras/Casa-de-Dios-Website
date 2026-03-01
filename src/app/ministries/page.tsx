@@ -56,7 +56,7 @@ export default async function Ministries() {
           <Image
             src="/images/street-evangelism.jpg"
             alt="Community serving"
-            className="w-full h-[400px] lg:h-[550px] object-cover"
+            className="w-full aspect-[21/9] lg:aspect-auto lg:h-[550px] object-cover"
             width={1920}
             height={550}
           />

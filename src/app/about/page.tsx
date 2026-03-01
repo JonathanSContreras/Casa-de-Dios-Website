@@ -112,7 +112,7 @@ export default async function AboutPage() {
           <Image
             src="/images/group-picture.jpg"
             alt="Community gathering"
-            className="w-full h-[400px] lg:h-[600px] object-cover"
+            className="w-full aspect-[21/9] lg:aspect-auto lg:h-[600px] object-cover"
             width={1920}
             height={600}
           />

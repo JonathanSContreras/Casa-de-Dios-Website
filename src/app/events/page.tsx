@@ -141,7 +141,7 @@ export default async function EventsPage() {
           <Image
             src="/images/church-anniversary.jpg"
             alt="Collage of pictures from church anniversary celebration 2025"
-            className="w-full h-[400px] lg:h-[600px] object-cover"
+            className="w-full aspect-[21/9] lg:aspect-auto lg:h-[600px] object-cover"
             width={1440}
             height={600}
           />
