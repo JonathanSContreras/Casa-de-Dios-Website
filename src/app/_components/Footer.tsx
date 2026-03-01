@@ -103,6 +103,9 @@ export function Footer() {
             </a> */}
           </div>
           <p className="text-[#E5E5E5] text-sm">
+            Designed and Built by Enoch Studio.
+          </p>
+          <p className="text-[#E5E5E5] text-sm">
             © {new Date().getFullYear()}  Iglesia Pentecostal Casa de Dios. All rights reserved.
           </p>
         </div>
