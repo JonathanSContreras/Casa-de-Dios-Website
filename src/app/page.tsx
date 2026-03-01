@@ -280,10 +280,13 @@ function formatEventDateTime(event: Event) {
                           <Clock size={20} className="text-[#1A5D5D] flex-shrink-0" />
                           <span className="text-[#4A4A4A]">{time}</span>
                         </div>
-                        <div className="flex items-center gap-3">
+                        {event.location && (
+                          <div className="flex items-center gap-3">
                           <MapPin size={20} className="text-[#1A5D5D] flex-shrink-0" />
-                          <span className="text-[#4A4A4A]">{event.location ?? 'Temple/ Templo'}</span>
-                        </div>
+                          <span className="text-[#4A4A4A]">{event.location}</span>
+                          </div>
+                        )}
+                        
                       </div>
                     </div>
                   </div>
