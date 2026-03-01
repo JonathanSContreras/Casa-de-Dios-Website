@@ -99,11 +99,19 @@ export function MinistrySection({ ministries }: MinistrySectionProps) {
               <div className="space-y-6 mb-12">
                 <div>
                   <h4 className="text-2xl font-bold mb-4">About This Ministry</h4>
-                  <p className="text-lg text-[#4A4A4A] leading-relaxed">{selectedMinistry.fullDescEn}</p>
+                  <div className="space-y-4">
+                    {selectedMinistry.fullDescEn.split('\n').filter(Boolean).map((para, i) => (
+                      <p key={i} className="text-lg text-[#4A4A4A] leading-relaxed">{para}</p>
+                    ))}
+                  </div>
                 </div>
                 <div>
                   <h4 className="text-2xl font-bold mb-4">Acerca de Este Ministerio</h4>
-                  <p className="text-lg text-[#4A4A4A] leading-relaxed">{selectedMinistry.fullDescEs}</p>
+                  <div className="space-y-4">
+                    {selectedMinistry.fullDescEs?.split('\n').filter(Boolean).map((para, i) => (
+                      <p key={i} className="text-lg text-[#4A4A4A] leading-relaxed">{para}</p>
+                    ))}
+                  </div>
                 </div>
               </div>
 
