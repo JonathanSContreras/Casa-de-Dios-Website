@@ -205,7 +205,7 @@ function formatEventDateTime(event: Event) {
               </div>
             </div>
 
-            <div className="relative aspect-[21/9] lg:aspect-auto lg:h-[500px]">
+            <div className="relative h-[500px] lg:h-[500px]">
               <Image
                 src="/images/isaias-worship.jpg"
                 alt="Isaias worshiping"
