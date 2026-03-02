@@ -269,7 +269,7 @@ export default function ContactPage() {
           <div className="bg-[#E5E5E5] w-full h-[400px] lg:h-[600px] flex items-center justify-center">
             <div className="text-center w-full h-full">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d302.823875821002!2d-95.49296603284434!3d29.979926793306603!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640cc6c0e22ee63%3A0x9f051e4352c41524!2s13325%20Veterans%20Memorial%20Dr%2C%20Houston%2C%20TX%2077014!5e0!3m2!1sen!2sus!4v1768930129531!5m2!1sen!2sus"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3455.984753106853!2d-95.495861723236!3d29.979868174956263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640cc6c0ba6d4a5%3A0x72e437810319762d!2s13315%20Veterans%20Memorial%20Dr%20%23%20102%2C%20Houston%2C%20TX%2077014!5e0!3m2!1sen!2sus!4v1772415648819!5m2!1sen!2sus"
                 style={{ border: 0, width: '100%', height: '100%' }}
                 allowFullScreen
                 loading="lazy"
