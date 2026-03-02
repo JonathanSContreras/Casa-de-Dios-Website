@@ -42,12 +42,14 @@ function formatEventDateTime(event: Event) {
     month: 'long',
     day: 'numeric',
     year: 'numeric',
+    timeZone: 'America/Chicago',
   });
 
   const startTime = startDate.toLocaleTimeString('en-US', {
     hour: 'numeric',
     minute: '2-digit',
     hour12: true,
+    timeZone: 'America/Chicago',
   });
 
   const timeStr = endDate
@@ -55,6 +57,7 @@ function formatEventDateTime(event: Event) {
         hour: 'numeric',
         minute: '2-digit',
         hour12: true,
+        timeZone: 'America/Chicago',
       })}`
     : startTime;
 
